@@ -21,13 +21,13 @@ EXPOSE 8082
 ##
 # Stage: build
 ##
-FROM scratch AS build
+#FROM scratch AS build
 
 ENV APP_DATA=/srv/www \
     APP_ROOT=/var/www
 
 # Copy all from build
-COPY --from=base / .
+#COPY --from=base / .
 
 ##
 # Onbuild
@@ -36,23 +36,23 @@ COPY --from=base / .
 ONBUILD WORKDIR $APP_ROOT
 
 # S6
-ONBUILD COPY ./config/*s6/*cont-init.d/ /etc/cont-init.d/
-ONBUILD COPY ./config/*s6/*services.d/ /etc/services.d/
+#ONBUILD COPY ./config/*s6/*cont-init.d/ /etc/cont-init.d/
+#ONBUILD COPY ./config/*s6/*services.d/ /etc/services.d/
 
 # PHP
-ONBUILD COPY ./config/*php/  /etc/php/7.4/
+#ONBUILD COPY ./config/*php/  /etc/php/7.4/
 
 # Apache
-ONBUILD COPY ./config/*apache/  /etc/apache2/
+#ONBUILD COPY ./config/*apache/  /etc/apache2/
 
 # App
 # App
-ONBUILD COPY --chown=www-data:www-data . ./
+#ONBUILD COPY --chown=www-data:www-data . ./
 
 # Composer
 ONBUILD WORKDIR $APP_DATA
 
-ONBUILD COPY --chown=www-data:www-data ./config/*composer.lock $APP_DATA
+#ONBUILD COPY --chown=www-data:www-data ./config/*composer.lock $APP_DATA
 
 ONBUILD ARG GIT_DEPLOY_URL
 ONBUILD ARG GIT_DEPLOY_BRANCH=master
@@ -77,7 +77,7 @@ ENTRYPOINT ["/init"]
 ##
 # Stage: development
 ##
-FROM build
+#FROM build
 
 # Clean up apt cache and temp files to save disk space
 RUN /bin/bash -e /var/scripts/apt_clean.sh;
