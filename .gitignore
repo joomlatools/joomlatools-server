@@ -1,0 +1,34 @@
+# IDE & System Related Files #
+.buildpath
+.project
+.settings
+.DS_Store
+.idea
+
+# Docker
+docker-compose.override.yml
+
+# Dotenv
+.env
+.env.*
+!.env.example
+
+# Vendor (e.g. Composer)
+vendor/*
+!vendor/.gitkeep
+
+# Volume
+volume
+
+# Files
+files/*
+
+# Cloudflare
+workers/website/node_modules/
+workers/website/dist/
+workers/website/worker/
+
+# Themes
+sites/**/theme/node_modules
+sites/**/theme/css/*.map
+

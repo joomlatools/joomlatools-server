@@ -1,0 +1,54 @@
+
+name: Build pages-server image
+
+on:
+  workflow_dispatch:
+
+  push:
+    paths:
+      - 'config/**'
+      - '!.github/workflows/**'
+      - '.github/workflows/build-base-image.yml'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      # https://github.com/docker/setup-qemu-action
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+        with:
+          platforms: all
+
+      - name: Generate Github Slug
+        uses: rlespinasse/github-slug-action@v3.x
+
+      # https://github.com/docker/setup-buildx-action
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Login to Github Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      # https://github.com/marketplace/actions/build-and-push-docker-images
+      - name: Build and push to Github registry
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          platforms: linux/amd64,linux/arm64
+          push: true
+          file: ./.github/docker/base.Dockerfile
+          target: build
+          tags: |
+            ghcr.io/joomlatools/pages-server:${{ env.GITHUB_REF_SLUG }}
+            ghcr.io/joomlatools/pages-server:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
