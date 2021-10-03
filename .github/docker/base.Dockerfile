@@ -80,5 +80,5 @@ ENTRYPOINT ["/init"]
 #FROM build
 
 # Clean up apt cache and temp files to save disk space
-RUN /bin/bash -e /var/scripts/apt_clean.sh;
-RUN /bin/bash -e /var/scripts/apt_purge.sh;
+#RUN /bin/bash -e /var/scripts/apt_clean.sh;
+#RUN /bin/bash -e /var/scripts/apt_purge.sh;
