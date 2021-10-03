@@ -36,7 +36,7 @@ COPY --from=base / .
 ONBUILD WORKDIR $APP_ROOT
 
 # S6
-ONBUILD COPY ./config/*s6/*cont-init.d/ /etc/cont-init.d/
+#ONBUILD COPY ./config/*s6/*cont-init.d/ /etc/cont-init.d/
 #ONBUILD COPY ./config/*s6/*services.d/ /etc/services.d/
 
 # PHP
@@ -47,12 +47,12 @@ ONBUILD COPY ./config/*s6/*cont-init.d/ /etc/cont-init.d/
 
 # App
 # App
-ONBUILD COPY --chown=www-data:www-data . ./
+#ONBUILD COPY --chown=www-data:www-data . ./
 
 # Composer
 ONBUILD WORKDIR $APP_DATA
 
-ONBUILD COPY --chown=www-data:www-data ./config/*composer.lock $APP_DATA
+#ONBUILD COPY --chown=www-data:www-data ./config/*composer.lock $APP_DATA
 
 ONBUILD ARG GIT_DEPLOY_URL
 ONBUILD ARG GIT_DEPLOY_BRANCH=master
