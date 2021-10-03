@@ -16,11 +16,11 @@ docker compose up
 
 Then go to http://localhost and you should see the `Hello World!` greeting. 
 
-Note: Make sure you are not running any other application on port 80, if you are you need to turn of off first.
+_Note_: Make sure you are not running any other application on port 80, if you are you need to turn of off first.
 
 ## Architecture
 
-Pages server runs applications as a multi-process Docker container. The processes are supervised using S6 
+Pages Server runs applications as a multi-process Docker container. The processes are supervised using S6 
 overlay. Each application is build on the [`pages-server`](https://github.com/joomlatools/joomlatools-pages-server/pkgs/container/pages-server) base image. It contains following:
 
 - [Ubuntu 20.4](https://ubuntu.com/)
@@ -47,7 +47,7 @@ and the S6 init system is designed to do exactly that! Pages Server still behave
 
 ## Sites
 
-Each application can provide multiple websites. Sites are proxied through Apache and served by the build in FastCGI Swoole Server. Apache vhost configuration(s) are automatically loaded from `/var/www/sites/[name]/config/apache/server.conf`
+Each application can provide multiple websites. Sites are proxied through Apache and served by the build in FastCGI Swoole Server. A sites Apache vhost configurationn is automatically loaded from `/var/www/sites/[name]/config/apache/server.conf`
 
 ## Composer
 
