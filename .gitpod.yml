@@ -1,6 +1,6 @@
 image:
-  file: .Dockerfile
-  context: .gitpod
+  file: Dockerfile
+  context: .
 ports:
   - port: 80
   - port: 443
