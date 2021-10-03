@@ -1,0 +1,25 @@
+#docker-compose.yml (Development)
+version: "3.8"
+services:
+  web:
+    image: pages-server
+    environment:
+      - APP_ENV=development
+      - APP_NONCE=cDWPradF2E
+    container_name: pages-server
+    restart: always
+    build:
+      context: .
+      #args:
+      #  GIT_DEPLOY_URL:
+      #  GIT_DEPLOY_BRANCH: master
+    env_file:
+      - .env
+    volumes:
+      - ./volume:/mnt/www
+      - ./:/var/www
+    ports:
+      - "80:8080"     # HTTP Apache
+      - "443:8443"    # HTTPS Apache
+      - "8081:8081"   # HTTP Service - FastCGI
+      - "8082:8082"   # HTTP Service - Webhooks
