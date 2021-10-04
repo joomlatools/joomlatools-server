@@ -11,6 +11,9 @@ FROM ghcr.io/joomlatools/pages-server:latest as base
 
 RUN apt-get install -y --no-install-recommends rolldice
 
+# Passwordless sudo for users in the 'sudo' group
+RUN sed -i.bkp -e 's/%sudo\s\+ALL=(ALL\(:ALL\)\?)\s\+ALL/%sudo ALL=NOPASSWD:ALL/g' /etc/sudoers
+
 ##
 # END:  custom Docker instructions
 ##
