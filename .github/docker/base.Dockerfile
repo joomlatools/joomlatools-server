@@ -44,7 +44,7 @@ ONBUILD COPY ./config/*php/  /etc/php/7.4/
 ONBUILD COPY ./config/*apache/  /etc/apache2/
 
 # App
-#ONBUILD COPY --chown=www-data:www-data ./ $APP_ROOT
+ONBUILD COPY --chown=www-data:www-data ./ $APP_ROOT
 
 # Git
 ONBUILD ARG GIT_DEPLOY_URL
@@ -65,7 +65,7 @@ ONBUILD ENV COMPOSER_ALLOW_SUPERUSER=1
 ONBUILD ENV COMPOSER_HOME=/tmp
 ONBUILD RUN /bin/bash -e /var/scripts/composer_install.sh;
 
-ONBUILD WORKDIR $APP_ROOT
+#ONBUILD WORKDIR $APP_ROOT
 
 # Run S6 overlay
 ENTRYPOINT ["/init"]
