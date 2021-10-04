@@ -35,10 +35,10 @@ COPY --from=base / .
 
 # S6
 ONBUILD COPY ./config/*s6/*cont-init.d/ /etc/cont-init.d/
-ONBUILD COPY ./config/*s6/*services.d/ /etc/services.d/
+#ONBUILD COPY ./config/*s6/*services.d/ /etc/services.d/
 
 # PHP
-ONBUILD COPY ./config/*php/  /etc/php/7.4/
+#ONBUILD COPY ./config/*php/  /etc/php/7.4/
 
 # Apache
 ONBUILD COPY ./config/*apache/  /etc/apache2/
@@ -59,7 +59,7 @@ ONBUILD RUN if [ ! -z ${GIT_DEPLOY_URL} ]; then \
 fi;
 
 # Composer
-#ONBUILD COPY --chown=www-data:www-data config/*composer.lock $APP_DATA
+#ONBUILD COPY --chown=www-data:www-data ./config/*composer.lock $APP_DATA
 
 ONBUILD ENV COMPOSER_ALLOW_SUPERUSER=1
 ONBUILD ENV COMPOSER_HOME=/tmp
