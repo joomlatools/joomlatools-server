@@ -21,13 +21,13 @@ EXPOSE 8082
 ##
 # Stage: build
 ##
-#FROM scratch AS build
+FROM scratch AS build
 
 ENV APP_DATA=/srv/www \
     APP_ROOT=/var/www
 
 # Copy all from build
-#COPY --from=base / .
+COPY --from=base / .
 
 ##
 # Onbuild
@@ -66,13 +66,13 @@ ENV APP_DATA=/srv/www \
 #ONBUILD RUN /bin/bash -e /var/scripts/composer_install.sh;
 
 # Run S6 overlay
-#ENTRYPOINT ["/init"]
+ENTRYPOINT ["/init"]
 
 ##
 # Stage: development
 ##
-#FROM build
+FROM build
 
 # Clean up apt cache and temp files to save disk space
-#RUN /bin/bash -e /var/scripts/apt_clean.sh;
-#RUN /bin/bash -e /var/scripts/apt_purge.sh;
+RUN /bin/bash -e /var/scripts/apt_clean.sh;
+RUN /bin/bash -e /var/scripts/apt_purge.sh;
