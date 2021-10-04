@@ -3,7 +3,7 @@ image:
   context: .
 tasks:
   - name: S6 init
-    command: /init
+    command: init
     openMode: split-right
 ports:
   - port: 8080
