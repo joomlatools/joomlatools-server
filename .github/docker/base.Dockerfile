@@ -46,8 +46,7 @@ ONBUILD COPY ./config/*apache/  /etc/apache2/
 # App
 ONBUILD COPY --chown=www-data:www-data ./ $APP_ROOT
 
-ONBUILD COPY --chown=www-data:www-data ./config/*composer.lock $APP_DATA
-
+# Git
 ONBUILD ARG GIT_DEPLOY_URL
 ONBUILD ARG GIT_DEPLOY_BRANCH=master
 ONBUILD RUN if [ ! -z ${GIT_DEPLOY_URL} ]; then \
@@ -58,6 +57,9 @@ ONBUILD RUN if [ ! -z ${GIT_DEPLOY_URL} ]; then \
         --depth=1 \
         --separate-git-dir=/srv/git; \
 fi;
+
+# Composer
+ONBUILD COPY --chown=www-data:www-data ./config/*composer.lock $APP_DATA
 
 ONBUILD ENV COMPOSER_ALLOW_SUPERUSER=1
 ONBUILD ENV COMPOSER_HOME=/tmp
