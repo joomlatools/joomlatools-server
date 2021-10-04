@@ -17,15 +17,16 @@
 # Docker
 docker-compose.*
 
+# Gitpod
+.gitpod.yml
+gitpod.Dockerfile
+
 # Vendor (e.g. Composer)
 vendor/*
 !vendor/.gitkeep
 
 # Volume
 volume
-
-# Files
-files/*
 
 # Cloudflare
 workers

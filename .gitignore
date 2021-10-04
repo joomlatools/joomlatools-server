@@ -20,9 +20,6 @@ vendor/*
 # Volume
 volume
 
-# Files
-files/*
-
 # Cloudflare
 workers/website/node_modules/
 workers/website/dist/
