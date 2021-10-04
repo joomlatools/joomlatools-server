@@ -9,6 +9,8 @@ FROM ghcr.io/joomlatools/pages-server:latest as base
 # START: custom Docker instructions
 ##
 
+RUN apt-get install -y --no-install-recommends  sudo
+
 ##
 # END:  custom Docker instructions
 ##
@@ -17,7 +19,10 @@ FROM ghcr.io/joomlatools/pages-server:latest as base
 
 ##
 # Stage: build
+#
+# Note: Using a scratch image doesn't work with Gitpod
 ##
+
 #FROM scratch as build
 
 # Copy all from base
