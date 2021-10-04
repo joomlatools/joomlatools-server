@@ -9,7 +9,8 @@ FROM ghcr.io/joomlatools/pages-server:latest as base
 # START: custom Docker instructions
 ##
 
-RUN apt-get install -y --no-install-recommends  sudo
+RUN apt-get install -y --no-install-recommends sudo
+RUN apt-get install -y --no-install-recommends rolldice
 
 ##
 # END:  custom Docker instructions
