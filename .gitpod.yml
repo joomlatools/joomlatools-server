@@ -3,7 +3,7 @@ image:
   context: .
 tasks:
   - name: S6 init
-    command: /bin/execlineb /init
+    command: sudo /bin/execlineb /init
     openMode: split-right
 ports:
   - port: 8080
