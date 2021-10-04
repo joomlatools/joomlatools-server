@@ -1,3 +1,9 @@
+##
+# Stage: base
+#
+# Build gitpod server
+##
+
 FROM ghcr.io/joomlatools/pages-server:latest as base
 
 ENV APP_DATA=/srv/www \
@@ -17,6 +23,8 @@ ENV APP_DATA=/srv/www \
 ##
 
 # --- DO NOT MODIFY BELOW ----------------------------------------------------------------------------------------------
+
+RUN chown -R gitpod:gitpod ${APP_DISK:=/mnt/www}
 
 RUN apt-get install -y --no-install-recommends sudo
 RUN useradd -l -u 33333 -G sudo -md /home/gitpod -s /bin/bash -p gitpod gitpod; \
