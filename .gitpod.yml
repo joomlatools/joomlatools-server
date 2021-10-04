@@ -2,12 +2,14 @@ image:
   file: .gitpod/Dockerfile
   context: .
 tasks:
-  - name: S6 init
+  - name: Log Stream
     command: sudo /init
     openMode: split-right
 ports:
   - port: 8080
     onOpen: open-preview
+  - port: 8443
+    onOpen: ignore
   - port: 8081
     onOpen: ignore
   - port: 8082
