@@ -44,7 +44,7 @@ ONBUILD COPY ./config/*php/  /etc/php/7.4/
 ONBUILD COPY ./config/*apache/  /etc/apache2/
 
 # App
-ONBUILD COPY --chown=www-data:www-data ./ $APP_ROOT
+#ONBUILD COPY --chown=www-data:www-data ./ $APP_ROOT
 
 # Git
 ONBUILD ARG GIT_DEPLOY_URL
