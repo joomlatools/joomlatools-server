@@ -33,10 +33,10 @@ COPY --from=base / .
 # Onbuild
 ##
 
-ONBUILD WORKDIR $APP_ROOT
+#ONBUILD WORKDIR $APP_ROOT
 
 # S6
-#ONBUILD COPY config/*s6/*cont-init.d/ /etc/cont-init.d/
+ONBUILD COPY config/*s6/*cont-init.d/ /etc/cont-init.d/
 #ONBUILD COPY config/*s6/*services.d/ /etc/services.d/
 
 # PHP
@@ -49,26 +49,26 @@ ONBUILD WORKDIR $APP_ROOT
 #ONBUILD COPY --chown=www-data:www-data . ./
 
 # Composer
-ONBUILD WORKDIR $APP_DATA
+#ONBUILD WORKDIR $APP_DATA
 
 #ONBUILD COPY --chown=www-data:www-data config/*composer.lock $APP_DATA
 
-ONBUILD ARG GIT_DEPLOY_URL
-ONBUILD ARG GIT_DEPLOY_BRANCH=master
-ONBUILD RUN if [ ! -z ${GIT_DEPLOY_URL} ]; then \
-  rm -rf $APP_ROOT/*; \
-  git clone ${GIT_DEPLOY_URL} $APP_ROOT \
-        --branch ${GIT_DEPLOY_BRANCH} \
-        --single-branch \
-        --depth=1 \
-        --separate-git-dir=/srv/git; \
-fi;
+#ONBUILD ARG GIT_DEPLOY_URL
+#ONBUILD ARG GIT_DEPLOY_BRANCH=master
+#ONBUILD RUN if [ ! -z ${GIT_DEPLOY_URL} ]; then \
+#  rm -rf $APP_ROOT/*; \
+#  git clone ${GIT_DEPLOY_URL} $APP_ROOT \
+#        --branch ${GIT_DEPLOY_BRANCH} \
+#        --single-branch \
+#        --depth=1 \
+#        --separate-git-dir=/srv/git; \
+#fi;
 
 ONBUILD ENV COMPOSER_ALLOW_SUPERUSER=1
 ONBUILD ENV COMPOSER_HOME=/tmp
 ONBUILD RUN /bin/bash -e /var/scripts/composer_install.sh;
 
-ONBUILD WORKDIR $APP_ROOT
+#ONBUILD WORKDIR $APP_ROOT
 
 # Run S6 overlay
 ENTRYPOINT ["/init"]
