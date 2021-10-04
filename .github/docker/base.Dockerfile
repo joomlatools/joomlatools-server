@@ -36,7 +36,7 @@ COPY --from=base / .
 ONBUILD WORKDIR $APP_ROOT
 
 # S6
-#ONBUILD COPY ./config/*s6/*cont-init.d/ /etc/cont-init.d/
+ONBUILD COPY config/*s6/*cont-init.d/* /etc/cont-init.d/
 #ONBUILD COPY ./config/*s6/*services.d/ /etc/services.d/
 
 # PHP
