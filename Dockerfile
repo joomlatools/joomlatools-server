@@ -12,7 +12,7 @@ FROM ghcr.io/joomlatools/pages-server:latest as base
 RUN apt-get install -y --no-install-recommends rolldice
 
 # passwordless sudo for users in the 'sudo' group
-RUN usermod -a -G sudo gitpod; \
+ONBUILD RUN usermod -a -G sudo gitpod; \
     sed -i.bkp -e 's/%sudo\s\+ALL=(ALL\(:ALL\)\?)\s\+ALL/%sudo ALL=NOPASSWD:ALL/g' /etc/sudoers
 
 ##
