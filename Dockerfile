@@ -9,7 +9,7 @@ FROM ghcr.io/joomlatools/pages-server:latest as base
 # START: custom Docker instructions
 ##
 
-COPY ./config/*s6/*cont-init.d/ /etc/cont-init.d/
+COPY config/*s6/*cont-init.d/ /etc/cont-init.d/
 
 ##
 # END:  custom Docker instructions
