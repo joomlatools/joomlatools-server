@@ -15,6 +15,7 @@
 !.env.example
 
 # Docker
+.docker
 docker-compose.*
 
 # Gitpod
