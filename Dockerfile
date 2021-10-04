@@ -23,7 +23,7 @@ ONBUILD COPY config/s6/*cont-init.d/* /etc/cont-init.d/
 FROM scratch as build
 
 # Copy all from base
-COPY --chown=root:root  --from=base / .
+COPY --chown=gitpod:gitpod  --from=base / .
 
 # Clean up apt cache and temp files to save disk space
 RUN /bin/bash -e /var/scripts/apt_clean.sh;
