@@ -9,6 +9,7 @@ services:
     container_name: pages-server
     restart: always
     build:
+      dockerfile: ./.docker/app.Dockerfile
       context: .
       #args:
       #  GIT_DEPLOY_URL:

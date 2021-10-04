@@ -3,6 +3,7 @@
 #
 # Build base server from scratch (used by GitHub Action)
 ##
+
 #FROM jt-base AS base
 FROM ghcr.io/joomlatools/jt-base:latest AS base
 

@@ -1,8 +1,8 @@
 image:
-  file: .gitpod/Dockerfile
+  file: .docker/gitpod.Dockerfile
   context: .
 tasks:
-  - name: Log Stream
+  - name: Pages Server
     command: sudo /init
     openMode: split-right
 ports:
