@@ -21,13 +21,13 @@ EXPOSE 8082
 ##
 # Stage: build
 ##
-FROM scratch AS build
+#FROM scratch AS build
 
 ENV APP_DATA=/srv/www \
     APP_ROOT=/var/www
 
 # Copy all from build
-COPY --from=base / .
+#COPY --from=base / .
 
 ##
 # Onbuild
@@ -47,32 +47,32 @@ COPY --from=base / .
 #ONBUILD COPY --chown=www-data:www-data ./ $APP_ROOT
 
 # Git
-ONBUILD ARG GIT_DEPLOY_URL
-ONBUILD ARG GIT_DEPLOY_BRANCH=master
-ONBUILD RUN if [ ! -z ${GIT_DEPLOY_URL} ]; then \
-  rm -rf $APP_ROOT/*; \
-  git clone ${GIT_DEPLOY_URL} $APP_ROOT \
-        --branch ${GIT_DEPLOY_BRANCH} \
-        --single-branch \
-        --depth=1 \
-        --separate-git-dir=/srv/git; \
-fi;
+#ONBUILD ARG GIT_DEPLOY_URL
+#ONBUILD ARG GIT_DEPLOY_BRANCH=master
+#ONBUILD RUN if [ ! -z ${GIT_DEPLOY_URL} ]; then \
+#  rm -rf $APP_ROOT/*; \
+#  git clone ${GIT_DEPLOY_URL} $APP_ROOT \
+#        --branch ${GIT_DEPLOY_BRANCH} \
+#        --single-branch \
+#        --depth=1 \
+#        --separate-git-dir=/srv/git; \
+#fi;
 
 # Composer
 #ONBUILD COPY --chown=www-data:www-data ./config/*composer.lock $APP_DATA
 
-ONBUILD ENV COMPOSER_ALLOW_SUPERUSER=1
-ONBUILD ENV COMPOSER_HOME=/tmp
-ONBUILD RUN /bin/bash -e /var/scripts/composer_install.sh;
+#ONBUILD ENV COMPOSER_ALLOW_SUPERUSER=1
+#ONBUILD ENV COMPOSER_HOME=/tmp
+#ONBUILD RUN /bin/bash -e /var/scripts/composer_install.sh;
 
 # Run S6 overlay
-ENTRYPOINT ["/init"]
+#ENTRYPOINT ["/init"]
 
 ##
 # Stage: development
 ##
-FROM build
+#FROM build
 
 # Clean up apt cache and temp files to save disk space
-RUN /bin/bash -e /var/scripts/apt_clean.sh;
-RUN /bin/bash -e /var/scripts/apt_purge.sh;
+#RUN /bin/bash -e /var/scripts/apt_clean.sh;
+#RUN /bin/bash -e /var/scripts/apt_purge.sh;
