@@ -18,10 +18,10 @@ FROM ghcr.io/joomlatools/pages-server:latest as base
 ##
 # Stage: build
 ##
-FROM scratch as build
+#FROM scratch as build
 
 # Copy all from base
-COPY --from=base / .
+#COPY --from=base / .
 
 # Clean up apt cache and temp files to save disk space
 RUN /bin/bash -e /var/scripts/apt_clean.sh;
