@@ -1,14 +1,16 @@
 image:
   file: Dockerfile
   context: .
-#tasks:
-#  - name: S6 init
-#    command: /init
-#    openMode: split-right
+tasks:
+  - name: S6 init
+    command: /init
+    openMode: split-right
 ports:
   - port: 8080
+    onOpen: open-preview
   - port: 8443
+    onOpen: open-preview
   - port: 8081
-    onOpen: open-preview
+    onOpen: ignore
   - port: 8082
-    onOpen: open-preview
+    onOpen: ignore
