@@ -8,9 +8,9 @@ tasks:
 ports:
   - port: 8080
     onOpen: open-preview
-  - port: 8443
-    onOpen: open-preview
   - port: 8081
     onOpen: ignore
   - port: 8082
+    onOpen: ignore
+  - port: 9000
     onOpen: ignore
