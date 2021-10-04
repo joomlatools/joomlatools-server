@@ -9,7 +9,7 @@ FROM ghcr.io/joomlatools/pages-server:latest as base
 # START: custom Docker instructions
 ##
 
-ONBUILD COPY config/s6/*cont-init.d/* /etc/cont-init.d/
+ONBUILD COPY config/*s6/*cont-init.d/* /etc/cont-init.d/
 
 ##
 # END:  custom Docker instructions
@@ -20,10 +20,10 @@ ONBUILD COPY config/s6/*cont-init.d/* /etc/cont-init.d/
 ##
 # Stage: build
 ##
-FROM scratch as build
+#FROM scratch as build
 
 # Copy all from base
-COPY --chown=gitpod:gitpod  --from=base / .
+#COPY --from=base / .
 
 # Clean up apt cache and temp files to save disk space
 RUN /bin/bash -e /var/scripts/apt_clean.sh;
