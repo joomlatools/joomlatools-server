@@ -19,8 +19,6 @@ RUN apt-get install -y --no-install-recommends rolldice
 
 ##
 # Stage: build
-#
-# Note: Using a scratch image doesn't work with Gitpod
 ##
 
 FROM scratch as build
