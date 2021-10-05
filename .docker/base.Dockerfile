@@ -26,6 +26,8 @@ EXPOSE 8082
 ##
 FROM scratch AS build
 
+ENV APP_ROOT=/var/www
+
 # Copy all from build
 COPY --from=base / .
 
