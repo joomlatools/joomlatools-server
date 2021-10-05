@@ -25,6 +25,8 @@ RUN apt-get install -y --no-install-recommends sudo; \
     usermod -a -G www-data gitpod; \
     sed -i.bkp -e 's/%sudo\s\+ALL=(ALL\(:ALL\)\?)\s\+ALL/%sudo ALL=NOPASSWD:ALL/g' /etc/sudoers
 
+RUN export TEST=test
+
 RUN mkdir $APP_DISK
 RUN chown -R gitpod:gitpod $APP_DISK
 
