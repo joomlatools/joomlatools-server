@@ -1,4 +1,22 @@
-# Joomlatools Pages Server
+<div align="center">
+  <br>
+  <h1>Joomlatools Pages Server</h1>
+  <strong>Frictionless web publishing</strong>
+</div>
+<br>
+<p align="center">
+  <a href="https://www.php.net">
+    <img src="https://img.shields.io/badge/PHP-v7.4-green.svg" alt="php version">
+  </a>
+  <a href="https://github.com/forem/forem/issues?q=is%3Aissue+is%3Aopen+label%3A%22ready+for+dev%22">
+    <img src="https://img.shields.io/github/issues/joomlatools/joomlatools-pages-server/ready for dev" alt="GitHub issues ready for dev">
+  </a>
+   <a href="https://gitpod.io/from-referrer/">
+    <img src="https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod" alt="GitPod badge">
+  </a>
+</p>
+
+Welcome to the Joomlatools Pages Server codebase, our home-grown web publishing platform that powers all of [joomlatools.com](https://joomlatools.com). 
 
 ### What is Joomlatools Pages Server?
 
@@ -174,3 +192,4 @@ Keep track of development and community news.
 * Subscribe to the [Joomlatools Developer Newsletter](https://www.joomlatools.com/developer/newsletter/)
 
 
+[⬆ Back to Top](#Table-of-contents)
