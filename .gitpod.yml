@@ -5,18 +5,24 @@ image:
 checkoutLocation: "pages-server"
 
 tasks:
-  - init: |
+  - name: Pages Server - Logs
+    init: |
       export APP_ENV=development
       export APP_PRELOAD=off
       export APP_CACHE=off
       export APP_DEBUG=on
     command: sudo -E /init
-    name: Pages Server
     openMode: split-right
+
+  - name: Open Site
+    command: >
+        gp await-port 8080 &&
+        printf "Waiting for local Pages Server development environment to load in the browser..." &&
+        gp preview $(gp url 8080)
 
 ports:
   - port: 8080
-    onOpen: open-preview
+    onOpen: ignore
   - port: 8443
     onOpen: ignore
   - port: 8081
@@ -25,3 +31,4 @@ ports:
     onOpen: ignore
   - port: 9000
     onOpen: ignore
+    visibility: private
