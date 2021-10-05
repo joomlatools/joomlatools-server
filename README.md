@@ -85,6 +85,9 @@ return [
 
 The following is a list of application environment variables. Defaults are provided for each except the `APP_APIKEY` and `APP_NONCE` variables. Both are required for the application to run.
 
+- `APP_USER=www-data`
+  The application user (default)
+
 - `APP_ROOT=/var/www`
   Location of the Apache root (default)
 
