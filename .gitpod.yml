@@ -6,7 +6,7 @@ checkoutLocation: "pages-server"
 
 tasks:
   - init: |
-      gp env APP_ENV=staging
+      gp env -e APP_ENV=staging
     command: sudo -E /init
     name: Pages Server
     openMode: split-right
