@@ -5,13 +5,16 @@ image:
 checkoutLocation: "pages-server"
 
 tasks:
+
+  - name: Open the Readme
+    command: gp open README.md
+
   - name: Logs - Pages Server
     init: |
       export APP_ENV=development
       export APP_PRELOAD=off
       export APP_CACHE=off
       export APP_DEBUG=on
-      export APP_ROOT=/workspace/pages-server
     command: |
       clear
       sudo -E /init
