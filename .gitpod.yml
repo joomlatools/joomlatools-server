@@ -10,7 +10,9 @@ tasks:
       export APP_PRELOAD=off
       export APP_CACHE=off
       export APP_DEBUG=on
-    command: sudo -E /init
+    command: |
+      clear
+      sudo -E /init
     name: Pages Server - Logs
     openMode: split-right
 
