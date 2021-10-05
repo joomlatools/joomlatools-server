@@ -16,11 +16,6 @@ ENV COMPOSER_ALLOW_SUPERUSER=1 \
 
 # --- DO NOT MODIFY ABOVE ----------------------------------------------------------------------------------------------
 
-ENV APP_ENV=development \
-    APP_PRELOAD=off \
-    APP_CACHE=off \
-    APP_DEBUG=on
-
 ##
 # START: custom Gitpod instructions
 ##
