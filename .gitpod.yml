@@ -3,8 +3,9 @@ image:
   context: .
 
 tasks:
+  - command: gp env APP_ENV=development
+    name: Environment
   - openMode: split-right
-    before: gp env APP_ENV=development
     command: sudo /init
     name: Pages Server
 
