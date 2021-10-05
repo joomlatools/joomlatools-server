@@ -6,10 +6,10 @@ checkoutLocation: "pages-server"
 
 tasks:
   - init: |
-      gp env -e APP_ENV=development
-      gp env -e APP_PRELOAD=off
-      gp env -e APP_CACHE=on
-      gp env -e APP_DEBUG=on
+      export APP_ENV=staging
+      export APP_PRELOAD=off
+      export APP_CACHE=on
+      export APP_DEBUG=on
     command: sudo -E /init
     name: Pages Server
     openMode: split-right
