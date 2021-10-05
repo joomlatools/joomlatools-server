@@ -2,8 +2,7 @@ image:
   file: .docker/gitpod.Dockerfile
   context: .
 
-checkoutLocation: "/var/www"
-workspaceLocation: "."
+checkoutLocation: "pages-server"
 
 tasks:
   - init: |
