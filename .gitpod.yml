@@ -5,12 +5,7 @@ image:
 checkoutLocation: "pages-server"
 
 tasks:
-  - init:
-      echo "
-        FOO=bar
-        APP_ENV=development
-      " >> /etc/environment
-    command: sudo /init
+  - command: sudo -E /init
     name: Pages Server
     openMode: split-right
 
