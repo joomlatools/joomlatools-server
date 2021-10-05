@@ -11,7 +11,7 @@ docker-compose.override.yml
 # Dotenv
 .env
 .env.*
-!.env.example
+!.env.default
 
 # Vendor (e.g. Composer)
 vendor/*
@@ -19,9 +19,6 @@ vendor/*
 
 # Volume
 volume
-
-# Files
-files/*
 
 # Cloudflare
 workers/website/node_modules/

@@ -9,12 +9,15 @@ services:
     container_name: pages-server
     restart: always
     build:
+      dockerfile: ./.docker/app.Dockerfile
       context: .
+      # Uncomment to deploy from Git
       #args:
       #  GIT_DEPLOY_URL:
       #  GIT_DEPLOY_BRANCH: master
-    env_file:
-      - .env
+    # Uncomment to override environment defaults
+    #env_file:
+    #  - .env
     volumes:
       - ./volume:/mnt/www
       - ./:/var/www

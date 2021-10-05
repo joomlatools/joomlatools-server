@@ -1,0 +1,38 @@
+image:
+  file: .docker/gitpod.Dockerfile
+  context: .
+
+checkoutLocation: "pages-server"
+
+tasks:
+
+  - name: Logs - Pages Server
+    init: |
+      export APP_ENV=development
+      export APP_PRELOAD=off
+      export APP_CACHE=off
+      export APP_DEBUG=on
+    command: |
+      clear
+      sudo -E /init
+
+  - name: Terminal - Pages Server
+    command: |
+      clear
+      echo ""
+      echo "Commands you can try:"
+      echo " * gp preview $(gp url 8080)/__info/php-info"
+
+ports:
+  - port: 8080
+    onOpen: open-preview
+    visibility: public
+  - port: 8443
+    onOpen: ignore
+  - port: 8081
+    onOpen: ignore
+  - port: 8082
+    onOpen: ignore
+  - port: 9000
+    onOpen: ignore
+    visibility: private

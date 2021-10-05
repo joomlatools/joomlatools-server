@@ -1,5 +1,5 @@
 
-name: Build pages-server image
+name: Build base image
 
 on:
   workflow_dispatch:
@@ -45,7 +45,7 @@ jobs:
           context: .
           platforms: linux/amd64,linux/arm64
           push: true
-          file: ./.github/docker/base.Dockerfile
+          file: ./.docker/base.Dockerfile
           target: build
           tags: |
             ghcr.io/joomlatools/pages-server:${{ env.GITHUB_REF_SLUG }}

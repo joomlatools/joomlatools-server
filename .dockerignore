@@ -12,10 +12,15 @@
 # Dotenv
 .env
 .env.*
-!.env.example
+!.env.default
 
 # Docker
+.docker
 docker-compose.*
+
+# Gitpod
+.gitpod.yml
+gitpod.Dockerfile
 
 # Vendor (e.g. Composer)
 vendor/*
@@ -23,9 +28,6 @@ vendor/*
 
 # Volume
 volume
-
-# Files
-files/*
 
 # Cloudflare
 workers
