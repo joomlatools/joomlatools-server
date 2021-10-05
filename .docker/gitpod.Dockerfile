@@ -6,14 +6,8 @@
 
 FROM ghcr.io/joomlatools/pages-server:latest as base
 
-ENV APP_DATA=/srv/www \
-    APP_ROOT=/var/www \
-    APP_DISK=/mnt/www \
-    APP_USER=gitpod \
-    APP_ENV=development \
-    APP_DEBUG=1 \
-    APP_NONCE=cDWPradF2E
-
+ENV APP_ROOT=/var/www \
+    APP_DISK=/mnt/www
 
 ##
 # START: custom Gitpod instructions
@@ -28,6 +22,7 @@ ENV APP_DATA=/srv/www \
 
 RUN apt-get install -y --no-install-recommends sudo; \
     useradd -l -u 33333 -G sudo -md /home/gitpod -s /bin/bash -p gitpod gitpod; \
+    usermod -a -G www-data gitpod; \
     sed -i.bkp -e 's/%sudo\s\+ALL=(ALL\(:ALL\)\?)\s\+ALL/%sudo ALL=NOPASSWD:ALL/g' /etc/sudoers
 
 RUN mkdir $APP_DISK
