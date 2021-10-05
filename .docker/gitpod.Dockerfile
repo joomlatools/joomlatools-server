@@ -32,9 +32,6 @@ ENV APP_ENV=development \
 
 # --- DO NOT MODIFY BELOW ----------------------------------------------------------------------------------------------
 
-# App
-COPY --chown=$APP_USER:$APP_USER ./ $APP_ROOT
-
 # Composer
 COPY --chown=$APP_USER:$APP_USER ./config/*composer.lock $APP_DATA
 RUN /bin/bash -e /var/scripts/composer_install.sh;
