@@ -4,10 +4,15 @@ image:
 
 checkoutLocation: "pages-server"
 
-#tasks:
-#  - command: sudo -E /init
-#    name: Pages Server
-#    openMode: split-right
+tasks:
+  - init:
+      sudo tee -a /etc/environment > /dev/null << EOF
+      TEST=test
+      APP_ENV=development
+      EOF
+    command: sudo -E /init
+    name: Pages Server
+    openMode: split-right
 
 ports:
   - port: 8080
