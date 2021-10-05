@@ -9,7 +9,7 @@ FROM ghcr.io/joomlatools/pages-server:latest as base
 ENV APP_DATA=/srv/www \
     APP_ROOT=/workspace/pages-server \
     APP_DISK=/mnt/www \
-    APP_USER=www-data
+    APP_USER=gitpod
 
 ENV COMPOSER_ALLOW_SUPERUSER=1 \
     COMPOSER_HOME=/tmp
