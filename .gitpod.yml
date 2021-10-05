@@ -4,8 +4,8 @@ image:
 
 tasks:
   - init: |
-      gp env S6_KEEP_ENV=1
-      gp env APP_ENV=development
+      export S6_KEEP_ENV=1
+      export APP_ENV=development
     command: sudo /init
     name: Pages Server
     openMode: split-right
