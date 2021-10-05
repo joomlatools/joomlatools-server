@@ -4,6 +4,7 @@ image:
 
 tasks:
   - openMode: split-right
+    before: export APP_ENV=development
     command: sudo /init
     name: Pages Server
 
