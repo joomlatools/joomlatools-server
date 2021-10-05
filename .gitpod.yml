@@ -2,6 +2,9 @@ image:
   file: .docker/gitpod.Dockerfile
   context: .
 
+checkoutLocation: "/var/www"
+workspaceLocation: "."
+
 tasks:
   - init: |
       gp env S6_KEEP_ENV=1

@@ -9,6 +9,11 @@ ENV APP_DATA=/srv/www \
     APP_ROOT=/var/www \
     APP_USER=www-data
 
+ENV COMPOSER_ALLOW_SUPERUSER=1 \
+    COMPOSER_HOME=/tmp
+
+# --- DO NOT MODIFY ABOVE ----------------------------------------------------------------------------------------------
+
 ##
 # START: custom Docker instructions
 ##
@@ -36,9 +41,6 @@ RUN if [ ! -z ${GIT_DEPLOY_URL} ]; then \
 fi;
 
 # Composer
-ENV COMPOSER_ALLOW_SUPERUSER=1
-ENV COMPOSER_HOME=/tmp
-
 COPY --chown=$APP_USER:$APP_USER ./config/*composer.lock $APP_DATA
 RUN /bin/bash -e /var/scripts/composer_install.sh;
 

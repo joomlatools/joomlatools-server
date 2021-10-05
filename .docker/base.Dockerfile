@@ -1,3 +1,5 @@
+# --- DO NOT MODIFY ---------------------------------------------------------------------------------------------------
+
 ##
 # Stage: base
 #
@@ -26,6 +28,9 @@ FROM scratch AS build
 
 # Copy all from build
 COPY --from=base / .
+
+# Remove copied files
+RUN rm -rf $APP_ROOT/*
 
 # Run S6 overlay
 ENTRYPOINT ["/init"]
