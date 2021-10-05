@@ -18,7 +18,7 @@ docker compose up
 
 Then go to http://localhost and you should see the `Hello World!` greeting.
 
-_Note_: Make sure you are not running any other application on port 80, if you are you need to turn of off first.
+_Note_: Make sure you are not running any other application on port 80, if you are turn them off first.
 
 ### Using Gitpod IDE
 
