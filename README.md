@@ -51,7 +51,9 @@ You can find all the documentation for Gitpod here: [https://www.gitpod.io/docs/
 ## Architecture
 
 Pages Server runs applications as a multi-process Docker container. The processes are supervised using S6 
-overlay. Each application is build on the [`pages-server`](https://github.com/joomlatools/joomlatools-pages-server/pkgs/container/pages-server) base image. It contains following:
+overlay. While init systems like supervisord are better known, s6 is powerful, lightweight, easy to use, and plays nicely with docker (e.g. avoiding the pid 1 / zombie problem).
+
+Each application is build on the [`pages-server`](https://github.com/joomlatools/joomlatools-pages-server/pkgs/container/pages-server) base image. It contains following:
 
 - [Ubuntu 20.4](https://ubuntu.com/)
 - [S6 Overlay v2.2](https://github.com/just-containers/s6-overlay)
