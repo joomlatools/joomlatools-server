@@ -26,6 +26,7 @@ tasks:
 ports:
   - port: 8080
     onOpen: open-preview
+    visibility: public
   - port: 8443
     onOpen: ignore
   - port: 8081
