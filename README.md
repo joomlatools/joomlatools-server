@@ -39,7 +39,7 @@ _Note_: Make sure you are not running any other application on port 80, if you a
 
 [Gitpod](https://www.gitpod.io/) provides a super simple way to develop with Joomlatools Pages using [VSCode](https://code.visualstudio.com/), straight from the browser. To get started [fork](https://docs.github.com/en/get-started/quickstart/fork-a-repo#fork-an-example-repository) this repo and either:
 
-1. Install the [Gitpod Chrome or Firefox extension](Gitpod Chrome or Firefox) and click the `Gitpod` button in the toolbar.
+1. Install the [Gitpod Chrome or Firefox extension](https://www.gitpod.io/docs/browser-extension/) and click the `Gitpod` button in the toolbar.
 2. Go to `http://gitpod.io#[my-repo-url-goes-here]`
 
 You can find all the documentation for Gitpod here: [https://www.gitpod.io/docs/](https://www.gitpod.io/docs/)
