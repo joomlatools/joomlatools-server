@@ -32,10 +32,6 @@ ENV APP_ENV=development \
 
 # --- DO NOT MODIFY BELOW ----------------------------------------------------------------------------------------------
 
-# Composer
-COPY --chown=$APP_USER:$APP_USER ./config/*composer.lock $APP_DATA
-RUN /bin/bash -e /var/scripts/composer_install.sh;
-
 # User
 RUN apt-get install -y --no-install-recommends sudo; \
     useradd -l -u 33333 -G sudo -md /home/gitpod -s /bin/bash -p gitpod gitpod; \
@@ -43,8 +39,13 @@ RUN apt-get install -y --no-install-recommends sudo; \
     sed -i.bkp -e 's/%sudo\s\+ALL=(ALL\(:ALL\)\?)\s\+ALL/%sudo ALL=NOPASSWD:ALL/g' /etc/sudoers
 
 RUN mkdir $APP_DISK
-RUN chown -R gitpod:gitpod $APP_DISK
+RUN chown -R $APP_USER:$APP_USER $APP_DISK
 
+# Composer
+COPY --chown=$APP_USER:$APP_USER ./config/*composer.lock $APP_DATA
+RUN /bin/bash -e /var/scripts/composer_install.sh;
+
+# To be removed
 RUN mkdir -p /var/run/s6/container_environment
 
 USER gitpod
