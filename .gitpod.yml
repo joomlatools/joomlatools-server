@@ -3,11 +3,10 @@ image:
   context: .
 
 tasks:
-  - command: gp env APP_ENV=development
-    name: Environment
-  - openMode: split-right
+  - init: gp env APP_ENV=development
     command: sudo /init
     name: Pages Server
+    openMode: split-right
 
 ports:
   - port: 8080
