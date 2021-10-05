@@ -6,9 +6,9 @@ checkoutLocation: "pages-server"
 
 tasks:
   - init: |
-      export APP_ENV=staging
+      export APP_ENV=development
       export APP_PRELOAD=off
-      export APP_CACHE=on
+      export APP_CACHE=off
       export APP_DEBUG=on
     command: sudo -E /init
     name: Pages Server
