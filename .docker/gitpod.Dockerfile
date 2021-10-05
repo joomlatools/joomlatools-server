@@ -25,17 +25,18 @@ ENV COMPOSER_ALLOW_SUPERUSER=1 \
 
 # --- DO NOT MODIFY BELOW ----------------------------------------------------------------------------------------------
 
-# Update Composer
+# App
+COPY --chown=$APP_USER:$APP_USER ./ $APP_ROOT
+
+# Composer
 COPY --chown=$APP_USER:$APP_USER ./config/*composer.lock $APP_DATA
 RUN /bin/bash -e /var/scripts/composer_install.sh;
 
-# Gitpod User
+# User
 RUN apt-get install -y --no-install-recommends sudo; \
     useradd -l -u 33333 -G sudo -md /home/gitpod -s /bin/bash -p gitpod gitpod; \
     usermod -a -G www-data gitpod; \
     sed -i.bkp -e 's/%sudo\s\+ALL=(ALL\(:ALL\)\?)\s\+ALL/%sudo ALL=NOPASSWD:ALL/g' /etc/sudoers
-
-RUN export TEST=test
 
 RUN mkdir $APP_DISK
 RUN chown -R gitpod:gitpod $APP_DISK
