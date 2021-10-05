@@ -5,7 +5,7 @@ image:
 checkoutLocation: "pages-server"
 
 tasks:
-  - init:
+  - init: |
       sudo -i
       echo TEST=test >> /etc/enviroment
       echo APP_ENV=development >> /etc/enviroment
