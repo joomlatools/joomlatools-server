@@ -11,7 +11,7 @@ tasks:
       export APP_PRELOAD=off
       export APP_CACHE=off
       export APP_DEBUG=on
-      export APP_ROOT=$GITPOD_REPO_ROOT
+      export APP_ROOT=/workspace/pages-server
     command: |
       clear
       sudo -E /init
