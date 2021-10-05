@@ -5,9 +5,11 @@ image:
 checkoutLocation: "pages-server"
 
 tasks:
-  - init: |
-      gp env S6_KEEP_ENV=1
-      gp env APP_ENV=development
+  - init:
+      echo "
+        FOO=bar
+        APP_ENV=development
+      " >> /etc/environment
     command: sudo /init
     name: Pages Server
     openMode: split-right
