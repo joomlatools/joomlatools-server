@@ -26,7 +26,6 @@ ENV APP_ENV=development \
 ##
 
 
-
 ##
 # END:  custom Gitpod instructions
 ##
@@ -44,7 +43,7 @@ RUN chown -R $APP_USER:$APP_USER $APP_DISK
 
 # Composer
 COPY --chown=$APP_USER:$APP_USER ./config/*composer.lock $APP_DATA
-RUN /bin/bash -e /var/scripts/composer_install.sh;
+RUN /bin/bash -e /var/scripts/composer_install.sh
 
 USER gitpod
 WORKDIR $APP_ROOT
