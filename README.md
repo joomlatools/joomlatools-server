@@ -8,15 +8,26 @@ Pages Server provides a great starting point for building Joomlatools Pages appl
 
 ## Getting started
 
-Getting started is very easy, make sure you have [Docker Desktop installed](https://www.docker.com/products/docker-desktop) and a local fork or clone of this repo. Go to the root directory of your installation in command line and execute following command:
+### Using your own IDE
+
+Getting started is very easy, make sure you have [Docker Desktop installed](https://www.docker.com/products/docker-desktop) and a local [fork](https://docs.github.com/en/get-started/quickstart/fork-a-repo#fork-an-example-repository) or clone of this repo. Go to the root directory of your installation in command line and execute following command:
 
 ```
 docker compose up
 ```
 
-Then go to http://localhost and you should see the `Hello World!` greeting. 
+Then go to http://localhost and you should see the `Hello World!` greeting.
 
 _Note_: Make sure you are not running any other application on port 80, if you are you need to turn of off first.
+
+### Using Gitpod IDE
+
+[Gitpod](https://www.gitpod.io/) provides a super simple way to develop with Joomlatools Pages using [VSCode](https://code.visualstudio.com/), straight from the browser. To get started [fork](https://docs.github.com/en/get-started/quickstart/fork-a-repo#fork-an-example-repository) this repo and either:
+
+1. Install the [Gitpod Chrome or Firefox extension](Gitpod Chrome or Firefox) and click the `Gitpod` button.
+2. Go to http://gitpod.io#https://github.com/joomlatools/joomlatools-pages-serve
+
+You can find all the documentation for Gitpod here: [https://www.gitpod.io/docs/](https://www.gitpod.io/docs/)
 
 ## Architecture
 
@@ -85,6 +96,9 @@ return [
 
 The following is a list of application environment variables. Defaults are provided for each except the `APP_APIKEY` and `APP_NONCE` variables. Both are required for the application to run.
 
+- `APP_ENV=production`
+  The application environment (default)
+
 - `APP_USER=www-data`
   The application user (default)
 
@@ -113,7 +127,7 @@ The following is a list of application environment variables. Defaults are provi
   Random number specific for the application (required)
 
 
-A complete list of all environemnt variables can be found in [.env.example](https://github.com/joomlatools/joomlatools/joomlatools-pages-server/.env.example)
+A complete list of all environemnt variables can be found in [.env.default](https://github.com/joomlatools/joomlatools/joomlatools-pages-server/.env.default)
 
 
 ## Endpoints
