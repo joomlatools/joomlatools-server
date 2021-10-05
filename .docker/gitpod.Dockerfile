@@ -45,8 +45,5 @@ RUN chown -R $APP_USER:$APP_USER $APP_DISK
 COPY --chown=$APP_USER:$APP_USER ./config/*composer.lock $APP_DATA
 RUN /bin/bash -e /var/scripts/composer_install.sh;
 
-# To be removed
-RUN mkdir -p /var/run/s6/container_environment
-
 USER gitpod
 WORKDIR $APP_ROOT
