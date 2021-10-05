@@ -11,7 +11,7 @@ docker-compose.override.yml
 # Dotenv
 .env
 .env.*
-!.env.example
+!.env.default
 
 # Vendor (e.g. Composer)
 vendor/*
