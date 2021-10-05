@@ -43,5 +43,7 @@ RUN apt-get install -y --no-install-recommends sudo; \
 RUN mkdir $APP_DISK
 RUN chown -R gitpod:gitpod $APP_DISK
 
+RUN mkdir -p /var/run/s6/container_environment
+
 USER gitpod
 WORKDIR $APP_ROOT
