@@ -13,7 +13,7 @@
   </a>
 </p>
 
-Welcome to the Joomlatools Pages Server codebase, our home-grown web publishing platform that powers all of [joomlatools.com](https://joomlatools.com). 
+Welcome to the Joomlatools Pages Server codebase, our home-grown **web publishing platform** that powers all of [joomlatools.com](https://joomlatools.com). 
 
 ### What is Joomlatools Pages Server?
 
@@ -39,10 +39,12 @@ _Note_: Make sure you are not running any other application on port 80, if you a
 
 [Gitpod](https://www.gitpod.io/) provides a super simple way to develop with Joomlatools Pages using [VSCode](https://code.visualstudio.com/), straight from the browser. To get started [fork](https://docs.github.com/en/get-started/quickstart/fork-a-repo#fork-an-example-repository) this repo and either:
 
-1. Install the [Gitpod Chrome or Firefox extension](Gitpod Chrome or Firefox) and click the `Gitpod` button.
-2. Go to http://gitpod.io#https://github.com/joomlatools/joomlatools-pages-serve
+1. Install the [Gitpod Chrome or Firefox extension](Gitpod Chrome or Firefox) and click the `Gitpod` button in the toolbar.
+2. Go to `http://gitpod.io#[my-repo-url-goes-here]`
 
 You can find all the documentation for Gitpod here: [https://www.gitpod.io/docs/](https://www.gitpod.io/docs/)
+
+**Gitpod Demo**: If you want to give this repo a spin in Gitpod, just click this button and off you go. 
 
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/joomlatools/joomlatools-pages-server)
 
@@ -114,37 +116,37 @@ return [
 The following is a list of application environment variables. Defaults are provided for each except the `APP_APIKEY` and `APP_NONCE` variables. Both are required for the application to run.
 
 - `APP_ENV=production`
-  The application environment (default)
+  The application environment _(default)_
 
 - `APP_USER=www-data`
-  The application user (default)
+  The application user _(default)_
 
 - `APP_ROOT=/var/www`
-  Location of the Apache root (default)
+  Location of the Apache root _(default)_
 
 - `APP_DATA=/srv/www`
-  Location of the common code, /vendor etc. (default)
+  Location of the common code, /vendor etc. _(default)_
 
 - `APP_DISK=/mnt/www`
-  Location of the persistent storage (default)
+  Location of the persistent storage _(default)_
 
 - `APP_PRELOAD=on`
-  Defines if opcache is preloaded from APP_DATA (default)
+  Defines if opcache is preloaded from APP_DATA _(default)_
 
 - `APP_CACHE=on`
-  Globally enable the application cache (default)
+  Globally enable the application cache _(default)_
 
 - `APP_DEBUG=off`
-  Globally enable application debug mode (default)
+  Globally enable application debug mode _(default)_
 
 - `APP_APIKEY=`
-  Bearer authentication token (required)
+  Bearer authentication token _(required)_
 
 - `APP_NONCE=`
-  Random number specific for the application (required)
+  Random number specific for the application _(required)_
 
 
-A complete list of all environemnt variables can be found in [.env.default](https://github.com/joomlatools/joomlatools/joomlatools-pages-server/.env.default)
+A complete list of all environment variables can be found in [.env.default](https://github.com/joomlatools/joomlatools/joomlatools-pages-server/.env.default)
 
 
 ## Endpoints
