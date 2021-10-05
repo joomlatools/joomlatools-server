@@ -5,7 +5,8 @@ image:
 checkoutLocation: "pages-server"
 
 tasks:
-  - init: |
+  - name: Logs - Pages Server
+    init: |
       export APP_ENV=development
       export APP_PRELOAD=off
       export APP_CACHE=off
@@ -13,8 +14,13 @@ tasks:
     command: |
       clear
       sudo -E /init
-    name: Pages Server - Logs
-    openMode: split-right
+
+  - name: Terminal - Pages Server
+    command: |
+      clear
+      echo ""
+      echo "Commands you can try:"
+      echo " * gp preview $(gp url 8080)/__info/php-info"
 
 ports:
   - port: 8080
