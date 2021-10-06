@@ -69,9 +69,8 @@ Make sure you have [Docker Desktop installed](https://www.docker.com/products/do
 docker compose up
 ```
 
-Then go to http://localhost and you should see the `Hello World!` greeting.
+Then go to http://localhost:8080 and you should see the `Hello World!` greeting.
 
-_Note_: Make sure you are not running any other application on port 80, if you are turn them off first.
 
 ### Using Gitpod IDE
 
