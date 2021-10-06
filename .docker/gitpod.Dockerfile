@@ -32,6 +32,12 @@ ENV APP_ENV=development \
 
 # --- DO NOT MODIFY BELOW ----------------------------------------------------------------------------------------------
 
+# Mason
+ADD https://files.joomlatools.com/mason/mason-linux.tar.gz /tmp/
+RUN tar xvzf /tmp/mason-linux.tar.gz -C /tmp; \
+    cp /tmp/bin/mason /usr/bin/mason; \
+    chmod 755 /usr/bin/mason
+
 # User
 RUN apt-get install -y --no-install-recommends sudo; \
     useradd -l -u 33333 -G sudo -md /home/gitpod -s /bin/bash -p gitpod gitpod; \
