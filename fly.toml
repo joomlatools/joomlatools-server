@@ -1,0 +1,56 @@
+# fly.toml
+
+##
+# To get started
+# 1. Install: https://fly.io/docs/flyctl/installing/
+# 2. Login: https://fly.io/docs/getting-started/login-to-fly/
+
+##
+# To deploy app
+# > flyctl launch (only if the app does not exist yet)
+# > flyctl deploy
+
+kill_signal = "SIGTERM"
+kill_timeout = 10
+
+[env]
+  APP_ENV = "development"
+  APP_CACHE = 1
+  APP_DEBUG = 1
+
+# Uncomment to deploy from Git
+#[build.args]
+#  GIT_DEPLOY_URL =
+#  GIT_DEPLOY_BRANCH = "master"
+
+[experimental]
+  auto_rollback = true
+  private_network = true
+
+[[services]]
+  internal_port = 8080
+  protocol = "tcp"
+
+  [services.concurrency]
+    hard_limit = 25
+    soft_limit = 20
+    type = "connections"
+
+  [[services.http_checks]]
+    grace_period = "10s"
+    interval = "15"
+    method = "get"
+    path = "/__ping"
+    protocol = "http"
+    timeout = "2s"
+    tls_skip_verify = true
+
+  [[services.ports]]
+    handlers = ["tls"]
+    port = 443
+
+  [[services.tcp_checks]]
+    grace_period = "5s"
+    interval = "15s"
+    restart_limit = 6
+    timeout = "2s"
