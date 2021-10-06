@@ -40,7 +40,7 @@ curl https://github.com/joomlatools/joomlatools-pages-server/archive/refs/heads/
 You may also download Pages Server by issuing the [Composer](https://getcomposer.org/) `create-project` command in your terminal:
 
 ```
-composer create-project joomlatools/pages-server [directory] 
+composer create-project joomlatools/pages-server [directory] --stability dev
 ```
 
 For more info: https://getcomposer.org/doc/03-cli.md#create-project
