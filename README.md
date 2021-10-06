@@ -17,7 +17,7 @@ Welcome to the Joomlatools Pages Server codebase, our home-grown **web publishin
 
 ### What is Joomlatools Pages Server?
 
-Pages Server is an application server for [Joomlatools Pages](https://github.com/joomlatools/joomlatools-pages).  It can be used both as a local/remote development environment and/or to deploy applications in the cloud using any platform that supports Docker images, eg [Fly.io](https://fly.io/), [Google App Engine](https://cloud.google.com/appengine), [Google Cloud Run](https://cloud.google.com/run), [Digital Ocean App Plaform](https://www.digitalocean.com/products/app-platform/), [AWS Fargate](https://aws.amazon.com/fargate/), ...
+Pages Server is an application server  that is specially tailored for building and running [Joomlatools Pages](https://github.com/joomlatools/joomlatools-pages) sites and apps.  It’s both a local/remote development environment and a multi-site web server. You can run it locally using Docker Desktop, or remote using Gitpod, or deploy it on any cloud hosting that supports Docker images: [Fly.io](https://fly.io/), [Google App Engine](https://cloud.google.com/appengine), [Google Cloud Run](https://cloud.google.com/run), [Digital Ocean App Plaform](https://www.digitalocean.com/products/app-platform/), [AWS Fargate](https://aws.amazon.com/fargate/), ...
 
 Pages Server provides a great starting point for building Joomlatools Pages applications using PHP and is supported on  macOS, Linux, and Windows (via WSL2).
 
