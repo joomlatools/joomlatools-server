@@ -35,7 +35,7 @@ ENV APP_ENV=development \
 # Mason
 ADD https://files.joomlatools.com/mason/mason-linux.tar.gz /tmp/
 RUN tar xvzf /tmp/mason-linux.tar.gz -C /tmp; \
-    cp /tmp/mason-linux /usr/bin/mason; \
+    cp /tmp/bin/mason /usr/bin/mason; \
     chmod 755 /usr/bin/mason
 
 # User
