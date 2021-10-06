@@ -22,7 +22,7 @@ services:
       - ./volume:/mnt/www
       - ./:/var/www
     ports:
-      - "80:8080"     # HTTP Apache
-      - "443:8443"    # HTTPS Apache
-      - "8081:8081"   # HTTP Service - FastCGI
-      - "8082:8082"   # HTTP Service - Webhooks
+      - "8080:8080"  # HTTP Apache
+      - "8443:8443"  # HTTPS Apache
+      - "8081:8081"  # HTTP Service - FastCGI
+      - "8082:8082"  # HTTP Service - Webhooks
