@@ -23,9 +23,47 @@ Pages Server provides a great starting point for building Joomlatools Pages appl
 
 ## Getting started
 
+### Installation
+
+Getting started is very easy, first you need to install the source code on your local machine or create a new Git repo (in case you want to use Gitpod). 
+
+#### Via Download
+
+The easiest way to get the code is to just download it. Click the `code` button and select `Download Zip` or use the following terminal command:
+
+```
+curl https://github.com/joomlatools/joomlatools-pages-server/archive/refs/heads/master.tar.gz | tar -xz
+```
+
+#### Via Composer
+
+You may also download Pages Server by issuing the [Composer](https://getcomposer.org/) `create-project` command in your terminal:
+
+```
+composer create-project joomlatools/pages-server [directory] 
+```
+
+For more info: https://getcomposer.org/doc/03-cli.md#create-project
+
+#### Via Clone
+
+You can also **clone** the repository using Git by issueing the following command in your terminal: 
+
+```
+git clone https://github.com/joomlatools/joomlatools-pages-server
+```
+
+For more info: https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository
+
+
+#### Via Fork
+
+Finally you can also **fork** the repository through Github, this can only be done through the Github user interface. For mor information: https://docs.github.com/en/get-started/quickstart/fork-a-repo#fork-an-example-repository
+
+
 ### Using your own IDE
 
-Getting started is very easy, make sure you have [Docker Desktop installed](https://www.docker.com/products/docker-desktop) and a local [fork](https://docs.github.com/en/get-started/quickstart/fork-a-repo#fork-an-example-repository) or clone of this repo. Go to the root directory of your installation in command line and execute following command:
+Make sure you have [Docker Desktop installed](https://www.docker.com/products/docker-desktop) and local installation of this repo. Go to the root directory of your installation and in the terminal and execute following command:
 
 ```
 docker compose up
@@ -37,7 +75,7 @@ _Note_: Make sure you are not running any other application on port 80, if you a
 
 ### Using Gitpod IDE
 
-[Gitpod](https://www.gitpod.io/) provides a super simple way to develop with Joomlatools Pages using [VSCode](https://code.visualstudio.com/), straight from the browser. To get started [fork](https://docs.github.com/en/get-started/quickstart/fork-a-repo#fork-an-example-repository) this repo and either:
+[Gitpod](https://www.gitpod.io/) provides a super simple way to develop with Joomlatools Pages using [VSCode](https://code.visualstudio.com/), straight from the browser. To get started make sure you have a clone or fork this repo, Gitpod offers support for  [GitHub](https://github.com/), [GitLab](https://gitlab.com) or [Bitbucket](https://bitbucket.org/) and either:
 
 1. Install the [Gitpod Chrome or Firefox extension](https://www.gitpod.io/docs/browser-extension/) and click the `Gitpod` button in the toolbar.
 2. Go to `http://gitpod.io#[my-repo-url-goes-here]`
