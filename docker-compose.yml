@@ -9,7 +9,6 @@ services:
     container_name: pages-server
     restart: always
     build:
-      dockerfile: ./.docker/app.Dockerfile
       context: .
       # Uncomment to deploy from Git
       #args:

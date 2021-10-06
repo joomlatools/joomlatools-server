@@ -45,7 +45,7 @@ jobs:
           context: .
           platforms: linux/amd64,linux/arm64
           push: true
-          file: ./.docker/base.Dockerfile
+          file: ./.github/Dockerfile
           target: build
           tags: |
             ghcr.io/joomlatools/pages-server:${{ env.GITHUB_REF_SLUG }}

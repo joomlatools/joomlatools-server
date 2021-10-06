@@ -1,5 +1,5 @@
 image:
-  file: .docker/gitpod.Dockerfile
+  file: .gitpod/Dockerfile
   context: .
 
 checkoutLocation: "pages-server"
