@@ -47,3 +47,9 @@ RUN /bin/bash -e /var/scripts/composer_install.sh
 
 USER gitpod
 WORKDIR $APP_ROOT
+
+# Mason
+ADD https://files.joomlatools.com/mason/mason-linux.tar.gz /tmp/
+RUN tar xvzf /tmp/mason-linux.tar.gz -C /tmp; \
+    cp /tmp/mason-linux /usr/bin/mason; \
+    chmod 755 /usr/bin/mason
