@@ -152,7 +152,7 @@ return [
 
 ## Environment
 
-The following is a list of application environment variables. Defaults are provided for each except the `APP_APIKEY` and `APP_NONCE` variables. Both are required for the application to run.
+The following is a list of application environment variables. Defaults are provided (or generated in case of APP_APIKEY and APP_NONCE) for each except if not provided
 
 - `APP_ENV=production`
   The application environment _(default)_
@@ -179,10 +179,10 @@ The following is a list of application environment variables. Defaults are provi
   Globally enable application debug mode _(default)_
 
 - `APP_APIKEY=`
-  Bearer authentication token _(required)_
+  Bearer authentication token _(generated if not provided)_
 
 - `APP_NONCE=`
-  Random number specific for the application _(required)_
+  Random number specific for the application _(generated if not provided)_
 
 
 A complete list of all environment variables can be found in [.env.default](https://github.com/joomlatools/joomlatools/joomlatools-pages-server/.env.default)
