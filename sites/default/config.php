@@ -1,8 +1,8 @@
 <?php
 return [
 
-    'cache_path' => getenv('APP_DISK').'/default/cache',
-    'log_path'   => getenv('APP_DISK').'/default/log',
+    'cache_path' => getenv('APP_VOLUME').'/default/cache',
+    'log_path'   => getenv('APP_VOLUME').'/default/log',
 
     'aliases' => [
         'theme://'  => '/theme/',
