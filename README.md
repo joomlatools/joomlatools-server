@@ -166,7 +166,7 @@ The following is a list of application environment variables. Defaults are provi
 - `APP_DATA=/srv/www`
   Location of the common code, /vendor etc. _(default)_
 
-- `APP_DISK=/mnt/www`
+- `APP_VOLUME=/mnt/www`
   Location of the persistent storage _(default)_
 
 - `APP_PRELOAD=on`

@@ -7,7 +7,7 @@ FROM ghcr.io/joomlatools/pages-server:latest as base
 
 ENV APP_DATA=/srv/www \
     APP_ROOT=/var/www \
-    APP_DISK=/mnt/www \
+    APP_VOLUME=/mnt/www \
     APP_USER=www-data
 
 ENV COMPOSER_ALLOW_SUPERUSER=1 \

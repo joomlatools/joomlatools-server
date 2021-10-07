@@ -8,7 +8,7 @@ FROM ghcr.io/joomlatools/pages-server:latest as base
 
 ENV APP_DATA=/srv/www \
     APP_ROOT=/workspace/pages-server \
-    APP_DISK=/mnt/www \
+    APP_VOLUME=/mnt/www \
     APP_USER=gitpod
 
 ENV COMPOSER_ALLOW_SUPERUSER=1 \
@@ -44,12 +44,14 @@ RUN apt-get install -y --no-install-recommends sudo; \
     usermod -a -G www-data gitpod; \
     sed -i.bkp -e 's/%sudo\s\+ALL=(ALL\(:ALL\)\?)\s\+ALL/%sudo ALL=NOPASSWD:ALL/g' /etc/sudoers
 
-RUN mkdir $APP_DISK
-RUN chown -R $APP_USER:$APP_USER $APP_DISK
-
 # Composer
 COPY --chown=$APP_USER:$APP_USER ./config/*composer.lock $APP_DATA
 RUN /bin/bash -e /var/scripts/composer_install.sh
+
+# Permissions
+RUN mkdir $APP_VOLUME \
+    chown -R $APP_USER:$APP_USER $APP_VOLUME \
+    chown -R $APP_USER:$APP_USER $APP_DATA
 
 USER gitpod
 WORKDIR $APP_ROOT
