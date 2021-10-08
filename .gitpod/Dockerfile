@@ -49,7 +49,7 @@ COPY --chown=$APP_USER:$APP_USER ./config/*composer.lock $APP_DATA
 RUN /bin/bash -e /var/scripts/composer_install.sh
 
 # Permissions
-RUN mkdir $APP_VOLUME; \
+RUN mkdir -p $APP_VOLUME; \
     chown -R $APP_USER:$APP_USER $APP_VOLUME; \
     chown -R $APP_USER:$APP_USER $APP_DATA
 
