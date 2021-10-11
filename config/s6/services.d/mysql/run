@@ -32,4 +32,5 @@ trap -x
 }
 
 importas -D /mnt/www APP_VOLUME APP_VOLUME
-exec /usr/bin/mysqld_safe --datadir=${APP_VOLUME}/mysql --user=mysql
+importas -D www-data APP_USER APP_USER
+exec /usr/bin/mysqld_safe --datadir=${APP_VOLUME}/mysql --user=${APP_USER}
