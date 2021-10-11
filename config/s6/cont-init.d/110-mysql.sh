@@ -7,6 +7,7 @@ file="${0##*/}"
 
 MYSQL_DATA_DIR=$APP_VOLUME/mysql
 MYSQL_PID_FILE=/var/run/mysqld/mysqld.pid
+MYSQL_USER=`whoami`
 
 # Remove stale MySQL PID file left behind when docker stops container
 if [[ -f $MYSQL_PID_FILE ]]; then
@@ -31,16 +32,16 @@ fi
 if [[ $APP_ENV = "development" ]]
 then
   echo "[cont-init.d] ${file}: Granting remote access of MySQL database from any IP address"
-  /usr/bin/mysql -u root -e "
-    CREATE USER IF NOT EXISTS 'root'@'%';
-    GRANT ALL ON *.* TO 'root'@'%';
+  /usr/bin/mysql -e "
+    CREATE USER IF NOT EXISTS '${$MYSQL_USER}'@'%';
+    GRANT ALL ON *.* TO '${$MYSQL_USER}'@'%';
     FLUSH PRIVILEGES;
     "
 else
   echo "[cont-init.d] ${file}: Revoking remote access of MySQL database from any IP address"
-   /usr/bin/mysql -u root -e -f "
-      REVOKE ALL PRIVILEGES, GRANT OPTION FROM 'root'@'%';
-      DROP USER IF EXISTS 'root'@'%';
+   /usr/bin/mysql -e -f "
+      REVOKE ALL PRIVILEGES, GRANT OPTION FROM '${$MYSQL_USER}'@'%';
+      DROP USER IF EXISTS '${$MYSQL_USER}'@'%';
       "
 fi
 
