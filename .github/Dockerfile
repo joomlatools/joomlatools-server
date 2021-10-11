@@ -25,7 +25,7 @@ EXPOSE 3306 33060
 COPY ./config/mysql /etc/mysql/
 
 RUN apt-get install -y --no-install-recommends mysql-server php7.4-mysql; \
-     /bin/bash -e /var/scripts/mysql_initialize.sh \
+     /bin/bash -e /var/scripts/mysql_initialize.sh
 
 ##
 # Stage: build
