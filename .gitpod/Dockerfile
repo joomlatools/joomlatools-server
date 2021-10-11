@@ -53,7 +53,7 @@ RUN /bin/bash -e /var/scripts/composer_install.sh
 # Permissions
 RUN mkdir -p $APP_VOLUME; \
     chown -R $APP_USER:$APP_USER $APP_VOLUME; \
-    chown -R $APP_USER:$APP_USER $APP_DATA \
+    chown -R $APP_USER:$APP_USER $APP_DATA; \
     chown -R $APP_USER:$APP_USER /var/lib/mysql
 
 USER gitpod
