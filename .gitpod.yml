@@ -36,3 +36,6 @@ ports:
   - port: 9000
     onOpen: ignore
     visibility: private
+  - port: 3306
+    onOpen: ignore
+    visibility: private
