@@ -40,3 +40,9 @@ ports:
   - port: 3306
     onOpen: ignore
     visibility: private
+
+vscode:
+  extensions:
+    - cweijan.vscode-mysql-client2
+    - bmewburn.vscode-intelephense-client
+    - ecmel.vscode-html-css
