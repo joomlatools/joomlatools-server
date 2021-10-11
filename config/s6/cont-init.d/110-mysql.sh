@@ -27,7 +27,7 @@ if [[ ! -d $MYSQL_DATA_DIR ]]; then
 fi
 
 # Grant or revoke passwordless remote access
-/usr/bin/mysqld_safe --datadir=$MYSQL_DATA_DIR --user=$APP_USER -D
+/usr/bin/mysqld_safe --datadir=$MYSQL_DATA_DIR -D
 if [[ $APP_ENV = "development" ]]
 then
   echo "[cont-init.d] ${file}: Granting remote access of MySQL database from any IP address"
@@ -44,4 +44,4 @@ else
       "
 fi
 
-/usr/bin/mysqladmin -u root shutdown
+/usr/bin/mysqladmin shutdown

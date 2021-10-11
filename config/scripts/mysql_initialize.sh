@@ -23,4 +23,4 @@ chmod 1777 $MYSQL_RUN_DIR $MYSQL_DATA_DIR
 
 # Initialize MySQL data directory (if needed)
 # See https://dev.mysql.com/doc/refman/8.0/en/data-directory-initialization.html
-/usr/bin/mysqld_safe --initialize-insecure --datadir=${MYSQL_DATA_DIR} --user=${APP_USER}
+/usr/bin/mysqld_safe --initialize-insecure --datadir=${MYSQL_DATA_DIR}

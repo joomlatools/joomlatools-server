@@ -28,9 +28,8 @@ fdmove -c 2 1 # redirect stderr into stdout
 
 trap -x
 {
-  term { mysqladmin -u root shutdown }
+  term { mysqladmin shutdown }
 }
 
 importas -D /mnt/www APP_VOLUME APP_VOLUME
-importas -D www-data APP_USER APP_USER
-exec /usr/bin/mysqld_safe --datadir=${APP_VOLUME}/mysql --user=${APP_USER}
+exec /usr/bin/mysqld_safe --datadir=${APP_VOLUME}/mysql
