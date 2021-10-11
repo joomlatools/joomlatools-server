@@ -22,7 +22,7 @@ if [[ ! -d $MYSQL_DATA_DIR ]]; then
   mkdir $MYSQL_DATA_DIR
   chown --reference=/var/lib/mysql $MYSQL_DATA_DIR
   chmod --reference=/var/lib/mysql $MYSQL_DATA_DIR
-  cp -R -p /var/lib/mysql/* $MYSQL_DATA_DIR
+  cp -Rpf /var/lib/mysql/* $MYSQL_DATA_DIR
 
 fi
 
