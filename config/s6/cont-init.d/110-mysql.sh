@@ -31,17 +31,17 @@ fi
 /usr/bin/mysqld_safe --datadir=$MYSQL_DATA_DIR -D
 if [[ $APP_ENV = "development" ]]
 then
-  echo "[cont-init.d] ${file}: Granting remote access of MySQL database from any IP address"
+  echo "[cont-init.d] ${file}: Granting remote access of MySQL database from any IP address for ${MYSQL_USER}"
   /usr/bin/mysql -e "
-    CREATE USER IF NOT EXISTS '${$MYSQL_USER}'@'%';
-    GRANT ALL ON *.* TO '${$MYSQL_USER}'@'%';
+    CREATE USER IF NOT EXISTS '${MYSQL_USER}'@'%';
+    GRANT ALL ON *.* TO '${MYSQL_USER}'@'%';
     FLUSH PRIVILEGES;
     "
 else
-  echo "[cont-init.d] ${file}: Revoking remote access of MySQL database from any IP address"
+  echo "[cont-init.d] ${file}: Revoking remote access of MySQL database from any IP address for ${MYSQL_USER}"
    /usr/bin/mysql -e -f "
-      REVOKE ALL PRIVILEGES, GRANT OPTION FROM '${$MYSQL_USER}'@'%';
-      DROP USER IF EXISTS '${$MYSQL_USER}'@'%';
+      REVOKE ALL PRIVILEGES, GRANT OPTION FROM '${MYSQL_USER}'@'%';
+      DROP USER IF EXISTS '${MYSQL_USER}'@'%';
       "
 fi
 
