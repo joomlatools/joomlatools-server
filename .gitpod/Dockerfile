@@ -43,6 +43,7 @@ RUN tar xvzf /tmp/mason-linux.tar.gz -C /tmp; \
 RUN apt-get install -y --no-install-recommends sudo; \
     useradd -l -u 33333 -G sudo -md /home/gitpod -s /bin/bash -p gitpod gitpod; \
     usermod -a -G www-data gitpod; \
+    usermod -a -G mysql gitpod; \
     sed -i.bkp -e 's/%sudo\s\+ALL=(ALL\(:ALL\)\?)\s\+ALL/%sudo ALL=NOPASSWD:ALL/g' /etc/sudoers
 
 # Composer
@@ -52,7 +53,8 @@ RUN /bin/bash -e /var/scripts/composer_install.sh
 # Permissions
 RUN mkdir -p $APP_VOLUME; \
     chown -R $APP_USER:$APP_USER $APP_VOLUME; \
-    chown -R $APP_USER:$APP_USER $APP_DATA
+    chown -R $APP_USER:$APP_USER $APP_DATA \
+    chown -R $APP_USER:$APP_USER /var/lib/mysql
 
 USER gitpod
 WORKDIR $APP_ROOT
