@@ -7,7 +7,6 @@ file="${0##*/}"
 
 MYSQL_DATA_DIR=$APP_VOLUME/mysql
 MYSQL_PID_FILE=/var/run/mysqld/mysqld.pid
-MYSQL_USER=`whoami`
 
 # Remove stale MySQL PID file left behind when docker stops container
 if [[ -f $MYSQL_PID_FILE ]]; then
@@ -29,6 +28,12 @@ fi
 
 # Grant or revoke passwordless remote access
 /usr/bin/mysqld_safe --datadir=$MYSQL_DATA_DIR -D
+
+echo "[cont-init.d] ${file}: Granting local access of MySQL database from localhost for ${MYSQL_USER}"
+/usr/bin/mysql -e "
+  CREATE USER IF NOT EXISTS '${MYSQL_USER}'@'%';
+ "
+
 if [[ $APP_ENV = "development" ]]
 then
   echo "[cont-init.d] ${file}: Granting remote access of MySQL database from any IP address for ${MYSQL_USER}"

@@ -11,6 +11,8 @@ ENV APP_DATA=/srv/www \
     APP_VOLUME=/mnt/www \
     APP_USER=gitpod
 
+ENV MYSQL_USER=gitpod
+
 ENV COMPOSER_ALLOW_SUPERUSER=1 \
     COMPOSER_HOME=/tmp
 
