@@ -23,20 +23,17 @@ fi
 chown -R mysql:mysql $MYSQL_RUN_DIR
 chmod 1777 $MYSQL_RUN_DIR
 
-
 # Initialize MySQL data directory (if needed)
 # See https://dev.mysql.com/doc/refman/8.0/en/data-directory-initialization.html
-#if [[ ! -d $MYSQL_VOLUME ]]; then
+if [[ ! -d $MYSQL_VOLUME ]]; then
 
   echo "[cont-init.d] ${file}: Installing MySQL in ${MYSQL_VOLUME} ..."
-  mkdir -p $MYSQL_VOLUME
-
   /usr/bin/mysqld_safe --initialize-insecure --datadir=${MYSQL_VOLUME}
 
-#fi
+fi
 
 # Grant or revoke passwordless remote access
-/usr/bin/mysqld_safe --datadir=$MYSQL_VOLUME -D
+/usr/bin/mysqld_safe --datadir=${MYSQL_VOLUME} -D
 
 echo "[cont-init.d] ${file}: Granting local access of MySQL database from localhost for ${MYSQL_USER}"
 /usr/bin/mysql -e "
