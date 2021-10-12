@@ -48,9 +48,9 @@ RUN apt-get install -y --no-install-recommends sudo; \
     sed -i.bkp -e 's/%sudo\s\+ALL=(ALL\(:ALL\)\?)\s\+ALL/%sudo ALL=NOPASSWD:ALL/g' /etc/sudoers
 
 # Composer
-RUN rm -f $APP_DATA/composer.lock
+#RUN rm -f $APP_DATA/composer.lock
 #COPY --chown=$APP_USER:$APP_USER ./config/*composer.lock $APP_DATA
-RUN /bin/bash -e /var/scripts/composer_install.sh
+#RUN /bin/bash -e /var/scripts/composer_install.sh
 
 # Permissions
 RUN mkdir -p $APP_VOLUME; \
