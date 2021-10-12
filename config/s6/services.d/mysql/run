@@ -1,0 +1,35 @@
+#!/usr/bin/execlineb -P
+#https://danyspin97.org/blog/getting-started-with-execline-scripting/
+
+### Commands
+# https://dev.mysql.com/doc/refman/8.0/en/unix-signal-response.html#server-signal-response
+# https://skarnet.org/software/s6/s6-svc.html
+
+# SIGUP: Reload the grant tables and to flush tables, logs, the thread cache, and the host cache
+# > s6-svc -h /var/run/s6/services/mysql
+
+# SIGUSR2: Shutdown
+# > s6-svc -t /var/run/s6/services/mysql
+
+# Status
+# https://skarnet.org/software/s6/s6-svstat.html
+# > s6-svstat /var/run/s6/services/mysql
+
+# Explicitly load container environment
+with-contenv
+
+foreground
+{
+    importas -D production APP_ENV APP_ENV
+    echo "Starting MySQL with environment:" $APP_ENV
+}
+
+fdmove -c 2 1 # redirect stderr into stdout
+
+trap -x
+{
+  term { mysqladmin shutdown }
+}
+
+importas -D /var/lib/mysql MYSQL_VOLUME MYSQL_VOLUME
+exec /usr/bin/mysqld_safe --datadir=${MYSQL_VOLUME}

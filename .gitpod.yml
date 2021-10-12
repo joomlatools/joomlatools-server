@@ -22,6 +22,7 @@ tasks:
       echo ""
       echo "Commands you can try:"
       echo " * gp preview $(gp url 8080)/__info/php-info"
+      echo " * mysql"
 
 ports:
   - port: 8080
@@ -36,3 +37,12 @@ ports:
   - port: 9000
     onOpen: ignore
     visibility: private
+  - port: 3306
+    onOpen: ignore
+    visibility: private
+
+vscode:
+  extensions:
+    - cweijan.vscode-mysql-client2
+    - bmewburn.vscode-intelephense-client
+    - ecmel.vscode-html-css

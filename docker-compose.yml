@@ -24,3 +24,5 @@ services:
       - "8443:8443"  # HTTPS Apache
       - "8081:8081"  # HTTP Service - FastCGI
       - "8082:8082"  # HTTP Service - Webhooks
+      - "3306:3306"    # MySQL
+      - "33060:33060"  # MySQL - X Plugin

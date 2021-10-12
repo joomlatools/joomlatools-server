@@ -2,7 +2,7 @@
 # Stage: base
 #
 # Build gitpod server
-##
+# Version: 0.1 build 10
 
 FROM ghcr.io/joomlatools/pages-server:latest as base
 
@@ -10,6 +10,8 @@ ENV APP_DATA=/srv/www \
     APP_ROOT=/workspace/pages-server \
     APP_VOLUME=/mnt/www \
     APP_USER=gitpod
+
+ENV MYSQL_USER=gitpod
 
 ENV COMPOSER_ALLOW_SUPERUSER=1 \
     COMPOSER_HOME=/tmp
@@ -42,6 +44,7 @@ RUN tar xvzf /tmp/mason-linux.tar.gz -C /tmp; \
 RUN apt-get install -y --no-install-recommends sudo; \
     useradd -l -u 33333 -G sudo -md /home/gitpod -s /bin/bash -p gitpod gitpod; \
     usermod -a -G www-data gitpod; \
+    usermod -a -G mysql gitpod; \
     sed -i.bkp -e 's/%sudo\s\+ALL=(ALL\(:ALL\)\?)\s\+ALL/%sudo ALL=NOPASSWD:ALL/g' /etc/sudoers
 
 # Composer
@@ -49,8 +52,7 @@ COPY --chown=$APP_USER:$APP_USER ./config/*composer.lock $APP_DATA
 RUN /bin/bash -e /var/scripts/composer_install.sh
 
 # Permissions
-RUN mkdir -p $APP_VOLUME; \
-    chown -R $APP_USER:$APP_USER $APP_VOLUME; \
+RUN chown -R $APP_USER:$APP_USER $APP_VOLUME; \
     chown -R $APP_USER:$APP_USER $APP_DATA
 
 USER gitpod
