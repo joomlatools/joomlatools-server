@@ -47,10 +47,6 @@ RUN apt-get install -y --no-install-recommends sudo; \
     usermod -a -G mysql gitpod; \
     sed -i.bkp -e 's/%sudo\s\+ALL=(ALL\(:ALL\)\?)\s\+ALL/%sudo ALL=NOPASSWD:ALL/g' /etc/sudoers
 
-# Composer
-RUN rm -f $APP_DATA/composer.lock
-RUN /bin/bash -e /var/scripts/composer_install.sh
-
 # Permissions
 RUN mkdir -p $APP_VOLUME; \
     chown -R $APP_USER:$APP_USER $APP_VOLUME; \
@@ -58,3 +54,7 @@ RUN mkdir -p $APP_VOLUME; \
 
 USER gitpod
 WORKDIR $APP_ROOT
+
+# Composer
+RUN rm -f $APP_DATA/composer.lock
+RUN /bin/bash -e /var/scripts/composer_install.sh
