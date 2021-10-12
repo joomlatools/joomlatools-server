@@ -31,5 +31,5 @@ trap -x
   term { mysqladmin shutdown }
 }
 
-importas -D /mnt/www APP_VOLUME APP_VOLUME
-exec /usr/bin/mysqld_safe --datadir=${APP_VOLUME}/mysql
+importas -D /var/lib/mysql MYSQL_VOLUME MYSQL_VOLUME
+exec /usr/bin/mysqld_safe --datadir=${MYSQL_VOLUME}

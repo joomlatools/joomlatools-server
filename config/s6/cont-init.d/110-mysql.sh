@@ -5,29 +5,38 @@
 
 file="${0##*/}"
 
-MYSQL_DATA_DIR=$APP_VOLUME/mysql
 MYSQL_PID_FILE=/var/run/mysqld/mysqld.pid
+MYSQL_RUN_DIR=/var/run/mysqld
+
+# Make sure run dir exists
+if [[ ! -d $MYSQL_RUN_DIR ]]; then
+	mkdir -p $MYSQL_RUN_DIR
+fi
+
 
 # Remove stale MySQL PID file left behind when docker stops container
 if [[ -f $MYSQL_PID_FILE ]]; then
 	rm -f $MYSQL_PID_FILE
 fi
 
+# Ensure that /var/run/mysqld (used for socket and lock files) is writable
+chown -R mysql:mysql $MYSQL_RUN_DIR
+chmod 1777 $MYSQL_RUN_DIR
+
+
 # Initialize MySQL data directory (if needed)
 # See https://dev.mysql.com/doc/refman/8.0/en/data-directory-initialization.html
-if [[ ! -d $MYSQL_DATA_DIR ]]; then
+#if [[ ! -d $MYSQL_VOLUME ]]; then
 
-  echo "[cont-init.d] ${file}: An empty or uninitialized MySQL volume is detected in ${MYSQL_DATA_DIR}"
-  echo "[cont-init.d] ${file}: Installing MySQL in ${MYSQL_DATA_DIR} ..."
-  mkdir $MYSQL_DATA_DIR
-  chown --reference=/var/lib/mysql $MYSQL_DATA_DIR
-  chmod --reference=/var/lib/mysql $MYSQL_DATA_DIR
-  cp -Rpf /var/lib/mysql/* $MYSQL_DATA_DIR
+  echo "[cont-init.d] ${file}: Installing MySQL in ${MYSQL_VOLUME} ..."
+  mkdir -p $MYSQL_VOLUME
 
-fi
+  /usr/bin/mysqld_safe --initialize-insecure --datadir=${MYSQL_VOLUME}
+
+#fi
 
 # Grant or revoke passwordless remote access
-/usr/bin/mysqld_safe --datadir=$MYSQL_DATA_DIR -D
+/usr/bin/mysqld_safe --datadir=$MYSQL_VOLUME -D
 
 echo "[cont-init.d] ${file}: Granting local access of MySQL database from localhost for ${MYSQL_USER}"
 /usr/bin/mysql -e "
