@@ -49,7 +49,6 @@ RUN apt-get install -y --no-install-recommends sudo; \
 
 # Composer
 RUN rm -f $APP_DATA/composer.lock
-COPY --chown=$APP_USER:$APP_USER ./config/*composer.lock $APP_DATA
 RUN /bin/bash -e /var/scripts/composer_install.sh
 
 # Permissions
