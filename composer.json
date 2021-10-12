@@ -2,7 +2,7 @@
   "name": "joomlatools/pages-server",
   "type": "project",
   "license": "AGPL-3.0-only",
-  "description": "Application Server for Joomlatools Pages.",
+  "description": "A LAMP web application Server for Joomla CMS and Joomlatools Pages.",
   "keywords": [
     "server",
     "joomlatools",

@@ -6,7 +6,7 @@ checkoutLocation: "pages-server"
 
 tasks:
 
-  - name: Logs - Pages Server
+  - name: Logs - Joomlatools Server
     init: |
       export APP_ENV=development
       export APP_PRELOAD=off
@@ -16,7 +16,7 @@ tasks:
       clear
       sudo -E /init
 
-  - name: Terminal - Pages Server
+  - name: Terminal - Joomlatools Server
     command: |
       clear
       echo ""

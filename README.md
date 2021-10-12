@@ -1,6 +1,6 @@
 <div align="center">
   <br>
-  <h1>Joomlatools Pages Server</h1>
+  <h1>Joomlatools Server</h1>
   <strong>Frictionless web publishing</strong>
 </div>
 <br>
@@ -13,13 +13,13 @@
   </a>
 </p>
 
-Welcome to the Joomlatools Pages Server codebase, our home-grown **web publishing platform** that powers all of [joomlatools.com](https://joomlatools.com). 
+Welcome to the Joomlatools Server codebase, our home-grown **web publishing platform** that powers all of [joomlatools.com](https://joomlatools.com). 
 
-### What is Joomlatools Pages Server?
+### What is Joomlatools Server?
 
-Pages Server is an application server  that is specially tailored for building and running [Joomlatools Pages](https://github.com/joomlatools/joomlatools-pages) sites and apps.  It’s both a local/remote development environment and a multi-site web server. You can run it locally using Docker Desktop, or remote using Gitpod, or deploy it on any cloud hosting that supports Docker images: [Fly.io](https://fly.io/), [Google App Engine](https://cloud.google.com/appengine), [Google Cloud Run](https://cloud.google.com/run), [Digital Ocean App Plaform](https://www.digitalocean.com/products/app-platform/), [AWS Fargate](https://aws.amazon.com/fargate/), ...
+Joomlatools Server is an application server  that is specially tailored for building and running [Joomla CMS](https://github.com/joomla/joomla-cms) and [Joomlatools Pages](https://github.com/joomlatools/joomlatools-pages) sites and apps.  It’s both a local/remote development environment and a multi-site web server. You can run it locally using Docker Desktop, or remote using Gitpod, or deploy it on any cloud hosting that supports Docker images: [Fly.io](https://fly.io/), [Google App Engine](https://cloud.google.com/appengine), [Google Cloud Run](https://cloud.google.com/run), [Digital Ocean App Plaform](https://www.digitalocean.com/products/app-platform/), [AWS Fargate](https://aws.amazon.com/fargate/), ...
 
-Pages Server provides a great starting point for building Joomlatools Pages applications using PHP and is supported on  macOS, Linux, and Windows (via WSL2).
+Joomlatools Server provides a great starting point for building Joomla CMS and Joomlatools Pages applications using PHP and is supported on  macOS, Linux, and Windows (via WSL2).
 
 ## Getting started
 
@@ -32,15 +32,15 @@ Getting started is very easy, first you need to install the source code on your 
 The easiest way to get the code is to just download it. Click the `code` button and select `Download Zip` or use the following terminal command:
 
 ```
-curl https://github.com/joomlatools/joomlatools-pages-server/archive/refs/heads/master.tar.gz | tar -xz
+curl https://github.com/joomlatools/joomlatools-server/archive/refs/heads/master.tar.gz | tar -xz
 ```
 
 #### Via Composer
 
-You may also download Pages Server by issuing the [Composer](https://getcomposer.org/) `create-project` command in your terminal:
+You may also download Joomlatools Server by issuing the [Composer](https://getcomposer.org/) `create-project` command in your terminal:
 
 ```
-composer create-project joomlatools/pages-server [directory] --stability dev
+composer create-project joomlatools/server [directory] --stability dev
 ```
 
 For more info: https://getcomposer.org/doc/03-cli.md#create-project
@@ -50,7 +50,7 @@ For more info: https://getcomposer.org/doc/03-cli.md#create-project
 You can also **clone** the repository using Git by issueing the following command in your terminal: 
 
 ```
-git clone https://github.com/joomlatools/joomlatools-pages-server
+git clone https://github.com/joomlatools/joomlatools-server
 ```
 
 For more info: https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository
@@ -74,7 +74,7 @@ Then go to http://localhost:8080 and you should see the `Hello World!` greeting.
 
 ### Using Gitpod IDE
 
-[Gitpod](https://www.gitpod.io/) provides a super simple way to develop with Joomlatools Pages using [VSCode](https://code.visualstudio.com/), straight from the browser. To get started make sure you have a clone or fork this repo, Gitpod offers support for  [GitHub](https://github.com/), [GitLab](https://gitlab.com) or [Bitbucket](https://bitbucket.org/) and either:
+[Gitpod](https://www.gitpod.io/) provides a super simple way to develop with Joomlatools Server using [VSCode](https://code.visualstudio.com/), straight from the browser. To get started make sure you have a clone or fork this repo, Gitpod offers support for  [GitHub](https://github.com/), [GitLab](https://gitlab.com) or [Bitbucket](https://bitbucket.org/) and either:
 
 1. Install the [Gitpod Chrome or Firefox extension](https://www.gitpod.io/docs/browser-extension/) and click the `Gitpod` button in the toolbar.
 2. Go to `http://gitpod.io#[my-repo-url-goes-here]`
@@ -83,14 +83,14 @@ You can find all the documentation for Gitpod here: [https://www.gitpod.io/docs/
 
 **Gitpod Demo**: If you want to give this repo a spin in Gitpod, just click this button and off you go. 
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/joomlatools/joomlatools-pages-server)
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/joomlatools/joomlatools-server)
 
 ## Architecture
 
-Pages Server runs applications as a multi-process Docker container. The processes are supervised using S6 
+Joomlatools Server runs applications as a multi-process Docker container. The processes are supervised using S6 
 overlay. While init systems like supervisord are better known, s6 is powerful, lightweight, easy to use, and plays nicely with docker (e.g. avoiding the pid 1 / zombie problem).
 
-Each application is build on the [`pages-server`](https://github.com/joomlatools/joomlatools-pages-server/pkgs/container/pages-server) base image. It contains following:
+Each application is build on the [`joomlatools-server`](https://github.com/joomlatools/joomlatools-server/pkgs/container/server) base image. It contains following:
 
 - [Ubuntu 20.4](https://ubuntu.com/)
 - [S6 Overlay v2.2](https://github.com/just-containers/s6-overlay)
@@ -113,7 +113,7 @@ Our interpretation of "The Docker Way" is thus:
 
 > Containers should do one thing. Containers should stop when that thing stops.
 
-and the S6 init system is designed to do exactly that! Pages Server still behaves like other Docker images and fit in with the existing ecosystem of images.
+and the S6 init system is designed to do exactly that! Joomlatools Server still behaves like other Docker images and fit in with the existing ecosystem of images.
 
 ## Sites
 
@@ -186,7 +186,7 @@ The following is a list of application environment variables. Defaults are provi
   Random number specific for the application _(generated if not provided)_
 
 
-A complete list of all environment variables can be found in [.env.default](https://github.com/joomlatools/joomlatools/joomlatools-pages-server/.env.default)
+A complete list of all environment variables can be found in [.env.default](https://github.com/joomlatools/joomlatools/joomlatools-server/.env.default)
 
 
 ## Endpoints
@@ -209,20 +209,20 @@ The application provides following default HTTP(s) endpoints
 
 ## Documentation
 
-You can find all the documentation for Joomlatools Pages Server [in the wiki](https://github.com/joomlatools/joomlatools-pages-server/wiki). Happy coding!
+You can find all the documentation for Joomlatools Server [in the wiki](https://github.com/joomlatools/joomlatools-server/wiki). Happy coding!
 
 ## Contributing
 
-Joomlatools Pages Server is an open source, community-driven project. Contributions are welcome from everyone.
+Joomlatools Server is an open source, community-driven project. Contributions are welcome from everyone.
 We have [contributing guidelines](CONTRIBUTING.md) to help you get started.
 
 ## Contributors
 
-See the list of [contributors](https://github.com/joomlatools/joomlatools-pages-server/contributors).
+See the list of [contributors](https://github.com/joomlatools/joomlatools-server/contributors).
 
 ## License
 
-Joomlatools Pages Server is open-source software licensed under the [AGPLv3 license](LICENSE.txt).
+Joomlatools Server is open-source software licensed under the [AGPLv3 license](LICENSE.txt).
 
 ## Community
 

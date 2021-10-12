@@ -48,7 +48,7 @@ jobs:
           file: ./.github/Dockerfile
           target: build
           tags: |
-            ghcr.io/joomlatools/pages-server:${{ env.GITHUB_REF_SLUG }}
-            ghcr.io/joomlatools/pages-server:latest
+            ghcr.io/joomlatools/joomlatools-server:${{ env.GITHUB_REF_SLUG }}
+            ghcr.io/joomlatools/joomlatools-server:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
