@@ -42,6 +42,7 @@ RUN if [ ! -z ${GIT_DEPLOY_URL} ]; then \
 fi;
 
 # Composer
+RUN rm -f $APP_DATA/composer.lock
 COPY --chown=$APP_USER:$APP_USER ./config/*composer.lock $APP_DATA
 RUN /bin/bash -e /var/scripts/composer_install.sh;
 
@@ -51,7 +52,10 @@ RUN /bin/bash -e /var/scripts/composer_install.sh;
 
 FROM scratch as build
 
-ENV APP_ROOT=/var/www
+ENV APP_DATA=/srv/www \
+    APP_ROOT=/var/www \
+    APP_VOLUME=/mnt/www \
+    APP_USER=www-data
 
 # Copy all from base
 COPY --from=base / .

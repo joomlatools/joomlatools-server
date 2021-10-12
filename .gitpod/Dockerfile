@@ -2,7 +2,7 @@
 # Stage: base
 #
 # Build gitpod server
-# Version: 0.1 build 11
+# Version: 0.1 build 13
 
 FROM ghcr.io/joomlatools/joomlatools-server:latest as base
 
@@ -46,10 +46,6 @@ RUN apt-get install -y --no-install-recommends sudo; \
     usermod -a -G www-data gitpod; \
     usermod -a -G mysql gitpod; \
     sed -i.bkp -e 's/%sudo\s\+ALL=(ALL\(:ALL\)\?)\s\+ALL/%sudo ALL=NOPASSWD:ALL/g' /etc/sudoers
-
-# Composer
-COPY --chown=$APP_USER:$APP_USER ./config/*composer.lock $APP_DATA
-RUN /bin/bash -e /var/scripts/composer_install.sh
 
 # Permissions
 RUN mkdir -p $APP_VOLUME; \
