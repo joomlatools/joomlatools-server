@@ -95,6 +95,7 @@ Each application is build on the [`joomlatools-server`](https://github.com/jooml
 - [Ubuntu 20.4](https://ubuntu.com/)
 - [S6 Overlay v2.2](https://github.com/just-containers/s6-overlay)
 - [Apache 2.4](https://httpd.apache.org/)
+- [MySQL 8.0](https://www.mysql.com/)
 - [PHP 7.4](https://www.php.net/)
 - [Swoole 4.7](https://www.swoole.co.uk/)
 
