@@ -23,6 +23,7 @@ tasks:
       echo "Commands you can try:"
       echo " * gp preview $(gp url 8080)/__info/php-info"
       echo " * mysql"
+      echo " * joomla"
 
 ports:
   - port: 8080
