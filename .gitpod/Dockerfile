@@ -54,7 +54,3 @@ RUN mkdir -p $APP_VOLUME; \
 
 USER gitpod
 WORKDIR $APP_ROOT
-
-# Composer
-RUN rm -f $APP_DATA/composer.lock
-RUN /bin/bash -e /var/scripts/composer_install.sh
