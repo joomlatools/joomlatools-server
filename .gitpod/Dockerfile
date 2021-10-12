@@ -54,7 +54,6 @@ RUN /bin/bash -e /var/scripts/composer_install.sh
 # Permissions
 RUN mkdir -p $APP_VOLUME/mysql; \
     chown -R $APP_USER:$APP_USER $APP_VOLUME; \
-    cp -Rpf /var/lib/mysql/* $APP_VOLUME/mysql; \
     chown -R $APP_USER:$APP_USER $APP_DATA
 
 USER gitpod
