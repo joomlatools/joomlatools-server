@@ -42,7 +42,7 @@ RUN if [ ! -z ${GIT_DEPLOY_URL} ]; then \
 fi;
 
 # Composer
-RUN rm -f /srv/www/composer.lock
+RUN rm -f $APP_DATA/composer.lock
 COPY --chown=$APP_USER:$APP_USER ./config/*composer.lock $APP_DATA
 RUN /bin/bash -e /var/scripts/composer_install.sh;
 
