@@ -4,7 +4,7 @@ ini_set('error_reporting', E_ERROR | E_PARSE);
 return [
 
     /* Site */
-    'sitename'   => 'Joomlatools - Pages Server',
+    'sitename'   => 'Joomlatools Server',
     'list_limit' => '20',
 
     /* Locale */

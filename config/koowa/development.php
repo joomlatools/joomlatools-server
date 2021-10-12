@@ -4,7 +4,7 @@ ini_set('display_errors', 1);
 ini_set('error_reporting', E_ALL);
 
 return [
-    'sitename'   => 'Joomlatools - Pages Server [development]',
+    'sitename'   => 'Joomlatools Server [development]',
     'caching'    => 0,
 
     //Use https://server.joomlatools.test/mailhog

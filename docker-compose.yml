@@ -2,10 +2,10 @@
 version: "3.8"
 services:
   web:
-    image: pages-server
+    image: joomlatools-server
     environment:
       - APP_ENV=development
-    container_name: pages-server
+    container_name: joomlatools-server
     restart: always
     build:
       context: .

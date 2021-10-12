@@ -4,10 +4,10 @@
 # Build gitpod server
 # Version: 0.1 build 10
 
-FROM ghcr.io/joomlatools/pages-server:latest as base
+FROM ghcr.io/joomlatools/joomlatools-server:latest as base
 
 ENV APP_DATA=/srv/www \
-    APP_ROOT=/workspace/pages-server \
+    APP_ROOT=/workspace/joomlatools-server \
     APP_VOLUME=/mnt/www \
     APP_USER=gitpod
 
