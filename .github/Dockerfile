@@ -30,7 +30,10 @@ RUN apt-get install -y --no-install-recommends mysql-server php7.4-mysql
 ##
 FROM scratch AS build
 
-ENV APP_ROOT=/var/www
+ENV APP_DATA=/srv/www \
+    APP_ROOT=/var/www \
+    APP_VOLUME=/mnt/www \
+    APP_USER=www-data
 
 # Copy all from build
 COPY --from=base / .
