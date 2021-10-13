@@ -11,6 +11,9 @@
 # SIGUSR2: Shutdown
 # > s6-svc -t /var/run/s6/services/mysql
 
+# Restart
+# > s6-svc -r /var/run/s6/services/mysql
+
 # Status
 # https://skarnet.org/software/s6/s6-svstat.html
 # > s6-svstat /var/run/s6/services/mysql
