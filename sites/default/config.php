@@ -1,8 +1,10 @@
 <?php
+
 return [
 
     'cache_path' => getenv('APP_VOLUME').'/default/cache',
     'log_path'   => getenv('APP_VOLUME').'/default/log',
+    'url_prefix' => '/default',
 
     'aliases' => [
         'theme://'  => '/theme/',

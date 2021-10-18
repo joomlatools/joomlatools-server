@@ -13,7 +13,7 @@ return array(
     //'data_cache_validation'     => filter_var(getenv('APP_CACHE'), FILTER_VALIDATE_BOOLEAN),
 
     'sites' => [
-        '[*]' => KOOWA_ROOT.'/sites/default',
+        '[*]/[*:site]/[**]?' => JPATH_ROOT.'/sites/[:site]',
     ],
 
     //See: https://www.owasp.org/index.php/OWASP_Secure_Headers_Project#xpcdp
