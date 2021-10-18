@@ -5,6 +5,9 @@ services:
     image: joomlatools-server
     environment:
       - APP_ENV=development
+      - APP_PRELOAD=off
+      - APP_DEBUG=on
+      - APP_CACHE=off
     container_name: joomlatools-server
     restart: always
     build:
