@@ -4,7 +4,7 @@ return [
 
     'cache_path' => getenv('APP_VOLUME').'/foo/cache',
     'log_path'   => getenv('APP_VOLUME').'/foo/log',
-    'url_prefix' => '/foo',
+    'url_prefix' => '', //remove index.php
 
     'aliases' => [
         'theme://'  => 'base://theme/',
