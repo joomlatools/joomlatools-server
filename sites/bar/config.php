@@ -4,11 +4,11 @@ return [
 
     'cache_path' => getenv('APP_VOLUME').'/bar/cache',
     'log_path'   => getenv('APP_VOLUME').'/bar/log',
-    //'url_prefix' => '/bar',
+    'url_prefix' => '/bar',
 
     'aliases' => [
-        'theme://'  => '/theme/',
-        'images://' => '/images/',
+        'theme://'  => 'base://theme/',
+        'images://' => 'base://images/',
     ],
 
     'redirects' =>  include __DIR__.'/redirects.php',

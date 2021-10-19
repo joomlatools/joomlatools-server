@@ -7,8 +7,8 @@ return [
     'url_prefix' => '/foo',
 
     'aliases' => [
-        'theme://'  => '/theme/',
-        'images://' => '/images/',
+        'theme://'  => 'base://theme/',
+        'images://' => 'base://images/',
     ],
 
     'redirects' =>  include __DIR__.'/redirects.php',
