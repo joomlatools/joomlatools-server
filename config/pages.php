@@ -13,7 +13,8 @@ return array(
     //'data_cache_validation'     => filter_var(getenv('APP_CACHE'), FILTER_VALIDATE_BOOLEAN),
 
     'sites' => [
-        '[*]/[*:site]/[**]?' => JPATH_ROOT.'/sites/[:site]',
+        '[*]/foo/[**]?' => JPATH_ROOT.'/sites/foo',
+        '[*]' => JPATH_ROOT.'/sites/bar',
     ],
 
     //See: https://www.owasp.org/index.php/OWASP_Secure_Headers_Project#xpcdp

@@ -2,9 +2,9 @@
 
 return [
 
-    'cache_path' => getenv('APP_VOLUME').'/default/cache',
-    'log_path'   => getenv('APP_VOLUME').'/default/log',
-    'url_prefix' => '/default',
+    'cache_path' => getenv('APP_VOLUME').'/bar/cache',
+    'log_path'   => getenv('APP_VOLUME').'/bar/log',
+    //'url_prefix' => '/bar',
 
     'aliases' => [
         'theme://'  => '/theme/',
