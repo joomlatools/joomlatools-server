@@ -191,7 +191,7 @@ A complete list of all environment variables can be found in [.env.default](http
 
 ## Endpoints
 
-The application provides following default HTTP(s) endpoints
+The server provides following default HTTP(s) endpoints
 
 ### Status
 
