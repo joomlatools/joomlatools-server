@@ -179,6 +179,12 @@ The following is a list of application environment variables. Defaults are provi
 - `APP_DEBUG=off`
   Globally enable application debug mode _(default)_
 
+- `APP_HTTP=8080`
+  External HTTP port the app is listening on _(default)_
+
+- `APP_HTTP=8443`
+  External HTTPS port the app is listening on _(default)_
+
 - `APP_APIKEY=`
   Bearer authentication token _(generated if not provided)_
 
