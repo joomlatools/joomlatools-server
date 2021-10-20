@@ -9,7 +9,9 @@ FROM ghcr.io/joomlatools/joomlatools-server:latest as base
 ENV APP_DATA=/srv/www \
     APP_ROOT=/workspace/joomlatools-server \
     APP_VOLUME=/mnt/www \
-    APP_USER=gitpod
+    APP_USER=gitpod \
+    APP_HTTP=80 \
+    APP_HTTPS=443
 
 ENV MYSQL_USER=gitpod
 
