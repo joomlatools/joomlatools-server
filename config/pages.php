@@ -12,10 +12,6 @@ return array(
     //'template_cache_validation' => filter_var(getenv('APP_CACHE'), FILTER_VALIDATE_BOOLEAN),
     //'data_cache_validation'     => filter_var(getenv('APP_CACHE'), FILTER_VALIDATE_BOOLEAN),
 
-    'sites' => [
-        '[*]' => KOOWA_ROOT.'/sites/default',
-    ],
-
     //See: https://www.owasp.org/index.php/OWASP_Secure_Headers_Project#xpcdp
     'headers' => [
         'Strict-Transport-Security' => getenv('APP_ENV') == 'production' ? 'max-age=63072000;' : null,
@@ -32,4 +28,6 @@ return array(
         'media://koowa/framework/css/debugger.css' => 'https://files.joomlatools.com/joomlatools-framework@3.5.0/resources/assets/css/debugger.min.css',
         'media://koowa/framework/js/debugger.js' => 'https://files.joomlatools.com/joomlatools-framework@3.5.0/resources/assets/js/debugger.min.js',
     ],
+
+    'url_prefix' => '', //remove index.php
 );

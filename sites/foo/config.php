@@ -1,12 +1,13 @@
 <?php
+
 return [
 
-    'cache_path' => getenv('APP_VOLUME').'/default/cache',
-    'log_path'   => getenv('APP_VOLUME').'/default/log',
+    'cache_path' => getenv('APP_VOLUME').'/foo/cache',
+    'log_path'   => getenv('APP_VOLUME').'/foo/log',
 
     'aliases' => [
-        'theme://'  => '/theme/',
-        'images://' => '/images/',
+        'theme://'  => 'base://theme/',
+        'images://' => 'base://images/',
     ],
 
     'redirects' =>  include __DIR__.'/redirects.php',

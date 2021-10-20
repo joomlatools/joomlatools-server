@@ -24,6 +24,7 @@ tasks:
       echo " * gp preview $(gp url 8080)/__info/php-info"
       echo " * mysql"
       echo " * joomla"
+      echo " * mason"
 
 ports:
   - port: 8080
