@@ -2,7 +2,7 @@
 # Stage: base
 #
 # Build gitpod server
-# Version: 0.1 build 15
+# Version: 1.0.0-dev build 16
 
 FROM ghcr.io/joomlatools/joomlatools-server:latest as base
 
