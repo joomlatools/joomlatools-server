@@ -117,7 +117,7 @@ and the S6 init system is designed to do exactly that! Joomlatools Server still 
 
 ## Sites
 
-Each application can provide multiple websites. Sites are proxied through Apache and served by the build in FastCGI Swoole Server. A sites Apache vhost configurationn is automatically loaded from `/var/www/sites/[name]/config/apache/server.conf`
+Each application can provide multiple websites. Sites are proxied through Apache and served by the build in FastCGI Swoole Server. A sites Apache vhost configuration is automatically loaded from `/var/www/sites/[name]/config/apache/server.conf`
 
 ## Composer
 
