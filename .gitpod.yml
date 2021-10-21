@@ -27,10 +27,10 @@ tasks:
       echo " * mason"
 
 ports:
-  - port: 8443
+  - port: 8080
     onOpen: open-preview
     visibility: public
-  - port: 8080
+  - port: 8443
     onOpen: ignore
   - port: 8081
     onOpen: ignore
