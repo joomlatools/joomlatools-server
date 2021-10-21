@@ -1,7 +1,7 @@
 {
-  "name": "joomlatools/pages-server",
+  "name": "joomlatools/server",
   "type": "project",
-  "homepage": "https://github.com/joomlatools/joomlatools-pages-server",
+  "homepage": "https://github.com/joomlatools/joomlatools-server",
   "authors": [
     {
       "name": "Johan Janssens",
