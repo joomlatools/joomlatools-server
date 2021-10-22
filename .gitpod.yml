@@ -17,7 +17,6 @@ tasks:
       sudo -E /init
 
   - name: Terminal - Joomlatools Server
-    init: /bin/bash -e /var/scripts/composer_install.sh
     command: |
       clear
       echo ""
@@ -26,6 +25,9 @@ tasks:
       echo " * mysql"
       echo " * joomla"
       echo " * mason"
+
+  - name: Composer - Joomlatools Server
+    command: /bin/bash -e /var/scripts/composer_install.sh
 
 ports:
   - port: 8080
