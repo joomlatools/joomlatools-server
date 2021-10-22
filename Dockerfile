@@ -43,7 +43,7 @@ fi;
 
 # Composer
 RUN rm -f $APP_DATA/composer.lock
-COPY --chown=$APP_USER:$APP_USER ./config/composer.stub ./config/*composer.lock $APP_DATA
+COPY --chown=$APP_USER:$APP_USER ./config/composer.stub ./config/*composer.lock $APP_DATA/
 RUN /bin/bash -e /var/scripts/composer_install.sh;
 
 ##
