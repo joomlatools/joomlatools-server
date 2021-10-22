@@ -25,9 +25,18 @@ return array(
     ],
 
     'aliases' => [
-        'media://koowa/framework/css/debugger.css' => 'https://files.joomlatools.com/joomlatools-framework@3.5.0/resources/assets/css/debugger.min.css',
-        'media://koowa/framework/js/debugger.js' => 'https://files.joomlatools.com/joomlatools-framework@3.5.0/resources/assets/js/debugger.min.js',
+        'theme://'  => 'base://theme/',
+        'images://' => 'base://images/',
+
+        'media://koowa/framework/css/debugger.css' => 'https://files.joomlatools.com/joomlatools-framework/resources/assets/css/debugger.min.css',
+        'media://koowa/framework/js/debugger.js' => 'https://files.joomlatools.com/joomlatools-framework/resources/assets/js/debugger.min.js',
     ],
 
     'url_prefix' => '', //remove index.php
+
+    'extension_path' =>
+    [
+        PAGES_SITE_ROOT . '/extensions',
+        KOOWA_ROOT.'/extensions',
+    ],
 );
