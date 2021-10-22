@@ -57,7 +57,6 @@ RUN mkdir -p $APP_VOLUME; \
 # Composer
 RUN rm -f $APP_DATA/composer.lock
 COPY --chown=$APP_USER:$APP_USER ./config/composer.stub ./config/*composer.lock $APP_DATA/
-RUN /bin/bash -e /var/scripts/composer_install.sh;
 
 USER gitpod
 WORKDIR $APP_ROOT
