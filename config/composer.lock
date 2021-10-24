@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e83dc6333786a93ab0ef1abf078df405",
+    "content-hash": "9e72e0452764fbda22bb0e3ccf786c0f",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -198,16 +198,16 @@
         },
         {
             "name": "guzzlehttp/promises",
-            "version": "1.5.0",
+            "version": "1.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/promises.git",
-                "reference": "136a635e2b4a49b9d79e9c8fee267ffb257fdba0"
+                "reference": "fe752aedc9fd8fcca3fe7ad05d419d32998a06da"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/promises/zipball/136a635e2b4a49b9d79e9c8fee267ffb257fdba0",
-                "reference": "136a635e2b4a49b9d79e9c8fee267ffb257fdba0",
+                "url": "https://api.github.com/repos/guzzle/promises/zipball/fe752aedc9fd8fcca3fe7ad05d419d32998a06da",
+                "reference": "fe752aedc9fd8fcca3fe7ad05d419d32998a06da",
                 "shasum": ""
             },
             "require": {
@@ -262,7 +262,7 @@
             ],
             "support": {
                 "issues": "https://github.com/guzzle/promises/issues",
-                "source": "https://github.com/guzzle/promises/tree/1.5.0"
+                "source": "https://github.com/guzzle/promises/tree/1.5.1"
             },
             "funding": [
                 {
@@ -278,7 +278,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-10-07T13:05:22+00:00"
+            "time": "2021-10-22T20:56:57+00:00"
         },
         {
             "name": "guzzlehttp/psr7",
@@ -737,16 +737,16 @@
         },
         {
             "name": "joomlatools/pages",
-            "version": "v0.21.5",
+            "version": "v0.21.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/joomlatools/joomlatools-pages.git",
-                "reference": "2066d52e50df14f703bdd230308d4174da2c1054"
+                "reference": "d9dd3d38007cc964115b504bd77ced3a31505519"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/joomlatools/joomlatools-pages/zipball/2066d52e50df14f703bdd230308d4174da2c1054",
-                "reference": "2066d52e50df14f703bdd230308d4174da2c1054",
+                "url": "https://api.github.com/repos/joomlatools/joomlatools-pages/zipball/d9dd3d38007cc964115b504bd77ced3a31505519",
+                "reference": "d9dd3d38007cc964115b504bd77ced3a31505519",
                 "shasum": ""
             },
             "require": {
@@ -784,9 +784,9 @@
             ],
             "support": {
                 "issues": "https://github.com/joomlatools/joomlatools-pages/issues",
-                "source": "https://github.com/joomlatools/joomlatools-pages/tree/v0.21.5"
+                "source": "https://github.com/joomlatools/joomlatools-pages/tree/v0.21.6"
             },
-            "time": "2021-10-20T03:01:59+00:00"
+            "time": "2021-10-24T21:47:45+00:00"
         },
         {
             "name": "matthiasmullie/minify",
