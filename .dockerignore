@@ -19,8 +19,8 @@
 docker-compose.*
 
 # Gitpod
+.gitpod
 .gitpod.yml
-gitpod.Dockerfile
 
 # Vendor (e.g. Composer)
 vendor/*
@@ -29,10 +29,16 @@ vendor/*
 # Volume
 volume
 
+# Fly
+fly.toml
+
 # Cloudflare
 workers
 
 # Themes
 sites/**/theme/node_modules
 sites/**/theme/css/*.map
+
+# Composer
+composer.json
 
