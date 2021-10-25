@@ -5,7 +5,7 @@
 
 file="${0##*/}"
 
-if [[ $MYSQL_ENABLE -eq 1 ]] ; then
+if [[ $MYSQL_ENABLE -eq 0 ]] ; then
   mkdir -p /var/run/s6/services/mysql
   printf "1" > /var/run/s6/services/mysql/down
   exit
