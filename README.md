@@ -69,9 +69,6 @@ Make sure you have [Docker Desktop installed](https://www.docker.com/products/do
 docker compose up
 ```
 
-Then go to http://localhost:8080 and you should see the `Hello World!` greeting.
-
-
 ### Using Gitpod IDE
 
 [Gitpod](https://www.gitpod.io/) provides a super simple way to develop with Joomlatools Server using [VSCode](https://code.visualstudio.com/), straight from the browser. To get started make sure you have a clone or fork this repo, Gitpod offers support for  [GitHub](https://github.com/), [GitLab](https://gitlab.com) or [Bitbucket](https://bitbucket.org/) and either:
