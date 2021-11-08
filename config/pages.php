@@ -1,6 +1,9 @@
 <?php
 
 return array(
+    'cache_path' => getenv('APP_VOLUME').'/sites/'.basename(PAGES_SITE_ROOT).'/cache',
+    'log_path'   => getenv('APP_VOLUME').'/sites/'.basename(PAGES_SITE_ROOT).'/log',
+
     'http_cache' => getenv('APP_CACHE') !== false ? filter_var(getenv('APP_CACHE'), FILTER_VALIDATE_BOOLEAN) : true,
     'http_cache_time'         => '1week',
     'http_cache_time_browser' => '1day',
