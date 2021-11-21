@@ -8,7 +8,6 @@ return array(
     'http_cache_time'         => '1week',
     'http_cache_time_browser' => '1day',
 
-    'http_static_cache'    => false,
     'http_client_cache'    => getenv('APP_CACHE') !== false ? filter_var(getenv('APP_CACHE'), FILTER_VALIDATE_BOOLEAN) : true,
 
     //'page_cache_validation'     => filter_var(getenv('APP_CACHE'), FILTER_VALIDATE_BOOLEAN),
@@ -35,7 +34,7 @@ return array(
         'media://koowa/framework/js/debugger.js' => 'https://files.joomlatools.com/joomlatools-framework/resources/assets/js/debugger.min.js',
     ],
 
-    'url_prefix' => '', //remove index.php
+    'script_name' => '', //remove index.php
 
     'extension_path' =>
     [
