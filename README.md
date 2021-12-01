@@ -198,17 +198,21 @@ The server provides following default HTTP(s) endpoints
 
 ### Status
 
-- http://localhost/__ping
-- http://localhost/__status-php (php-fpm status, local only)
-- http://localhost/__status-apache (apache status, local only)
+- http://localhost:8080/__ping
+- http://localhost:8080/__status-php (php-fpm status, local only)
+- http://localhost:8080/__status-apache (apache status, local only)
+
+### API
+
+- http://localhost:8080/__api/revalidate
 
 ### Info
 
-- http://localhost/__info/php-info
-- http://localhost/__info/php-apc
-- http://localhost/__info/php-fpm
-- http://localhost/__info/php-opcache
-- http://localhost/__info/php-xdebug (only if xdebug is enabled)
+- http://localhost:8080/__info/php-info
+- http://localhost:8080/__info/php-apc
+- http://localhost:8080/__info/php-fpm
+- http://localhost:8080/__info/php-opcache
+- http://localhost:8080/__info/php-xdebug (only if xdebug is enabled)
 
 ## Documentation
 
