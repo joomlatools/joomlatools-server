@@ -37,4 +37,4 @@ services:
     container_name: mailhog
     ports:
       - "1025:1025" # smtp server
-       - "8025:8025" # http server
+      - "8025:8025" # http server
