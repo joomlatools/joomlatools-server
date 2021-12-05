@@ -11,7 +11,7 @@ return [
     //Use https://mailtrap.io
     'mailer'    => 'smtp',
     'smtphost'  => 'smtp.mailtrap.io',
-    'smtpport'  => '465',
+    'smtpport'  => '2525',
     'smtpauth'   => '1',
     'smtpuser'  => getenv('MAILTRAP_USER'),
     'smtppass'  => getenv('MAILTRAP_PASS'),
