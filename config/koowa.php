@@ -8,7 +8,7 @@ $config['secret'] = getenv('APP_NONCE');
 
 $files  = array(
     'koowa/default.php',
-    'koowa/'.getenv('KOOWA_ENV').'.php'
+    'koowa/'.getenv('APP_ENV').'.php'
 );
 
 foreach($files as $file)
