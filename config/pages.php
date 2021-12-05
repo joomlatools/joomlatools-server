@@ -30,8 +30,8 @@ return array(
         'theme://'  => 'base://theme/',
         'images://' => 'base://images/',
 
-        'media://koowa/framework/css/debugger.css' => 'https://files.joomlatools.com/joomlatools-framework/resources/assets/css/debugger.min.css',
-        'media://koowa/framework/js/debugger.js' => 'https://files.joomlatools.com/joomlatools-framework/resources/assets/js/debugger.min.js',
+        'assets://css/debugger' => 'https://files.joomlatools.com/joomlatools-framework/resources/assets/css/debugger',
+        'assets://js/debugger' => 'https://files.joomlatools.com/joomlatools-framework/resources/assets/js/debugger',
     ],
 
     'script_name' => '', //remove index.php
