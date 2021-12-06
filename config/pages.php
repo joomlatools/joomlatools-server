@@ -39,6 +39,6 @@ return array(
     'extension_path' =>
     [
         PAGES_SITE_ROOT . '/extensions',
-        KOOWA_ROOT.'/extensions',
+        getenv('APP_ROOT').'/extensions',
     ],
 );
