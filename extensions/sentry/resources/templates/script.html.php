@@ -11,12 +11,13 @@
 dsn:
 tags: []
 tracesSampleRate: 1.0
+version: 6.16.0
 ---
 
 <? $dsn = $dsn ?? getenv('SENTRY_DSN') ?>
 
 <? if (!empty($dsn)): ?>
-    <script src="https://unpkg.com/@sentry/tracing/build/bundle.tracing.min.js" crossorigin="anonymous" ></script>
+    <script src="https://unpkg.com/@sentry/tracing@<?= $version ?>/build/bundle.tracing.min.js" crossorigin="anonymous" ></script>
     <script>
         Sentry.init({
             dsn: "<?= $dsn ?>",
