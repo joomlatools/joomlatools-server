@@ -16,7 +16,7 @@ tracesSampleRate: 1.0
 <? $dsn = $dsn ?? getenv('SENTRY_DSN') ?>
 
 <? if (!empty($dsn)): ?>
-    <script src="https://browser.sentry-cdn.com/6.15.0/bundle.tracing.min.js" integrity="sha384-uAr9Te+rNkmpaCjPTu4/ipQDpO1nR6fEY8JX+NHVNO5mY6LUs362JWJD8rHyaLEt" crossorigin="anonymous" ></script>
+    <script src="https://unpkg.com/@sentry/tracing/build/bundle.tracing.min.js" crossorigin="anonymous" ></script>
     <script>
         Sentry.init({
             dsn: "<?= $dsn ?>",
@@ -26,6 +26,7 @@ tracesSampleRate: 1.0
             integrations: [new Sentry.Integrations.BrowserTracing()],
             initialScope: scope => {
                 <?
+
                 if(getenv('FLY_REGION')) {
                     $tags['app.region'] = getenv('FLY_REGION');
                 }
@@ -34,6 +35,7 @@ tracesSampleRate: 1.0
                     $tags['app.id'] =  hash('crc32b', getenv('FLY_ALLOC_ID'));
                 }
                 ?>
+
                 scope.setTags(<?= json($tags) ?>);
                 return scope;
             },
