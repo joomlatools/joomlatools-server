@@ -8,10 +8,14 @@
 #
 # For more info see: https://docs.sentry.io/platforms/javascript/
 
+dsn:
+tags: []
 tracesSampleRate: 1.0
 ---
 
-<? if ($dsn = getenv('SENTRY_DSN')): ?>
+<? $dsn = $dsn ?? getenv('SENTRY_DSN') ?>
+
+<? if (!empty($dsn)): ?>
     <script src="https://browser.sentry-cdn.com/6.15.0/bundle.tracing.min.js" integrity="sha384-uAr9Te+rNkmpaCjPTu4/ipQDpO1nR6fEY8JX+NHVNO5mY6LUs362JWJD8rHyaLEt" crossorigin="anonymous" ></script>
     <script>
         Sentry.init({
@@ -22,7 +26,6 @@ tracesSampleRate: 1.0
             integrations: [new Sentry.Integrations.BrowserTracing()],
             initialScope: scope => {
                 <?
-                $tags = [];
                 if(getenv('FLY_REGION')) {
                     $tags['fly.region'] = getenv('FLY_REGION');
                 }
