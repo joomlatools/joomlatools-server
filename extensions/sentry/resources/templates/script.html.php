@@ -9,15 +9,21 @@
 # For more info see: https://docs.sentry.io/platforms/javascript/
 
 dsn:
+version:
 tags: []
 tracesSampleRate: 1.0
-version: 6.16.0
 ---
 
-<? $dsn = $dsn ?? getenv('SENTRY_DSN') ?>
+<?
+$dsn = $dsn ?? getenv('SENTRY_DSN');
+
+if(!empty($version)) {
+    $version =  '@'.$version;
+}
+?>
 
 <? if (!empty($dsn)): ?>
-    <script src="https://unpkg.com/@sentry/tracing@<?= $version ?>/build/bundle.tracing.min.js" crossorigin="anonymous" ></script>
+    <script src="https://unpkg.com/@sentry/tracing<?= $version ?>/build/bundle.tracing.min.js" crossorigin="anonymous" ></script>
     <script>
         Sentry.init({
             dsn: "<?= $dsn ?>",
