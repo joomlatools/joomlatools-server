@@ -27,18 +27,13 @@ tracesSampleRate: 1.0
             initialScope: scope => {
                 <?
                 if(getenv('FLY_REGION')) {
-                    $tags['fly.region'] = getenv('FLY_REGION');
-                }
-
-                if(getenv('FLY_APP_NAME')) {
-                    $tags['fly.app_name'] = getenv('FLY_APP_NAME');
+                    $tags['app.region'] = getenv('FLY_REGION');
                 }
 
                 if(getenv('FLY_ALLOC_ID')) {
-                    $tags['fly.alloc_id'] = getenv('FLY_ALLOC_ID');
+                    $tags['app.id'] =  hash('crc32b', getenv('FLY_ALLOC_ID'));
                 }
                 ?>
-
                 scope.setTags(<?= json($tags) ?>);
                 return scope;
             },
