@@ -12,11 +12,13 @@ dsn:
 version:
 tunnel:
 tags: []
+environment:
 tracesSampleRate: 1.0
 ---
 
 <?
 $dsn = $dsn ?? getenv('SENTRY_DSN');
+$env = $environment ?? getenv('SENTRY_ENVIRONMENT');
 
 if(!empty($version)) {
     $version =  '@'.$version;
@@ -31,7 +33,7 @@ Sentry.init({
     dsn: "<?= $dsn ?>",
     debug: <?= debug() ? 'true' : 'false' ?>,
     tunnel: <?= !empty($tunnel) ? '"'.$tunnel.'"' : 'null' ?>,
-    environment: "<?= getenv('SENTRY_ENVIRONMENT') ?: getenv('APP_ENV') ?>",
+    environment: <?= !empty($env) ? '"'.$env.'"' : 'null' ?>,
     tracesSampleRate: <?= $tracesSampleRate ?? 1.0 ?>,
     integrations: [new Sentry.Integrations.BrowserTracing()],
     initialScope: scope => {
