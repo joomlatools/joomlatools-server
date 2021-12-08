@@ -29,8 +29,8 @@ if(!empty($version)) {
 <script>
 Sentry.init({
     dsn: "<?= $dsn ?>",
-    debug: <?= debug() ?>,
-    tunnel: <?= !empty($tunnel) ? '"'.$tunnel.'"' : null ?>,
+    debug: <?= debug() ? 'true' : 'false' ?>,
+    tunnel: <?= !empty($tunnel) ? '"'.$tunnel.'"' : 'null' ?>,
     environment: "<?= getenv('SENTRY_ENVIRONMENT') ?: getenv('APP_ENV') ?>",
     tracesSampleRate: <?= $tracesSampleRate ?? 1.0 ?>,
     integrations: [new Sentry.Integrations.BrowserTracing()],
