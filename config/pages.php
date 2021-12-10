@@ -1,6 +1,7 @@
 <?php
 
 return array(
+    'environment' => getenv('APP_ENV'),
     'script_name' => '', //remove index.php
 
     'cache_path' => getenv('APP_VOLUME').'/sites/'.basename(PAGES_SITE_ROOT).'/cache',
@@ -45,8 +46,6 @@ return array(
     'extension_config' =>
         [
             'ext:sentry.event.subscriber.exception' => [
-                'environment' => getenv('SENTRY_ENVIRONMENT') ?: getenv('APP_ENV'),
-                'release' => null, //unset
                 'scope'   => function(\Sentry\State\Scope $scope)
                 {
                     if(getenv('FLY_REGION')) {

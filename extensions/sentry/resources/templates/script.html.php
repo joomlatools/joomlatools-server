@@ -29,8 +29,8 @@ tracesSampleRate: "1.0"
 
 <?
 $dsn = $dsn ?? getenv('SENTRY_DSN');
-$env = $environment ?? getenv('SENTRY_ENVIRONMENT');
 $rel = $release ?? getenv('SENTRY_RELEASE') ?: null;
+$env = $environment ?? object('pages.config')->environment;
 
 if(!empty($version)) {
     $version =  '@'.$version;
