@@ -1,6 +1,8 @@
 <?php
 
 return array(
+    'script_name' => '', //remove index.php
+
     'cache_path' => getenv('APP_VOLUME').'/sites/'.basename(PAGES_SITE_ROOT).'/cache',
     'log_path'   => getenv('APP_VOLUME').'/sites/'.basename(PAGES_SITE_ROOT).'/log',
 
@@ -34,11 +36,27 @@ return array(
         'assets://js/debugger' => 'https://files.joomlatools.com/joomlatools-framework/resources/assets/js/debugger',
     ],
 
-    'script_name' => '', //remove index.php
-
     'extension_path' =>
     [
         PAGES_SITE_ROOT . '/extensions',
         getenv('APP_ROOT').'/extensions',
     ],
+
+    'extension_config' =>
+        [
+            'ext:sentry.event.subscriber.exception' => [
+                'environment' => getenv('SENTRY_ENVIRONMENT') ?: getenv('APP_ENV'),
+                'release' => null, //unset
+                'scope'   => function(\Sentry\State\Scope $scope)
+                {
+                    if(getenv('FLY_REGION')) {
+                        $scope->setTag('app.region', getenv('FLY_REGION'));
+                    }
+
+                    if(getenv('FLY_ALLOC_ID')) {
+                        $scope->setTag('app.id', hash('crc32b', getenv('FLY_ALLOC_ID')));
+                    }
+                }
+            ],
+        ]
 );
