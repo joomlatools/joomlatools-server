@@ -1,4 +1,5 @@
 <?php
+ini_set('display_errors', getenv('APP_DEBUG'));
 
 return array(
     'environment' => getenv('APP_ENV'),
@@ -44,18 +45,22 @@ return array(
     ],
 
     'extension_config' =>
-        [
-            'ext:sentry.event.subscriber.exception' => [
-                'scope'   => function(\Sentry\State\Scope $scope)
-                {
-                    if(getenv('FLY_REGION')) {
-                        $scope->setTag('app.region', getenv('FLY_REGION'));
-                    }
-
-                    if(getenv('FLY_ALLOC_ID')) {
-                        $scope->setTag('app.id', hash('crc32b', getenv('FLY_ALLOC_ID')));
-                    }
+    [
+        'ext:sentry.config' => [
+            'server_name' => getenv('FLY_REGION') ? getenv('FLY_REGION').'.'.getenv('FLY_APP_NAME').'.'.'internal' : gethostbyname(),
+            'tags' => function()
+            {
+                $tags = array();
+                if(getenv('FLY_REGION')) {
+                    $tags['app.region'] =  getenv('FLY_REGION');
                 }
-            ],
-        ]
+
+                if(getenv('FLY_ALLOC_ID')) {
+                    $tags['app.id'] = hash('crc32b', getenv('FLY_ALLOC_ID'));
+                }
+
+                return $tags;
+            }
+        ],
+    ]
 );
