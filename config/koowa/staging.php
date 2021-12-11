@@ -1,6 +1,5 @@
 <?php
 /* Staging */
-ini_set('display_errors', 1);
 
 // Set environment config
 return [
