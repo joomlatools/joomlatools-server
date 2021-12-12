@@ -1,7 +1,7 @@
 <div align="center">
   <br>
   <h1>Joomlatools Server</h1>
-  <strong>Frictionless web publishing</strong>
+  <strong>Cloud native web publishing</strong>
 </div>
 <br>
 <p align="center">
@@ -13,7 +13,7 @@
   </a>
 </p>
 
-Welcome to the Joomlatools Server codebase, our home-grown **web publishing platform** that powers all of [joomlatools.com](https://joomlatools.com). 
+Welcome to the Joomlatools Server codebase, our home-grown **cloud native web publishing platform** that powers all of [joomlatools.com](https://joomlatools.com). 
 
 ### What is Joomlatools Server?
 
