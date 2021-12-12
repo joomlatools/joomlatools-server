@@ -1,7 +1,7 @@
 <div align="center">
   <br>
   <h1>Joomlatools Server</h1>
-  <strong>Frictionless web publishing</strong>
+  <strong>Cloud native web publishing</strong>
 </div>
 <br>
 <p align="center">
@@ -13,11 +13,11 @@
   </a>
 </p>
 
-Welcome to the Joomlatools Server codebase, our home-grown **web publishing platform** that powers all of [joomlatools.com](https://joomlatools.com). 
+Welcome to the Joomlatools Server codebase, our home-grown **cloud native web publishing platform** that powers all of [joomlatools.com](https://joomlatools.com). 
 
 ### What is Joomlatools Server?
 
-Joomlatools Server is an application server  that is specially tailored for building and running [Joomla CMS](https://github.com/joomla/joomla-cms) and [Joomlatools Pages](https://github.com/joomlatools/joomlatools-pages) sites and apps  and is supported on  macOS, Linux, and Windows (via WSL2).
+Joomlatools Server is an application server  that is specially tailored for building and standalone [Joomlatools Pages](https://github.com/joomlatools/joomlatools-pages) sites and apps  and is supported on  macOS, Linux, and Windows (via WSL2).
 
 It’s both a local/remote development environment and a multi-site web server. You can run it locally using Docker Desktop, or remote using Gitpod, or deploy it on any cloud hosting that supports Docker images: [Fly.io](https://fly.io/), [Google App Engine](https://cloud.google.com/appengine), [Google Cloud Run](https://cloud.google.com/run), [Digital Ocean App Plaform](https://www.digitalocean.com/products/app-platform/), [AWS Fargate](https://aws.amazon.com/fargate/), ...
 
@@ -92,9 +92,12 @@ Each application is build on the [`joomlatools-server`](https://github.com/jooml
 - [Ubuntu 20.4](https://ubuntu.com/)
 - [S6 Overlay v2.2](https://github.com/just-containers/s6-overlay)
 - [Apache 2.4](https://httpd.apache.org/)
-- [MySQL 8.0](https://www.mysql.com/)
 - [PHP 7.4](https://www.php.net/)
 - [Swoole 4.7](https://www.swoole.co.uk/)
+
+Optional 
+
+- [MySQL 8.0](https://www.mysql.com/)
 
 ### Multi-process Docker
 
