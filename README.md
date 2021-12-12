@@ -17,7 +17,7 @@ Welcome to the Joomlatools Server codebase, our home-grown **cloud native web pu
 
 ### What is Joomlatools Server?
 
-Joomlatools Server is an application server  that is specially tailored for building and running [Joomla CMS](https://github.com/joomla/joomla-cms) and [Joomlatools Pages](https://github.com/joomlatools/joomlatools-pages) sites and apps  and is supported on  macOS, Linux, and Windows (via WSL2).
+Joomlatools Server is an application server  that is specially tailored for building and standalone [Joomlatools Pages](https://github.com/joomlatools/joomlatools-pages) sites and apps  and is supported on  macOS, Linux, and Windows (via WSL2).
 
 It’s both a local/remote development environment and a multi-site web server. You can run it locally using Docker Desktop, or remote using Gitpod, or deploy it on any cloud hosting that supports Docker images: [Fly.io](https://fly.io/), [Google App Engine](https://cloud.google.com/appengine), [Google Cloud Run](https://cloud.google.com/run), [Digital Ocean App Plaform](https://www.digitalocean.com/products/app-platform/), [AWS Fargate](https://aws.amazon.com/fargate/), ...
 
