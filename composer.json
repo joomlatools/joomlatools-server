@@ -2,7 +2,7 @@
   "name": "joomlatools/server",
   "type": "project",
   "license": "AGPL-3.0-only",
-  "description": "A LAMP web application Server for Joomla CMS and Joomlatools Pages.",
+  "description": "Cloud native LA(M)P stack and web publishing platform for Joomlatools Pages",
   "keywords": [
     "server",
     "joomlatools",
