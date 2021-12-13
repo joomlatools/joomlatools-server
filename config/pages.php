@@ -49,14 +49,14 @@ return array(
                 'environment'        => getenv('SENTRY_ENVIRONMENT') ?: getenv('APP_ENV'),
                 'traces_sample_rate' => getenv('SENTRY_TRACING') ?: 1.0,
             ],
-            'scope' => function(ComPagesObjectConfig $scope)
+            'tags' => function(ExtSentryConfigOptions $tags)
             {
                 if(getenv('FLY_REGION')) {
-                    $scope->tags->set('app.region', getenv('FLY_REGION'));
+                    $tags->set('app.region', getenv('FLY_REGION'));
                 }
 
                 if(getenv('FLY_ALLOC_ID')) {
-                    $scope->tags->set('app.id', hash('crc32b', getenv('FLY_ALLOC_ID')));
+                    $tags->set('app.id', hash('crc32b', getenv('FLY_ALLOC_ID')));
                 }
             },
         ],
