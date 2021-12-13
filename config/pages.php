@@ -5,8 +5,9 @@ return array(
     'environment' => getenv('APP_ENV'),
     'script_name' => '', //remove index.php
 
-    'cache_path' => getenv('APP_VOLUME').'/sites/'.basename(PAGES_SITE_ROOT).'/cache',
-    'log_path'   => getenv('APP_VOLUME').'/sites/'.basename(PAGES_SITE_ROOT).'/log',
+    'cache_path'     => getenv('APP_VOLUME').'/sites/'.basename(PAGES_SITE_ROOT).'/cache',
+    'log_path'       => getenv('APP_VOLUME').'/sites/'.basename(PAGES_SITE_ROOT).'/log',
+    'extension_path' => [ PAGES_SITE_ROOT . '/extensions', getenv('APP_ROOT').'/extensions'],
 
     'http_cache' => getenv('APP_CACHE') !== false ? filter_var(getenv('APP_CACHE'), FILTER_VALIDATE_BOOLEAN) : true,
     'http_cache_time'         => '1week',
@@ -38,29 +39,38 @@ return array(
         'assets://js/debugger' => 'https://files.joomlatools.com/joomlatools-framework/resources/assets/js/debugger',
     ],
 
-    'extension_path' =>
+    'extensions' =>
     [
-        PAGES_SITE_ROOT . '/extensions',
-        getenv('APP_ROOT').'/extensions',
-    ],
-
-    'extension_config' =>
-    [
+        /**
+         * ext:sentry
+         */
         'ext:sentry.config' => [
-            'server_name' => getenv('FLY_REGION') ? getenv('FLY_REGION').'.'.getenv('FLY_APP_NAME').'.'.'internal' : gethostbyname(),
-            'tags' => function()
+            'options' => [
+                'environment'        => getenv('SENTRY_ENVIRONMENT') ?: getenv('APP_ENV'),
+                'traces_sample_rate' => getenv('SENTRY_TRACING') ?: 1.0,
+            ],
+            'scope' => function(ComPagesObjectConfig $scope)
             {
-                $tags = array();
                 if(getenv('FLY_REGION')) {
-                    $tags['app.region'] =  getenv('FLY_REGION');
+                    $scope->tags->set('app.region', getenv('FLY_REGION'));
                 }
 
                 if(getenv('FLY_ALLOC_ID')) {
-                    $tags['app.id'] = hash('crc32b', getenv('FLY_ALLOC_ID'));
+                    $scope->tags->set('app.id', hash('crc32b', getenv('FLY_ALLOC_ID')));
                 }
-
-                return $tags;
-            }
+            },
         ],
-    ]
-);
+
+        'ext:sentry.template.helper.behavior' => [
+            'options' => [
+                //'tunnel' => getenv('APP_ENV') != 'development' ? '/__sentry' : null,
+            ],
+            'version' => '6.16.1',
+        ],
+
+        'ext:sentry.event.subscriber.exception' => [
+            'options' => [
+                'server_name' => getenv('FLY_REGION') ? getenv('FLY_REGION').'.'.getenv('FLY_APP_NAME').'.'.'internal' : gethostname(),
+            ]
+        ]
+    ]);
