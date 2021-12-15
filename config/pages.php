@@ -7,7 +7,10 @@ return array(
 
     'cache_path'     => getenv('APP_VOLUME').'/sites/'.basename(PAGES_SITE_ROOT).'/cache',
     'log_path'       => getenv('APP_VOLUME').'/sites/'.basename(PAGES_SITE_ROOT).'/log',
-    'extension_path' => [ PAGES_SITE_ROOT . '/extensions', getenv('APP_ROOT').'/extensions'],
+    'extension_path' => [
+        KOOWA_VENDOR.'/joomlatools/pages/contrib/extensions/sentry',
+        KOOWA_ROOT.'/extensions'
+    ],
 
     'http_cache' => getenv('APP_CACHE') !== false ? filter_var(getenv('APP_CACHE'), FILTER_VALIDATE_BOOLEAN) : true,
     'http_cache_time'         => '1week',
