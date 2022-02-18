@@ -199,9 +199,13 @@ A complete list of all environment variables can be found in [.env.default](http
 
 The server provides following default HTTP(s) endpoints
 
+### Ping
+
+- http://localhost:8080/__ping (alias for http://localhost/__api/ping )
+
 ### Status
 
-- http://localhost:8080/__ping
+- http://localhost:8080/__ping-php (php-fpm ping, local only)
 - http://localhost:8080/__status-php (php-fpm status, local only)
 - http://localhost:8080/__status-apache (apache status, local only)
 
