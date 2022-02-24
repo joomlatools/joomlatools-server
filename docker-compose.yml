@@ -4,6 +4,7 @@ services:
   web:
     image: joomlatools-server
     environment:
+      - APP_NAME=jt-server
       - APP_ENV=development
       - APP_PRELOAD=off
       - APP_DEBUG=on
