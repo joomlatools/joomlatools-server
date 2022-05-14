@@ -3,6 +3,7 @@ version: "3.8"
 services:
   web:
     image: joomlatools-server
+    hostname: joomlatools-server
     environment:
       - APP_NAME=jt-server
       - APP_ENV=development
