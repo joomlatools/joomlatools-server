@@ -99,6 +99,19 @@ Optional
 
 - [MySQL 8.0](https://www.mysql.com/)
 
+#### Tools
+
+- [Composer](https://getcomposer.org/)
+- [Phive](https://phar.io/)
+- [Xdebug](https://xdebug.org/)
+
+### Libs
+
+- [Curl](https://curl.se/libcurl/)
+- [Vips](https://www.libvips.org/)
+
+Other: git, inotify, rsync, htop, nano
+
 ### Multi-process Docker
 
 One of the oft-repeated Docker mantras is "one process per container". There's nothing inherently bad about running multiple processes in a Docker container. The more abstract "one thing per container" is our policy - a container should do one thing, such as "run a chat service" or "run gitlab." This may involve multiple processes, which is fine.
@@ -123,7 +136,11 @@ Each application can provide multiple websites. Sites are proxied through Apache
 
 An application only contains a single composer `/vendor` directory which contains all PHP libraries used by the application libraries, sites and services. The `/vendor` directory is located in `/srv/www/vendor`and composer installation happens during the Docker image build phase.
 
-Composer requires are being handled with delay during `ONBUILD`, the base defines the minimal composer requires and the app that extends from base can define additional requires.
+Composer requires are being handled in 2 stage
+
+#### 1. During image build
+
+With delay during `ONBUILD`, the base defines the minimal composer requires and the app that extends from base can define additional requires.
 
 The [Composer Merge Plugin](https://github.com/wikimedia/composer-merge-plugin) is used to merge composer.json files from following locations:
 
@@ -132,6 +149,11 @@ The [Composer Merge Plugin](https://github.com/wikimedia/composer-merge-plugin) 
 - `/var/www/sites/*/composer.json`
 
 During image build, when Composer is run it will parse these files and merge their configuration settings into the base configuration. This combined configuration will then be used when downloading additional libraries and generating the autoloader.
+
+#### 2. During container run
+
+If the app is running in development mode, `APP_ENV` = `development`, composer will be re-run. This allows to update dependencies and install
+`require-dev` dependencies without needing to rebuild the container or trigger composer manually. To make composer install dev dependencies add `COMPOSER_NO_DEV=0` to you `.env` file or runtime environment.
 
 ### composer.lock
 
@@ -203,15 +225,15 @@ The server provides following default HTTP(s) endpoints
 
 - http://localhost:8080/__ping (alias for http://localhost/__api/ping )
 
+### Metrics
+
+- http://localhost:8080/__metrics (alias for http://localhost/__api/metrics )
+
 ### Status
 
 - http://localhost:8080/__ping-php (php-fpm ping, local only)
 - http://localhost:8080/__status-php (php-fpm status, local only)
 - http://localhost:8080/__status-apache (apache status, local only)
-
-### API
-
-- http://localhost:8080/__api/revalidate
 
 ### Info
 

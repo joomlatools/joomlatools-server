@@ -17,7 +17,8 @@ services:
     build:
       context: .
       # Uncomment to deploy from Git
-      #args:
+      args:
+        IMAGE_TAG: latest
       #  GIT_DEPLOY_URL:
       #  GIT_DEPLOY_BRANCH: master
     # Uncomment to override environment defaults
@@ -26,6 +27,8 @@ services:
     volumes:
       - ./volume:/mnt/www
       - ./:/var/www
+      # Include any of the following for local development
+      #- ./vendor:/tmp/www/vendor
     ports:
       - "8080:8080"  # HTTP Apache
       - "8443:8443"  # HTTPS Apache
