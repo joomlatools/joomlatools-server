@@ -15,6 +15,8 @@ services:
       - APP_HTTPS=8443
       - MYSQL_ENABLE=1
       - MYSQL_VOLUME=/mnt/www/mysql
+      - JOOMLA_NAME=joomla
+      - JOOMLA_VERSION=latest
     restart: always
     build:
       context: .
@@ -45,6 +47,7 @@ services:
       - "33060:33060"  # MySQL - X Plugin
 
   phpmyadmin:
+    profiles: ["phpmyadmin"]
     image: phpmyadmin
     container_name: phpmyadmin
     environment:
