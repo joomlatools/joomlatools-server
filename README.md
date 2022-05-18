@@ -92,8 +92,8 @@ Each application is build on the [`joomlatools-server`](https://github.com/jooml
 - [Ubuntu 20.4](https://ubuntu.com/)
 - [S6 Overlay v2.2](https://github.com/just-containers/s6-overlay)
 - [Apache 2.4](https://httpd.apache.org/)
-- [PHP 7.4](https://www.php.net/)
-- [Swoole 4.7](https://www.swoole.co.uk/)
+- [PHP 8.1](https://www.php.net/)
+- [OpenSwoole 4.11](https://www.openswoole.com/)
 
 Optional 
 
@@ -131,6 +131,10 @@ and the S6 init system is designed to do exactly that! Joomlatools Server still 
 ## Sites
 
 Each application can provide multiple websites. Sites are proxied through Apache and served by the build in FastCGI Swoole Server. A sites Apache vhost configuration is automatically loaded from `/var/www/sites/[name]/config/apache/server.conf`
+
+Each application can provide multiple websites. By default a websites is served using PHP-FPM, through the FastCGI proxy service.
+
+> A site is stateless single-threaded process run through FastCGI.
 
 ## Composer
 
@@ -177,6 +181,9 @@ return [
 
 The following is a list of application environment variables. Defaults are provided (or generated in case of APP_APIKEY and APP_NONCE) for each except if not provided
 
+- `APP_NAME=jt-base`
+  The application name (default)
+
 - `APP_ENV=production`
   The application environment _(default)_
 
@@ -213,7 +220,6 @@ The following is a list of application environment variables. Defaults are provi
 - `APP_NONCE=`
   Random number specific for the application _(generated if not provided)_
 
-
 A complete list of all environment variables can be found in [.env.default](https://github.com/joomlatools/joomlatools/joomlatools-server/.env.default)
 
 
@@ -234,6 +240,16 @@ The server provides following default HTTP(s) endpoints
 - http://localhost:8080/__ping-php (php-fpm ping, local only)
 - http://localhost:8080/__status-php (php-fpm status, local only)
 - http://localhost:8080/__status-apache (apache status, local only)
+
+### API
+
+- http://localhost:8080/__api/ping
+- http://localhost:8080/__api/reload
+- http://localhost:8080/__api/upgrade
+- http://localhost:8080/__api/deploy
+- http://localhost:8080/__api/revalidate
+- http://localhost:8080/__api/metrics
+- http://localhost:8080/__api/info
 
 ### Info
 
