@@ -53,8 +53,6 @@ services:
       - PMA_PORT=3306
       - PMA_ARBITRARY=1
       - PMA_USER=root
-      - PMA_PMADB=phpmyadmin
-      - PMA_CONTROLUSER=root
     ports:
       - "8180:80" # phpMyAdmin Server
     depends_on:
