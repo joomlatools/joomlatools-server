@@ -13,7 +13,7 @@ FROM ghcr.io/joomlatools/jt-base:latest AS base
 ARG DEBIAN_FRONTEND=noninteractive
 
 # HTTP Apache
-EXPOSE 8080 8443
+EXPOSE 8080 8443 80 443
 # HTTP Swoole - FastCGI
 EXPOSE 8081
 # HTTP Swoole - API
@@ -25,7 +25,7 @@ EXPOSE 3306 33060
 
 # Install MySQL
 COPY ./config/mysql /etc/mysql/
-RUN apt-get install -y --no-install-recommends mysql-server php7.4-mysql
+RUN apt-get install -y --no-install-recommends mysql-server php8.1-mysql
 
 ##
 # Stage: build
