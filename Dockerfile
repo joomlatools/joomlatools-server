@@ -3,6 +3,7 @@
 #
 # Build app server
 ##
+ARG IMAGE_TAG=latest
 FROM ghcr.io/joomlatools/joomlatools-server:${IMAGE_TAG} as base
 
 ENV APP_DATA=/srv/www \
