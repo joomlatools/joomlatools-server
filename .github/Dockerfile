@@ -43,6 +43,13 @@ COPY --from=base / .
 # Remove copied files
 RUN rm -rf $APP_ROOT/*
 
+# Enable services
+RUN rm /etc/services.d/fastcgi/down
+RUN rm /etc/services.d/file/down
+RUN rm /etc/services.d/phpfpm/down
+RUN rm /etc/services.d/apache-exporter/down
+RUN rm /etc/services.d/phpfpm-exporter/down
+
 # Run S6 overlay
 ENTRYPOINT ["/init"]
 
@@ -54,10 +61,3 @@ FROM build
 # Clean up apt cache and temp files to save disk space
 RUN /bin/bash -e /var/scripts/apt_clean.sh;
 RUN /bin/bash -e /var/scripts/apt_purge.sh;
-
-# Enable services
-RUN rm /etc/services.d/fastcgi/down
-RUN rm /etc/services.d/file/down
-RUN rm /etc/services.d/phpfpm/down
-RUN rm /etc/services.d/apache-exporter/down
-RUN rm /etc/services.d/phpfpm-exporter/down
