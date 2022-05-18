@@ -13,6 +13,8 @@ services:
       - APP_CACHE=off
       - APP_HTTP=8080
       - APP_HTTPS=8443
+      - MYSQL_ENABLE=1
+      - MYSQL_VOLUME=/mnt/www/mysql
     restart: always
     build:
       context: .
@@ -41,5 +43,19 @@ services:
       - "8083:8083"  # HTTP Swoole - File
       - "3306:3306"    # MySQL
       - "33060:33060"  # MySQL - X Plugin
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: phpmyadmin
+    environment:
+      - PMA_HOST=joomlatools-server
+      - PMA_VERBOSE=joomlatools-server
+      - PMA_PORT=3306
+      - PMA_ARBITRARY=1
+      - PMA_USER=root
+      - PMA_PMADB=phpmyadmin
+      - PMA_CONTROLUSER=root
+    ports:
+      - "8180:80" # phpMyAdmin Server
+    depends_on:
+      - joomlatools-server
