@@ -24,6 +24,7 @@ EXPOSE 8083
 EXPOSE 3306 33060
 
 # Install MySQL
+COPY ./config/s6/mysql-init.d/ /etc/mysql-init.d/
 COPY ./config/mysql /etc/mysql/
 RUN apt-get install -y --no-install-recommends mysql-server php8.1-mysql php8.1-mysqli
 

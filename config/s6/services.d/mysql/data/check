@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# https://skarnet.org/software/s6/s6-notifyoncheck.html
+if [[ -f /var/run/mysqld/mysqld.pid ]] && pgrep -F /var/run/mysqld/mysqld.pid > /dev/null; then
+   echo "[mysql-init.d] MySQL ready"
+
+  echo '[mysql-init.d] executing mysql initialization scripts...'
+
+  DIR=/etc/mysql-init.d
+  for script in "$DIR"/*
+  do
+     if [ -f "$script" ];then
+
+      # If this execution fails, then stop the `for`:
+      # if ! bash "$script"; then break; fi"
+      bash "$script"
+
+    fi
+  done
+
+  echo "[mysql-init.d] done."
+  exit 0
+
+else
+
+  echo "[mysql-init.d] MySQL initialiazing ..."
+  exit 1
+
+fi

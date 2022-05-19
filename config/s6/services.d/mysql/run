@@ -35,4 +35,4 @@ trap -x
 }
 
 importas -D /var/lib/mysql MYSQL_VOLUME MYSQL_VOLUME
-exec /usr/bin/mysqld_safe --datadir=${MYSQL_VOLUME}
+exec s6-notifyoncheck -n 0 -d /usr/bin/mysqld_safe --datadir=${MYSQL_VOLUME}

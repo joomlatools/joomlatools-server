@@ -29,6 +29,9 @@ fi
 chown -R mysql:mysql $MYSQL_RUN_DIR
 chmod 1777 $MYSQL_RUN_DIR
 
+# Make check command executable (called in /etc/services.d/mysql/run)
+chmod u+x /etc/services.d/mysql/data/check
+
 # Initialize MySQL data directory (if needed)
 # See https://dev.mysql.com/doc/refman/8.0/en/data-directory-initialization.html
 if [[ ! -d $MYSQL_VOLUME ]]; then
@@ -38,30 +41,6 @@ if [[ ! -d $MYSQL_VOLUME ]]; then
   mkdir -p $MYSQL_VOLUME
   /usr/bin/mysqld_safe --initialize-insecure --datadir=${MYSQL_VOLUME}
 
+  /usr/bin/mysqladmin shutdown
+
 fi
-
-# Grant or revoke passwordless remote access
-/usr/bin/mysqld_safe --datadir=${MYSQL_VOLUME} -D
-
-echo "[cont-init.d] ${file}: Granting local access of MySQL database from localhost for ${MYSQL_USER}"
-/usr/bin/mysql -e "
-  CREATE USER IF NOT EXISTS '${MYSQL_USER}'@'%';
- "
-
-if [[ $APP_ENV = "development" ]]
-then
-  echo "[cont-init.d] ${file}: Granting remote access of MySQL database from any IP address for ${MYSQL_USER}"
-  /usr/bin/mysql -e "
-    CREATE USER IF NOT EXISTS '${MYSQL_USER}'@'%';
-    GRANT ALL ON *.* TO '${MYSQL_USER}'@'%';
-    FLUSH PRIVILEGES;
-    "
-else
-  echo "[cont-init.d] ${file}: Revoking remote access of MySQL database from any IP address for ${MYSQL_USER}"
-   /usr/bin/mysql -e -f "
-      REVOKE ALL PRIVILEGES, GRANT OPTION FROM '${MYSQL_USER}'@'%';
-      DROP USER IF EXISTS '${MYSQL_USER}'@'%';
-      "
-fi
-
-/usr/bin/mysqladmin shutdown
