@@ -20,6 +20,9 @@ ENV COMPOSER_ALLOW_SUPERUSER=1 \
 # START: custom Docker instructions
 ##
 
+COPY ./config/s6/cont-init.d/ /etc/cont-init.d/
+COPY ./config/scripts/ /var/scripts/
+COPY ./config/apache/  /etc/apache2/
 
 ##
 # END:  custom Docker instructions
