@@ -21,6 +21,9 @@ ENV COMPOSER_ALLOW_SUPERUSER=1 \
 ##
 
 COPY ./config/s6/cont-init.d/ /etc/cont-init.d/
+COPY ./config/s6/services.d/ /etc/services.d/
+COPY ./config/s6/mysql-init.d/ /etc/mysql-init.d/
+
 COPY ./config/scripts/ /var/scripts/
 COPY ./config/apache/  /etc/apache2/
 
