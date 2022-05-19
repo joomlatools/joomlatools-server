@@ -41,6 +41,4 @@ if [[ ! -d $MYSQL_VOLUME ]]; then
   mkdir -p $MYSQL_VOLUME
   /usr/bin/mysqld_safe --initialize-insecure --datadir=${MYSQL_VOLUME}
 
-  /usr/bin/mysqladmin shutdown
-
 fi
