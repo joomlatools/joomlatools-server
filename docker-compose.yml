@@ -46,6 +46,7 @@ services:
       - "3306:3306"    # MySQL
       - "33060:33060"  # MySQL - X Plugin
 
+  #docker compose --profile phpmyadmin up
   phpmyadmin:
     profiles: ["phpmyadmin"]
     image: phpmyadmin
