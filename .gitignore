@@ -29,3 +29,5 @@ workers/website/worker/
 sites/**/theme/node_modules
 sites/**/theme/css/*.map
 
+# Sites
+/sites/
