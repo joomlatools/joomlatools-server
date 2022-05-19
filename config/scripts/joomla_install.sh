@@ -6,8 +6,6 @@ if [ -d "$APP_ROOT/sites/joomla" ]; then
     exit 0
 fi;
 
-joomla plugin:install joomlatools/console-joomlatools:dev-master
-
 echo "* Downloading Joomla"
 
 joomla site:download ${JOOMLA_NAME} --www=$APP_ROOT/sites --release=${JOOMLA_VERSION}
