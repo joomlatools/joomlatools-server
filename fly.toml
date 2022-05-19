@@ -17,8 +17,12 @@ kill_timeout = 10
   APP_ENV = "development"
   APP_CACHE = 1
   APP_DEBUG = 1
-  APP_HTTP=80
-  APP_HTTPS=443
+  APP_HTTP = 80
+  APP_HTTPS = 443
+  MYSQL_ENABLE = 1
+  MYSQL_VOLUME = "/mnt/www/mysql"
+  JOOMLA_NAME = "joomla"
+  JOOMLA_VERSION = "latest"
 
 # Uncomment to deploy from Git
 #[build.args]
