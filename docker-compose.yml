@@ -30,8 +30,11 @@ services:
     #env_file:
     #  - .env
     volumes:
-      - ./volume:/mnt/www
       - ./:/var/www
+      - ./volume:/mnt/www
+
+      # MySQL Data
+      #- mysql:/mnt/www/mysql
 
       # Include any of the following for local development
       #- ./vendor:/tmp/www/vendor
@@ -62,3 +65,6 @@ services:
       - "8180:80" # phpMyAdmin Server
     depends_on:
       - joomlatools-server
+
+volumes:
+  mysql:
