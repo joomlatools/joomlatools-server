@@ -18,7 +18,8 @@ vendor/*
 !vendor/.gitkeep
 
 # Volume
-volume
+volume/*
+!volume/.user.ini
 
 # Cloudflare
 workers/website/node_modules/
