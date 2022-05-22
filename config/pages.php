@@ -52,16 +52,6 @@ return array(
                 'environment'        => getenv('SENTRY_ENVIRONMENT') ?: getenv('APP_ENV'),
                 'traces_sample_rate' => getenv('SENTRY_TRACING') ?: 1.0,
             ],
-            'tags' => function(ExtSentryConfigOptions $tags)
-            {
-                if(getenv('FLY_REGION')) {
-                    $tags->set('app.region', getenv('FLY_REGION'));
-                }
-
-                if(getenv('FLY_ALLOC_ID')) {
-                    $tags->set('app.id', hash('crc32b', getenv('FLY_ALLOC_ID')));
-                }
-            },
         ],
 
         'ext:sentry.template.helper.behavior' => [
@@ -73,7 +63,7 @@ return array(
 
         'ext:sentry.event.subscriber.exception' => [
             'options' => [
-                'server_name' => getenv('FLY_REGION') ? getenv('FLY_REGION').'.'.getenv('FLY_APP_NAME').'.'.'internal' : gethostname(),
+                'server_name' => gethostname(),
             ]
         ]
     ]);
