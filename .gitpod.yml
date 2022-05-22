@@ -34,12 +34,6 @@ ports:
     visibility: public
   - port: 8443
     onOpen: ignore
-  - port: 8081
-    onOpen: ignore
-  - port: 8082
-    onOpen: ignore
-  - port: 8083
-    onOpen: ignore
   - port: 9000
     onOpen: ignore
     visibility: private

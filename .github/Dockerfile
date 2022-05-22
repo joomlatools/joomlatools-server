@@ -14,12 +14,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 # HTTP Apache
 EXPOSE 8080 8443 80 443
-# HTTP Swoole - FastCGI
-EXPOSE 8081
-# HTTP Swoole - API
-EXPOSE 8082
-# HTTP Swoole - File
-EXPOSE 8083
+
 # MySQL
 EXPOSE 3306 33060
 
@@ -45,11 +40,7 @@ COPY --from=base / .
 RUN rm -rf $APP_ROOT/*
 
 # Enable services
-RUN rm /etc/services.d/fastcgi/down
-RUN rm /etc/services.d/file/down
 RUN rm /etc/services.d/phpfpm/down
-RUN rm /etc/services.d/apache-exporter/down
-RUN rm /etc/services.d/phpfpm-exporter/down
 
 # Run S6 overlay
 ENTRYPOINT ["/init"]

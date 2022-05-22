@@ -25,7 +25,7 @@ It offers support for both Joomla 3 and 4 and can be used as a local/remote deve
 
 ### Installation
 
-Getting started is very easy, first you need to install the source code on your local machine or create a new Git repo (in case you want to use Gitpod). 
+Getting started is very easy, first you need to install the source code on your local machine or create a new Git repo (in case you want to use Gitpod).
 
 #### Via Download
 
@@ -47,7 +47,7 @@ For more info: https://getcomposer.org/doc/03-cli.md#create-project
 
 #### Via Clone
 
-You can also **clone** the repository using Git by issueing the following command in your terminal: 
+You can also **clone** the repository using Git by issueing the following command in your terminal:
 
 ```
 git clone https://github.com/joomlatools/joomlatools-server
@@ -78,13 +78,13 @@ docker compose up
 
 You can find all the documentation for Gitpod here: [https://www.gitpod.io/docs/](https://www.gitpod.io/docs/)
 
-**Gitpod Demo**: If you want to give this repo a spin in Gitpod, just click this button and off you go. 
+**Gitpod Demo**: If you want to give this repo a spin in Gitpod, just click this button and off you go.
 
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/joomlatools/joomlatools-server)
 
 ## Architecture
 
-Joomlatools Server runs applications as a multi-process Docker container. The processes are supervised using S6 
+Joomlatools Server runs applications as a multi-process Docker container. The processes are supervised using S6
 overlay. While init systems like supervisord are better known, s6 is powerful, lightweight, easy to use, and plays nicely with docker (e.g. avoiding the pid 1 / zombie problem).
 
 Each application is build on the [`joomlatools-server`](https://github.com/joomlatools/joomlatools-server/pkgs/container/server) base image. It contains following:
@@ -94,7 +94,7 @@ Each application is build on the [`joomlatools-server`](https://github.com/jooml
 - [Apache 2.4](https://httpd.apache.org/)
 - [PHP 8.1](https://www.php.net/)
 
-Optional 
+Optional
 
 - [MySQL 8.0](https://www.mysql.com/)
 

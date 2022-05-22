@@ -5,41 +5,60 @@ services:
     image: joomlatools-server
     hostname: joomlatools-server
     container_name: joomlatools-server
-    environment:
-      - APP_NAME=joomlatools-server
-      - APP_ENV=development
-      - APP_PRELOAD=off
-      - APP_DEBUG=on
-      - APP_CACHE=off
-      - APP_HTTP=8080
-      - APP_HTTPS=8443
     restart: always
     build:
       context: .
       args:
         IMAGE_TAG: latest
-        # Uncomment to deploy from Git
-        #  GIT_DEPLOY_URL:
-        #  GIT_DEPLOY_BRANCH: master
-    # Uncomment to override environment defaults
-    #env_file:
-    #  - .env
+    env_file:
+      - .env
     volumes:
-      - ./volume:/mnt/www
-      - ./:/var/www
+      - ./sites/:/var/www/sites
+      #- ./volume:/mnt/www
+
+      # MySQL Data
+      - mysql:/mnt/www/mysql
 
       # Include any of the following for local development
+
+      # Composer Vendor
       #- ./vendor:/tmp/www/vendor
-      #- ~/Projects/joomlatools-framework:/srv/www/vendor/joomlatools/framework
-      #- ~/Projects/joomlatools-pages:/srv/www/vendor/joomlatools/pages
+
+      # Joomlatools Framework
+      #- ~/Projects/joomlatools-framework:/var/www/[site]/joomla/libraries/joomlatools/code
+
+      # Joomlatools Pages
+      #- ~/Projects/joomlatools-pages:/var/www/sites/[site]/libraries/joomlatools-components/pages/code
 
     ports:
       - "8080:8080"  # HTTP Apache
       - "8443:8443"  # HTTPS Apache
-      - "8081:8081"  # HTTP Swoole - FastCGI
-      - "8082:8082"  # HTTP Swoole - API
-      - "8083:8083"  # HTTP Swoole - File
       - "3306:3306"    # MySQL
       - "33060:33060"  # MySQL - X Plugin
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+
+  #docker compose --profile phpmyadmin up
+  phpmyadmin:
+    profiles: ["phpmyadmin"]
+    image: phpmyadmin
+    container_name: phpmyadmin
+    environment:
+      - PMA_HOST=joomlatools-server
+      - PMA_VERBOSE=joomlatools-server
+      - PMA_PORT=3306
+      - PMA_ARBITRARY=1
+      - PMA_USER=root
+    ports:
+      - "8180:80" # phpMyAdmin Server
+    depends_on:
+      - joomlatools-server
+
+  mailhog:
+    profiles: ["mailhog"]
+    image: mailhog/mailhog
+    container_name: mailhog
+    ports:
+      - "1025:1025" # smtp server
+      - "8025:8025" # http server
+
+volumes:
+  mysql:

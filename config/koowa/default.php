@@ -12,14 +12,15 @@ return [
 	'language'   => 'en-GB',
 
 	/* Mail */
-    'mailer'     => 'mail',
-    'mailfrom'   => 'noreply@joomlatools.com',
+    'mailer'    => 'smtp',
+    'mailfrom'   => 'norepl@localhost.home',
     'fromname'   => 'Joomlatools',
     'sendmail'   => '/usr/sbin/sendmail',
     'smtpauth'   => '0',
     'smtpuser'   => '',
     'smtppass'   => '',
-    'smtphost'   => 'localhost',
+    'smtphost'  => 'host.docker.internal',
+    'smtpport'  => '1025',
     'smtpsecure' => 'none',
 
 	/* Cache */

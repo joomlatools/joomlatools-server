@@ -20,6 +20,11 @@ ENV COMPOSER_ALLOW_SUPERUSER=1 \
 # START: custom Docker instructions
 ##
 
+COPY ./config/s6/ /etc/
+COPY ./config/apache/  /etc/apache2/
+COPY ./config/mysql    /etc/mysql/
+
+COPY ./config/scripts/ /var/scripts/
 
 ##
 # END:  custom Docker instructions

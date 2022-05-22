@@ -8,25 +8,17 @@
 # Docker
 docker-compose.override.yml
 
-# Dotenv
-.env
-.env.*
-!.env.default
-
 # Vendor (e.g. Composer)
 vendor/*
 !vendor/.gitkeep
 
 # Volume
 volume/*
-!volume/.user.ini
-
-# Cloudflare
-workers/website/node_modules/
-workers/website/dist/
-workers/website/worker/
+!volume/php.ini
 
 # Themes
 sites/**/theme/node_modules
 sites/**/theme/css/*.map
 
+# Sites
+/sites/*
