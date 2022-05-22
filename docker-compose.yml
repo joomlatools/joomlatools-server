@@ -44,9 +44,6 @@ services:
     ports:
       - "8080:8080"  # HTTP Apache
       - "8443:8443"  # HTTPS Apache
-      - "8081:8081"  # HTTP Swoole - FastCGI
-      - "8082:8082"  # HTTP Swoole - API
-      - "8083:8083"  # HTTP Swoole - File
       - "3306:3306"    # MySQL
       - "33060:33060"  # MySQL - X Plugin
 
@@ -65,6 +62,14 @@ services:
       - "8180:80" # phpMyAdmin Server
     depends_on:
       - joomlatools-server
+
+  mailhog:
+    profiles: ["mailhog"]
+    image: mailhog/mailhog
+    container_name: mailhog
+    ports:
+      - "1025:1025" # smtp server
+      - "8025:8025" # http server
 
 volumes:
   mysql:
