@@ -45,6 +45,5 @@ if [[ ! -f $MYSQL_VOLUME/mysql.ibd ]]; then
   chown -R mysql:mysql $MYSQL_VOLUME
   chmod 1777 $MYSQL_VOLUME
 
-  /usr/bin/mysqld_safe --initialize-insecure --datadir=${MYSQL_VOLUME}
-
+  /usr/sbin/mysqld --initialize-insecure --datadir=${MYSQL_VOLUME}
 fi
