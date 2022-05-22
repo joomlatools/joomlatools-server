@@ -1,7 +1,7 @@
 <div align="center">
   <br>
   <h1>Joomlatools Server</h1>
-  <strong>Cloud native web publishing</strong>
+  <strong>Cloud Native development environment for Joomla</strong>
 </div>
 <br>
 <p align="center">
@@ -13,19 +13,19 @@
   </a>
 </p>
 
-Welcome to the Joomlatools Server codebase, our home-grown **cloud native web publishing platform** that powers all of [joomlatools.com](https://joomlatools.com). 
+Welcome to the Joomlatools Server codebase, our home-grown **cloud native development environment** for Joomla and [Joomlatools Pages](https://github.com/joomlatools/joomlatools-pages).
 
 ### What is Joomlatools Server?
 
-Joomlatools Server is an application server  that is specially tailored for building and standalone [Joomlatools Pages](https://github.com/joomlatools/joomlatools-pages) sites and apps  and is supported on  macOS, Linux, and Windows (via WSL2).
+Joomlatools Server is Docker container that is specially tailored for developing websites with Joomla and [Joomlatools Pages](https://github.com/joomlatools/joomlatools-pages) and is supported on  macOS, Linux, and Windows (via WSL2).
 
-It’s both a local/remote development environment and a multi-site web server. You can run it locally using Docker Desktop, or remote using Gitpod, or deploy it on any cloud hosting that supports Docker images: [Fly.io](https://fly.io/), [Google App Engine](https://cloud.google.com/appengine), [Google Cloud Run](https://cloud.google.com/run), [Digital Ocean App Plaform](https://www.digitalocean.com/products/app-platform/), [AWS Fargate](https://aws.amazon.com/fargate/), ...
+It offers support for both Joomla 3 and 4 and can be used as a local/remote development environment. You can run it locally using Docker Desktop, or remotely using Gitpod.
 
 ## Getting started
 
 ### Installation
 
-Getting started is very easy, first you need to install the source code on your local machine or create a new Git repo (in case you want to use Gitpod). 
+Getting started is very easy, first you need to install the source code on your local machine or create a new Git repo (in case you want to use Gitpod).
 
 #### Via Download
 
@@ -47,7 +47,7 @@ For more info: https://getcomposer.org/doc/03-cli.md#create-project
 
 #### Via Clone
 
-You can also **clone** the repository using Git by issueing the following command in your terminal: 
+You can also **clone** the repository using Git by issueing the following command in your terminal:
 
 ```
 git clone https://github.com/joomlatools/joomlatools-server
@@ -78,13 +78,13 @@ docker compose up
 
 You can find all the documentation for Gitpod here: [https://www.gitpod.io/docs/](https://www.gitpod.io/docs/)
 
-**Gitpod Demo**: If you want to give this repo a spin in Gitpod, just click this button and off you go. 
+**Gitpod Demo**: If you want to give this repo a spin in Gitpod, just click this button and off you go.
 
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/joomlatools/joomlatools-server)
 
 ## Architecture
 
-Joomlatools Server runs applications as a multi-process Docker container. The processes are supervised using S6 
+Joomlatools Server runs applications as a multi-process Docker container. The processes are supervised using S6
 overlay. While init systems like supervisord are better known, s6 is powerful, lightweight, easy to use, and plays nicely with docker (e.g. avoiding the pid 1 / zombie problem).
 
 Each application is build on the [`joomlatools-server`](https://github.com/joomlatools/joomlatools-server/pkgs/container/server) base image. It contains following:
@@ -93,9 +93,8 @@ Each application is build on the [`joomlatools-server`](https://github.com/jooml
 - [S6 Overlay v2.2](https://github.com/just-containers/s6-overlay)
 - [Apache 2.4](https://httpd.apache.org/)
 - [PHP 8.1](https://www.php.net/)
-- [OpenSwoole 4.11](https://www.openswoole.com/)
 
-Optional 
+Optional
 
 - [MySQL 8.0](https://www.mysql.com/)
 
@@ -104,13 +103,6 @@ Optional
 - [Composer](https://getcomposer.org/)
 - [Phive](https://phar.io/)
 - [Xdebug](https://xdebug.org/)
-
-### Libs
-
-- [Curl](https://curl.se/libcurl/)
-- [Vips](https://www.libvips.org/)
-
-Other: git, inotify, rsync, htop, nano
 
 ### Multi-process Docker
 
@@ -127,14 +119,6 @@ Our interpretation of "The Docker Way" is thus:
 > Containers should do one thing. Containers should stop when that thing stops.
 
 and the S6 init system is designed to do exactly that! Joomlatools Server still behaves like other Docker images and fit in with the existing ecosystem of images.
-
-## Sites
-
-Each application can provide multiple websites. Sites are proxied through Apache and served by the build in FastCGI Swoole Server. A sites Apache vhost configuration is automatically loaded from `/var/www/sites/[name]/config/apache/server.conf`
-
-Each application can provide multiple websites. By default a websites is served using PHP-FPM, through the FastCGI proxy service.
-
-> A site is stateless single-threaded process run through FastCGI.
 
 ## Composer
 
@@ -227,29 +211,11 @@ A complete list of all environment variables can be found in [.env.default](http
 
 The server provides following default HTTP(s) endpoints
 
-### Ping
-
-- http://localhost:8080/__ping (alias for http://localhost/__api/ping )
-
-### Metrics
-
-- http://localhost:8080/__metrics (alias for http://localhost/__api/metrics )
-
 ### Status
 
 - http://localhost:8080/__ping-php (php-fpm ping, local only)
 - http://localhost:8080/__status-php (php-fpm status, local only)
 - http://localhost:8080/__status-apache (apache status, local only)
-
-### API
-
-- http://localhost:8080/__api/ping
-- http://localhost:8080/__api/reload
-- http://localhost:8080/__api/upgrade
-- http://localhost:8080/__api/deploy
-- http://localhost:8080/__api/revalidate
-- http://localhost:8080/__api/metrics
-- http://localhost:8080/__api/info
 
 ### Info
 
