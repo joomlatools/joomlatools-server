@@ -211,14 +211,6 @@ A complete list of all environment variables can be found in [.env.default](http
 
 The server provides following default HTTP(s) endpoints
 
-### Ping
-
-- http://localhost:8080/__ping (alias for http://localhost/__api/ping )
-
-### Metrics
-
-- http://localhost:8080/__metrics (alias for http://localhost/__api/metrics )
-
 ### Status
 
 - http://localhost:8080/__ping-php (php-fpm ping, local only)
