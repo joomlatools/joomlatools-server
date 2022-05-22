@@ -8,11 +8,6 @@
 # Docker
 docker-compose.override.yml
 
-# Dotenv
-.env
-.env.*
-!.env.default
-
 # Vendor (e.g. Composer)
 vendor/*
 !vendor/.gitkeep
