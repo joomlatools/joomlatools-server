@@ -1,7 +1,7 @@
 <div align="center">
   <br>
   <h1>Joomlatools Server</h1>
-  <strong>Cloud native web publishing</strong>
+  <strong>Cloud Native development environment for Joomla</strong>
 </div>
 <br>
 <p align="center">
