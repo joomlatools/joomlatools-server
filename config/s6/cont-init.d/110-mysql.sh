@@ -33,15 +33,18 @@ chmod u+x /etc/services.d/mysql/data/check
 
 # Initialize MySQL data directory (if needed)
 # See https://dev.mysql.com/doc/refman/8.0/en/data-directory-initialization.html
-if [[ ! -f $MYSQL_VOLUME/auto.cnf ]]; then
+if [[ ! -f $MYSQL_VOLUME/mysql.ibd ]]; then
 
   echo "[cont-init.d] ${file}: Installing MySQL in ${MYSQL_VOLUME} ..."
+
+  if [[ ! -d $MYSQL_VOLUME ]]; then
+  	 mkdir -p $MYSQL_VOLUME
+  fi
 
   # Ensure that $MYSQL_VOLUME (used data storage) is writable
   chown -R mysql:mysql $MYSQL_VOLUME
   chmod 1777 $MYSQL_VOLUME
 
-  mkdir -p $MYSQL_VOLUME
   /usr/bin/mysqld_safe --initialize-insecure --datadir=${MYSQL_VOLUME}
 
 fi
