@@ -13,8 +13,8 @@ services:
     env_file:
       - .env
     volumes:
-      - ./:/var/www
-      - ./volume:/mnt/www
+      - ./sites/:/var/www/sites
+      #- ./volume:/mnt/www
 
       # MySQL Data
       #- mysql:/mnt/www/mysql
