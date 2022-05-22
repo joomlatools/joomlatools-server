@@ -17,7 +17,7 @@ services:
       #- ./volume:/mnt/www
 
       # MySQL Data
-      #- mysql:/mnt/www/mysql
+      - mysql:/mnt/www/mysql
 
       # Include any of the following for local development
 
