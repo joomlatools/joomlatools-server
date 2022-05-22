@@ -19,12 +19,7 @@ vendor/*
 
 # Volume
 volume/*
-!volume/.user.ini
-
-# Cloudflare
-workers/website/node_modules/
-workers/website/dist/
-workers/website/worker/
+!volume/php.ini
 
 # Themes
 sites/**/theme/node_modules
