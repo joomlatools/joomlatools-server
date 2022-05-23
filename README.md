@@ -17,7 +17,7 @@ Welcome to the Joomlatools Server codebase, our home-grown **cloud native develo
 
 ### What is Joomlatools Server?
 
-Joomlatools Server is Docker container that is specially tailored for developing websites with Joomla and [Joomlatools Pages](https://github.com/joomlatools/joomlatools-pages) and is supported on  macOS, Linux, and Windows (via WSL2).
+Joomlatools Server is Docker container that is specially tailored for developing websites with Joomla CMS and [Joomlatools Pages](https://github.com/joomlatools/joomlatools-pages) and is supported on  macOS, Linux, and Windows (via WSL2).
 
 It offers support for both Joomla 3 and 4 and can be used as a local/remote development environment. You can run it locally using Docker Desktop, or remotely using Gitpod.
 
