@@ -18,23 +18,10 @@ ENV MYSQL_USER=gitpod
 ENV COMPOSER_ALLOW_SUPERUSER=1 \
     COMPOSER_HOME=/tmp
 
-# --- DO NOT MODIFY ABOVE ----------------------------------------------------------------------------------------------
-
 ENV APP_ENV=development \
     APP_PRELOAD=off \
     APP_CACHE=off \
     APP_DEBUG=on
-
-##
-# START: custom Gitpod instructions
-##
-
-
-##
-# END:  custom Gitpod instructions
-##
-
-# --- DO NOT MODIFY BELOW ----------------------------------------------------------------------------------------------
 
 # Mason
 ADD https://files.joomlatools.com/mason/mason-linux.tar.gz /tmp/
