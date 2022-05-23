@@ -52,6 +52,7 @@ services:
     depends_on:
       - joomlatools-server
 
+  #docker compose --profile mailhog up
   mailhog:
     profiles: ["mailhog"]
     image: mailhog/mailhog
