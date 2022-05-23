@@ -1,21 +1,6 @@
 #!/usr/bin/with-contenv bash
 
-# Override the default environment
-APP_NAME=${APP_NAME:=joomlatools-server}
-printf "%s" $APP_NAME > /var/run/s6/container_environment/APP_NAME
-
-APP_ENV=${APP_ENV:=development}
-printf "%s" $APP_ENV > /var/run/s6/container_environment/APP_ENV
-
-APP_DEBUG=${APP_DEBUG:=on}
-printf "%s" $APP_DEBUG > /var/run/s6/container_environment/APP_DEBUG
-
-APP_CACHE=${APP_CACHE:=off}
-printf "%s" $APP_CACHE > /var/run/s6/container_environment/APP_CACHE
-
-APP_PRELOAD=${APP_PRELOAD:=off}
-printf "%s" $APP_PRELOAD > /var/run/s6/container_environment/APP_PRELOAD
-
+# Set default environment variables
 MYSQL_ENABLE=${MYSQL_ENABLE:=1}
 printf "%s" $MYSQL_ENABLE > /var/run/s6/container_environment/MYSQL_ENABLE
 

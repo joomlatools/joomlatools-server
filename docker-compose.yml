@@ -6,6 +6,12 @@ services:
     hostname: joomlatools-server
     container_name: joomlatools-server
     restart: always
+    environment:
+      - APP_NAME=joomlatools-server
+      - APP_ENV=development
+      - APP_DEBUG=on
+      - APP_CACHE=off
+      - APP_PRELOAD=off
     build:
       context: .
       args:
