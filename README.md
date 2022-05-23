@@ -13,7 +13,7 @@
   </a>
 </p>
 
-Welcome to the Joomlatools Server codebase, our home-grown **cloud native development environment** for Joomla and [Joomlatools Pages](https://github.com/joomlatools/joomlatools-pages).
+Welcome to the Joomlatools Server codebase, our home-grown **cloud native development environment** for Joomla CMS and [Joomlatools Pages](https://github.com/joomlatools/joomlatools-pages).
 
 ### What is Joomlatools Server?
 
