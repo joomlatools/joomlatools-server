@@ -8,7 +8,7 @@ tasks:
 
   - name: Logs - Joomlatools Server
     init: |
-      export APP_NAME=jt-server
+      export APP_NAME=joomlatools-server
       export APP_ENV=development
       export APP_PRELOAD=off
       export APP_CACHE=off
