@@ -66,6 +66,8 @@ services:
     ports:
       - "1025:1025" # smtp server
       - "8025:8025" # http server
+    depends_on:
+      - joomlatools-server
 
 volumes:
   mysql:
