@@ -1,5 +1,6 @@
 #!/usr/bin/with-contenv bash
 
+# Override the default environment
 APP_NAME=${APP_NAME:=joomlatools-server}
 printf "%s" $APP_NAME > /var/run/s6/container_environment/APP_NAME
 
