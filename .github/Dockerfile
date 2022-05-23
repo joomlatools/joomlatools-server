@@ -66,6 +66,10 @@ RUN rm /etc/services.d/phpfpm/down
 # Remove MySQL default databas
 RUN rm -rf /var/lib/mysql
 
+# Clean up apt cache and temp files to save disk space
+RUN /bin/bash -e /var/scripts/apt_clean.sh;
+RUN /bin/bash -e /var/scripts/apt_purge.sh;
+
 # Run S6 overlay
 ENTRYPOINT ["/init"]
 
@@ -74,6 +78,18 @@ ENTRYPOINT ["/init"]
 ##
 FROM build
 
-# Clean up apt cache and temp files to save disk space
-RUN /bin/bash -e /var/scripts/apt_clean.sh;
-RUN /bin/bash -e /var/scripts/apt_purge.sh;
+ENV APP_DATA=/srv/www \
+    APP_ROOT=/var/www \
+    APP_USER=www-data
+
+ENV COMPOSER_ALLOW_SUPERUSER=1 \
+    COMPOSER_HOME=/tmp \
+    COMPOSER_NO_DEV=1
+
+# App
+COPY --chown=$APP_USER:$APP_USER ./ $APP_ROOT
+
+# Composer
+RUN rm -f $APP_DATA/composer.lock
+COPY --chown=$APP_USER:$APP_USER ./config/composer.stub ./config/*composer.lock $APP_DATA/
+RUN /bin/bash -e /var/scripts/composer_install.sh;
