@@ -1,0 +1,4 @@
+globals:
+  apache-path: /etc/apache2
+  apache-restart: s6-svc -r /var/run/s6/services/apache
+  www: /var/www/sites
