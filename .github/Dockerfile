@@ -23,6 +23,22 @@ COPY ./config/s6/mysql-init.d/ /etc/mysql-init.d/
 COPY ./config/mysql /etc/mysql/
 RUN apt-get install -y --no-install-recommends mysql-server php8.1-mysql php8.1-mysqli
 
+##
+# Stage: build
+##
+FROM scratch AS build
+
+ENV APP_DATA=/srv/www \
+    APP_ROOT=/var/www \
+    APP_VOLUME=/mnt/www \
+    APP_USER=www-data
+
+# Copy all from build
+COPY --from=base / .
+
+# Remove copied files
+RUN rm -rf $APP_ROOT/*
+
 # Remove services
 RUN rm -rf /usr/bin/apache_exporter
 RUN rm -rf /usr/bin/php-fpm_exporter
@@ -43,24 +59,6 @@ RUN rm -rf /etc/cont-init.d/050-file.sh
 
 # Enable services
 RUN rm /etc/services.d/phpfpm/down
-
-##
-# Stage: build
-##
-FROM scratch AS build
-
-ENV APP_DATA=/srv/www \
-    APP_ROOT=/var/www \
-    APP_VOLUME=/mnt/www \
-    APP_USER=www-data
-
-# Copy all from build
-COPY --from=base / .
-
-# Remove copied files
-RUN rm -rf $APP_ROOT/*
-
-
 
 # Run S6 overlay
 ENTRYPOINT ["/init"]
