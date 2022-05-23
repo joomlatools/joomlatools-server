@@ -6,7 +6,7 @@
 <br>
 <p align="center">
   <a href="https://www.php.net">
-    <img src="https://img.shields.io/badge/PHP-v7.4-green.svg" alt="php version">
+    <img src="https://img.shields.io/badge/PHP-v8.1-green.svg" alt="php version">
   </a>
    <a href="https://gitpod.io/from-referrer/">
     <img src="https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod" alt="GitPod badge">
