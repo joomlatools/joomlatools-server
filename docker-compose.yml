@@ -20,7 +20,9 @@ services:
       - .env
     volumes:
       - ./sites/:/var/www/sites
-      #- ./volume:/mnt/www
+
+      # Sites Cache
+      - ./volume:/mnt/www/sites
 
       # MySQL Data
       - mysql:/mnt/www/mysql
