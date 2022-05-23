@@ -53,12 +53,15 @@ RUN rm -rf /srv/www/services/fastcgi
 RUN rm -rf /srv/www/services/file
 #RUN rm -rf /srv/www/services/api
 
-RUN rm -rf /etc/cont-init.d/030-fastcgi.sh
-RUN rm -rf /etc/cont-init.d/050-file.sh
-#RUN rm -rf /etc/cont-init.d/040-api.sh
+RUN rm /etc/cont-init.d/030-fastcgi.sh
+RUN rm /etc/cont-init.d/050-file.sh
+#RUN rm /etc/cont-init.d/040-api.sh
 
 # Enable services
 RUN rm /etc/services.d/phpfpm/down
+
+# Remove MySQL default databas
+RUN rm -rf /var/lib/mysql
 
 # Run S6 overlay
 ENTRYPOINT ["/init"]
