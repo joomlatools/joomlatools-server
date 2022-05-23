@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DIR=${APP_ROOT:=/var/www}/sites/${JOOMLA_NAME:=joomla}
+DIR=${APP_ROOT:=/var/www}/sites/${JOOMLA_NAME}
 if [[ ! -d $DIR ]];
 then
   echo "Installing Joomla..."
