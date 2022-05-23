@@ -24,7 +24,7 @@ COPY ./config/mysql /etc/mysql/
 RUN apt-get install -y --no-install-recommends mysql-server php8.1-mysql php8.1-mysqli
 
 # Install Console
-COPY ./config/console ~/.joomlatools/console/
+COPY ./config/console /root/.joomlatools/console/
 
 ##
 # Stage: build
