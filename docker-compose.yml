@@ -43,8 +43,8 @@ services:
     ports:
       - "80:80"  # HTTP Apache
       - "443:443"  # HTTPS Apache
-      - "8080:8080"  # HTTP Apache
-      - "8443:8443"  # HTTPS Apache
+      #- "8080:8080"  # HTTP Apache
+      #- "8443:8443"  # HTTPS Apache
       - "3306:3306"    # MySQL
       - "33060:33060"  # MySQL - X Plugin
 
