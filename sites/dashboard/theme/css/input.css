@@ -144,6 +144,14 @@
 	  width: 180px;
 	  right: -90px;
 	}
+
+	.antialiased a,
+	.antialiased a:link,
+	.antialiased a:hover {
+		color: inherit;
+		text-decoration: inherit; 
+		background-color: inherit;
+	}
 }
 
 @layer components {
