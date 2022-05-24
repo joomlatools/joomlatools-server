@@ -73,5 +73,22 @@ services:
     depends_on:
       - joomlatools-server
 
+  #docker compose --profile dnsmasq up
+  dnsmasq:
+    profiles: [ "dnsmasq" ]
+    image: 4km3/dnsmasq
+    container_name: dnsmasq
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+    cap_add:
+      - NET_ADMIN
+    depends_on:
+      - joomlatools-server
+    volumes:
+      - type: bind
+        source: ./config/dnsmasq/dnsmasq.conf
+        target: /etc/dnsmasq.conf
+
 volumes:
   mysql:
