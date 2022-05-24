@@ -2,31 +2,13 @@
 @layout: 
     path: /default
 
-class: antialiased bg-gray-100
+pageclass: antialiased bg-gray-100
 name: Dashboard
 title: Joomlatools Server Dashboard
 summary: Dashboard for managing Joomlatools Server
 visible: false
 ---
-        <?= partial('navigation/main',[]);?>
 
-        <!-- PAGE CONTENT -->
-        <main class="flex-1 h-screen overflow-y-scroll overflow-x-hidden">
-            <div class="md:hidden justify-between items-center bg-black text-white flex">
-                <h1 class="px-4">
-                    <?= partial('logos/joomlatools',[
-                        'display_text' => 1, 
-                        'display_time' => 0,
-                        'icon_size' => '6',
-                        'icon_colour' => 'white',
-                        'direction' => 'h',
-                    ]);
-                    ?>
-                </h1>
-                <button @click="navOpen = !navOpen" class="btn p-4 focus:outline-none hover:bg-gray-800">
-                    <svg class="w-6 h-6 fill-current" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-                </button>
-            </div>
             <section class="max-w-7xl mx-auto py-4 px-5">
                 <div class="flex justify-between items-center border-b border-gray-300">
                     <h1 class="text-2xl font-semibold pt-2 pb-6">Sites running on this server</h1>
@@ -92,5 +74,3 @@ visible: false
 
                 
             </section>
-            <!-- END OF PAGE CONTENT -->
-        </main>
