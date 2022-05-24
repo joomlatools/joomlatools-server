@@ -1,0 +1,6 @@
+globals:
+  apache-path: /etc/apache2
+  apache-restart: s6-svc -r /var/run/s6/services/apache
+  apache-template: /root/.foliolabs/folioshell/templates/apache-template.conf
+  www: /var/www/sites
+  mysql: "root:"
