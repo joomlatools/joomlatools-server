@@ -134,6 +134,16 @@
 	    scroll-behavior: auto;
 	  }
 	}
+	/* tooltips */
+	.tooltip {
+	  @apply invisible absolute;
+	}
+
+	.has-tooltip:hover .tooltip {
+	  @apply visible z-50;
+	  width: 180px;
+	  right: -90px;
+	}
 }
 
 @layer components {
