@@ -39,8 +39,8 @@ services:
       #- ~/Projects/joomlatools-pages:/var/www/sites/[site]/libraries/joomlatools-components/pages/code
 
     ports:
-      #- "80:80"  # HTTP Apache
-      #- "443:443"  # HTTPS Apache
+      - "80:80"  # HTTP Apache
+      - "443:443"  # HTTPS Apache
       - "8080:8080"  # HTTP Apache
       - "8443:8443"  # HTTPS Apache
       - "3306:3306"    # MySQL
