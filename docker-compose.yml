@@ -12,6 +12,8 @@ services:
       - APP_DEBUG=on
       - APP_CACHE=off
       - APP_PRELOAD=off
+      - APP_HTTP=80
+      - APP_HTTPS=443
     build:
       context: .
       args:
