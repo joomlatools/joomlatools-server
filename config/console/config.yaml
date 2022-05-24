@@ -3,3 +3,4 @@ globals:
   apache-restart: s6-svc -r /var/run/s6/services/apache
   apache-template: /root/.joomlatools/console/templates/apache-template.conf
   www: /var/www/sites
+  mysql-login: "root:"
