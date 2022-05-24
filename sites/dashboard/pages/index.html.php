@@ -2,7 +2,7 @@
 @layout: 
     path: /default
 
-pageclass: antialiased bg-gray-100
+
 name: Dashboard
 title: Joomlatools Server Dashboard
 summary: Dashboard for managing Joomlatools Server

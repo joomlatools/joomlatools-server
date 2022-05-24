@@ -2,7 +2,7 @@
 @layout: 
     path: /default
 
-pageclass: antialiased bg-gray-100
+
 name: Opcache
 title: Joomlatools Server Opcache
 summary: PHP-Opcache for Joomlatools Server

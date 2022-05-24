@@ -2,7 +2,7 @@
 @layout: 
     path: /default
 
-pageclass: antialiased bg-gray-100
+
 name: Xdebug
 title: Joomlatools Server Xdebug
 summary: PHP-Xdebug for Joomlatools Server

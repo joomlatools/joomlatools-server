@@ -2,7 +2,7 @@
 @layout: 
     path: /default
 
-pageclass: antialiased bg-gray-100
+
 name: PHP Info
 title: Joomlatools Server PHP Info
 summary: PHP-PHP Info for Joomlatools Server

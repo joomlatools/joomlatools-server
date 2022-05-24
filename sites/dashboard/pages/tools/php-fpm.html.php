@@ -2,7 +2,7 @@
 @layout: 
     path: /default
 
-pageclass: antialiased bg-gray-100
+
 name: FPM
 title: Joomlatools Server FPM
 summary: PHP-FPM for Joomlatools Server

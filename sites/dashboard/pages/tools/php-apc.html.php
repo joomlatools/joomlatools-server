@@ -2,7 +2,7 @@
 @layout: 
     path: /default
 
-pageclass: antialiased bg-gray-100
+
 name: APC
 title: Joomlatools Server APC
 summary: PHP-APC for Joomlatools Server

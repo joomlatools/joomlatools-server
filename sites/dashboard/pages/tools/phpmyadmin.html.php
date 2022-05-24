@@ -2,7 +2,7 @@
 @layout: 
     path: /default
 
-pageclass: antialiased bg-gray-100
+
 name: PhpMyAdmin
 title: Joomlatools Server PhpMyAdmin
 summary: PhpMyAdmin for managing Joomlatools Server
