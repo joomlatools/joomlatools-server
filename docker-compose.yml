@@ -40,13 +40,63 @@ services:
       # Joomlatools Pages
       #- ~/Projects/joomlatools-pages:/var/www/sites/[site]/libraries/joomlatools-components/pages/code
 
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.joomlatools-server.rule=HostRegexp(`{name:(.*)}.test`)"
+      - "traefik.http.routers.joomlatools-server.entrypoints=web"
+      - "traefik.docker.network=joomlatools-server"
+      - "traefik.http.services.joomlatools-server.loadbalancer.server.port=80"
+
     ports:
-      - "80:80"  # HTTP Apache
-      - "443:443"  # HTTPS Apache
-      #- "8080:8080"  # HTTP Apache
-      #- "8443:8443"  # HTTPS Apache
+      #- "80:80"  # HTTP Apache
+      #- "443:443"  # HTTPS Apache
+      - "8080:8080"  # HTTP Apache
+      - "8443:8443"  # HTTPS Apache
       - "3306:3306"    # MySQL
       - "33060:33060"  # MySQL - X Plugin
+
+    networks:
+      - joomlatools-server
+
+  #docker compose --profile dns up
+  dnsmasq:
+    profiles: [ "dns" ]
+    image: 4km3/dnsmasq
+    container_name: joomlatools-dns
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+    cap_add:
+      - NET_ADMIN
+    depends_on:
+      - joomlatools-server
+    volumes:
+      - type: bind
+        source: ./config/dnsmasq/dnsmasq.conf
+        target: /etc/dnsmasq.conf
+    networks:
+      - joomlatools-server
+
+  traefik:
+    profiles: [ "dns" ]
+    image: traefik:v2.7
+    container_name: joomlatools-proxy
+    command:
+      - "--log.level=INFO"
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.websecure.address=:443"
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8280:8080" # The Web UI (enabled by --api)
+    networks:
+      - joomlatools-server
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
 
   #docker compose --profile phpmyadmin up
   phpmyadmin:
@@ -63,6 +113,8 @@ services:
       - "8180:80" # phpMyAdmin Server
     depends_on:
       - joomlatools-server
+    networks:
+      - joomlatools-server
 
   #docker compose --profile mailhog up
   mailhog:
@@ -74,23 +126,12 @@ services:
       - "8025:8025" # http server
     depends_on:
       - joomlatools-server
-
-  #docker compose --profile dnsmasq up
-  dnsmasq:
-    profiles: [ "dnsmasq" ]
-    image: 4km3/dnsmasq
-    container_name: dnsmasq
-    ports:
-      - "53:53/tcp"
-      - "53:53/udp"
-    cap_add:
-      - NET_ADMIN
-    depends_on:
+    networks:
       - joomlatools-server
-    volumes:
-      - type: bind
-        source: ./config/dnsmasq/dnsmasq.conf
-        target: /etc/dnsmasq.conf
 
 volumes:
   mysql:
+
+networks:
+  joomlatools-server:
+    name: joomlatools-server
