@@ -16,6 +16,17 @@ async function postcss() {
             // logo icon
             'w-6',
             'h-6',
+            // Platform colors
+            'bg-jtblue-200',
+            'text-jtblue-600',
+            'bg-red-200',
+            'text-red-600',
+            'bg-green-200',
+            'text-green-600',
+            'bg-yellow-200',
+            'text-yellow-600',
+            'bg-jtblue-200',
+            'text-jtblue-600',
           ],
         },
       },

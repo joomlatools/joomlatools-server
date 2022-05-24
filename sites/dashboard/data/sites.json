@@ -1,0 +1,58 @@
+[
+  {
+    "name": "pagestest",
+    "platform_name": "Pages",
+    "platform_version": "0.23",
+    "platform_bg_color": "jtblue-200",
+    "platform_text_color": "jtblue-600"
+  },
+  {
+    "name": "joomla3test",
+    "platform_name": "Joomla 3",
+    "platform_version": "3.10.99",
+    "platform_bg_color": "red-200",
+    "platform_text_color": "red-600"
+  },
+  {
+    "name": "joomla3test2",
+    "platform_name": "Joomla 3",
+    "platform_version": "3.10.15",
+    "platform_bg_color": "red-200",
+    "platform_text_color": "red-600"
+  },
+  {
+    "name": "joomla4test",
+    "platform_name": "Joomla 4",
+    "platform_version": "4.0.15",
+    "platform_bg_color": "green-200",
+    "platform_text_color": "green-600"
+  },
+  {
+    "name": "joomla4test2",
+    "platform_name": "Joomla 4",
+    "platform_version": "4.0.15",
+    "platform_bg_color": "green-200",
+    "platform_text_color": "green-600"
+  },
+  {
+    "name": "wptest",
+    "platform_name": "WordPress",
+    "platform_version": "5.93",
+    "platform_bg_color": "yellow-200",
+    "platform_text_color": "yellow-600"
+  },
+  {
+    "name": "wptest2",
+    "platform_name": "WordPress",
+    "platform_version": "5.93",
+    "platform_bg_color": "yellow-200",
+    "platform_text_color": "yellow-600"
+  },
+  {
+    "name": "www.example.com",
+    "platform_name": "Pages",
+    "platform_version": "0.24",
+    "platform_bg_color": "jtblue-200",
+    "platform_text_color": "jtblue-600"
+  }
+]
