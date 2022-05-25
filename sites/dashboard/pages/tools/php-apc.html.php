@@ -1,7 +1,7 @@
 ---
 @layout: 
     path: /default
-
+    pageclass: embedded
 
 name: APC
 title: Joomlatools Server APC

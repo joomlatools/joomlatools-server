@@ -13,6 +13,6 @@
 <ktml:script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine-ie11.min.js"  defer="defer" module="nomodule" />
 <![endif]-->
 
-<body class="antialiased bg-gray-100">
+<body class="antialiased bg-gray-100<?= isset(layout()->pageclass) ? ' ' . layout()->pageclass : '' ?>">
     <ktml:content>
 </body>

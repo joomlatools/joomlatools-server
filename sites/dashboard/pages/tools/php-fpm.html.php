@@ -1,7 +1,7 @@
 ---
 @layout: 
     path: /default
-
+    pageclass: embedded
 
 name: FPM
 title: Joomlatools Server FPM

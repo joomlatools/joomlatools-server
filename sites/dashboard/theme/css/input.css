@@ -145,12 +145,25 @@
 	  right: -90px;
 	}
 
-	.antialiased a,
-	.antialiased a:link,
-	.antialiased a:hover {
-		color: inherit;
-		text-decoration: inherit; 
+	body.embedded, 
+	.embedded p, 
+	.embedded td, 
+	.embedded th, 
+	.embedded input, 
+	.embedded submit {
+	    background-color: inherit;
+		font-family: inherit;
+		font-size: inherit;
+	}
+	body.embedded {
+		@apply bg-gray-100;
+	}
+	.embedded a,
+	.embedded a:link,
+	.embedded a:hover,
+	.embedded a:visited {
 		background-color: inherit;
+		@apply text-gray-400 hover:text-white;
 	}
 }
 
