@@ -1,6 +1,8 @@
 #docker-compose.yml (Development)
 version: "3.8"
 services:
+
+  #docker compose up
   joomlatools-server:
     image: joomlatools-server
     hostname: joomlatools-server
@@ -20,6 +22,10 @@ services:
         IMAGE_TAG: latest
     env_file:
       - .env
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.joomlatools-server.rule=HostRegexp(`{name:(.*)}.test`)"
+      - "traefik.http.services.joomlatools-server.loadbalancer.server.port=80"
     volumes:
       - ./sites/:/var/www/sites
 
@@ -39,14 +45,6 @@ services:
 
       # Joomlatools Pages
       #- ~/Projects/joomlatools-pages:/var/www/sites/[site]/libraries/joomlatools-components/pages/code
-
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.joomlatools-server.rule=HostRegexp(`{name:(.*)}.test`)"
-      - "traefik.http.routers.joomlatools-server.entrypoints=web"
-      - "traefik.docker.network=joomlatools-server"
-      - "traefik.http.services.joomlatools-server.loadbalancer.server.port=80"
-
     ports:
       #- "80:80"  # HTTP Apache
       #- "443:443"  # HTTPS Apache
@@ -54,22 +52,21 @@ services:
       - "8443:8443"  # HTTPS Apache
       - "3306:3306"    # MySQL
       - "33060:33060"  # MySQL - X Plugin
-
     networks:
       - joomlatools-server
 
   #docker compose --profile dns up
   dnsmasq:
-    profiles: [ "dns" ]
+    profiles: [ "dns", "dashboard" ]
     image: 4km3/dnsmasq
     container_name: joomlatools-dns
+    depends_on:
+      - joomlatools-server
     ports:
       - "53:53/tcp"
       - "53:53/udp"
     cap_add:
       - NET_ADMIN
-    depends_on:
-      - joomlatools-server
     volumes:
       - type: bind
         source: ./config/dnsmasq/dnsmasq.conf
@@ -78,9 +75,11 @@ services:
       - joomlatools-server
 
   traefik:
-    profiles: [ "dns" ]
+    profiles: [ "dns", "dashboard" ]
     image: traefik:v2.7
     container_name: joomlatools-proxy
+    depends_on:
+      - joomlatools-server
     command:
       - "--log.level=INFO"
       - "--api.insecure=true"
@@ -93,39 +92,53 @@ services:
       - "80:80"
       - "443:443"
       - "8280:8080" # The Web UI (enabled by --api)
-    networks:
-      - joomlatools-server
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.traefik.rule=Host(`traefik.localhost`)"
+      - "traefik.http.routers.traefik.service=api@internal"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - joomlatools-server
 
   #docker compose --profile phpmyadmin up
   phpmyadmin:
-    profiles: ["phpmyadmin"]
+    profiles: ["phpmyadmin", "dashboard"]
     image: phpmyadmin
     container_name: joomlatools-phpmyadmin
+    depends_on:
+      - joomlatools-server
     environment:
       - PMA_HOST=joomlatools-server
       - PMA_VERBOSE=joomlatools-server
       - PMA_PORT=3306
       - PMA_ARBITRARY=1
       - PMA_USER=root
+      - PMA_ABSOLUTE_URL=http://phpmyadmin.localhost
     ports:
       - "8180:80" # phpMyAdmin Server
-    depends_on:
-      - joomlatools-server
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.phpmyadmin.rule=Host(`phpmyadmin.localhost`)"
+      - "traefik.http.services.phpmyadmin.loadbalancer.server.port=80"
     networks:
       - joomlatools-server
 
+
   #docker compose --profile mailhog up
   mailhog:
-    profiles: ["mailhog"]
+    profiles: ["mailhog", "dashboard"]
     image: mailhog/mailhog
     container_name: joomlatools-mailhog
-    ports:
-      - "1025:1025" # smtp server
-      - "8025:8025" # http server
     depends_on:
       - joomlatools-server
+    ports:
+      - "1025:1025" # smtp server
+      - "8380:8025" # http server
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.mailhog.rule=Host(`mailhog.localhost`)"
+      - "traefik.http.services.mailhog.loadbalancer.server.port=8025"
     networks:
       - joomlatools-server
 
