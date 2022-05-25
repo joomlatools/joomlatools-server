@@ -15,3 +15,10 @@ visible: true
             </div>
             <?= file_get_contents('http://localhost:8080/__info/php-apc') ?>
         </section>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // code...
+        document.getElementsByClassName('content').classList.add('apc-content');
+    });
+</script>

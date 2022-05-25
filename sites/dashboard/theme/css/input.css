@@ -165,6 +165,10 @@
 		background-color: inherit;
 		@apply text-gray-400 hover:text-white;
 	}
+	/* php-apc */
+	.embedded div.content {
+		position: relative!important;
+	}
 }
 
 @layer components {
