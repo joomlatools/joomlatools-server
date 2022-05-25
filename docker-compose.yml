@@ -1,5 +1,13 @@
 #docker-compose.yml (Development)
 version: "3.8"
+
+volumes:
+  mysql:
+
+networks:
+  joomlatools-server:
+    name: joomlatools-server
+
 services:
 
   #docker compose up
@@ -7,7 +15,7 @@ services:
     image: joomlatools-server
     hostname: joomlatools-server
     container_name: joomlatools-server
-    restart: always
+    restart: unless-stopped
     environment:
       - APP_NAME=joomlatools-server
       - APP_ENV=development
@@ -60,6 +68,7 @@ services:
     profiles: [ "dns", "dashboard" ]
     image: 4km3/dnsmasq
     container_name: joomlatools-dns
+    restart: unless-stopped
     depends_on:
       - joomlatools-server
     ports:
@@ -78,6 +87,7 @@ services:
     profiles: [ "dns", "dashboard" ]
     image: traefik:v2.7
     container_name: joomlatools-proxy
+    restart: unless-stopped
     depends_on:
       - joomlatools-server
     command:
@@ -87,7 +97,6 @@ services:
       - "--providers.docker.exposedbydefault=false"
       - "--entrypoints.web.address=:80"
       - "--entrypoints.websecure.address=:443"
-    restart: always
     ports:
       - "80:80"
       - "443:443"
@@ -106,6 +115,7 @@ services:
     profiles: ["phpmyadmin", "dashboard"]
     image: phpmyadmin
     container_name: joomlatools-phpmyadmin
+    restart: unless-stopped
     depends_on:
       - joomlatools-server
     environment:
@@ -130,6 +140,7 @@ services:
     profiles: ["mailhog", "dashboard"]
     image: mailhog/mailhog
     container_name: joomlatools-mailhog
+    restart: unless-stopped
     depends_on:
       - joomlatools-server
     ports:
@@ -141,10 +152,3 @@ services:
       - "traefik.http.services.mailhog.loadbalancer.server.port=8025"
     networks:
       - joomlatools-server
-
-volumes:
-  mysql:
-
-networks:
-  joomlatools-server:
-    name: joomlatools-server
