@@ -38,7 +38,7 @@ services:
       - ./sites/:/var/www/sites
 
       # Sites Cache
-      - ./volume:/mnt/www/sites
+      - ./data/sites:/mnt/www/sites
 
       # MySQL Data
       - mysql:/mnt/www/mysql
