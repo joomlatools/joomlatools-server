@@ -12,6 +12,8 @@ services:
       - APP_DEBUG=on
       - APP_CACHE=off
       - APP_PRELOAD=off
+      - APP_HTTP=80
+      - APP_HTTPS=443
     build:
       context: .
       args:
@@ -39,8 +41,10 @@ services:
       #- ~/Projects/joomlatools-pages:/var/www/sites/[site]/libraries/joomlatools-components/pages/code
 
     ports:
-      - "8080:8080"  # HTTP Apache
-      - "8443:8443"  # HTTPS Apache
+      - "80:80"  # HTTP Apache
+      - "443:443"  # HTTPS Apache
+      #- "8080:8080"  # HTTP Apache
+      #- "8443:8443"  # HTTPS Apache
       - "3306:3306"    # MySQL
       - "33060:33060"  # MySQL - X Plugin
 
@@ -70,6 +74,23 @@ services:
       - "8025:8025" # http server
     depends_on:
       - joomlatools-server
+
+  #docker compose --profile dnsmasq up
+  dnsmasq:
+    profiles: [ "dnsmasq" ]
+    image: 4km3/dnsmasq
+    container_name: dnsmasq
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+    cap_add:
+      - NET_ADMIN
+    depends_on:
+      - joomlatools-server
+    volumes:
+      - type: bind
+        source: ./config/dnsmasq/dnsmasq.conf
+        target: /etc/dnsmasq.conf
 
 volumes:
   mysql:
