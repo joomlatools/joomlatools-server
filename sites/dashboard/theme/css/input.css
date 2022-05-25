@@ -163,12 +163,13 @@
 	.embedded a:hover,
 	.embedded a:visited {
 		background-color: inherit;
-		@apply text-gray-400 hover:text-white;
+		@apply text-gray-400 hover:text-white relative;
 	}
 	/* php-apc */
 	.embedded div.content {
 		position: relative!important;
 	}
+
 }
 
 @layer components {
