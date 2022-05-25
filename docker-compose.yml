@@ -102,7 +102,7 @@ services:
   phpmyadmin:
     profiles: ["phpmyadmin"]
     image: phpmyadmin
-    container_name: phpmyadmin
+    container_name: joomlatools-phpmyadmin
     environment:
       - PMA_HOST=joomlatools-server
       - PMA_VERBOSE=joomlatools-server
@@ -120,7 +120,7 @@ services:
   mailhog:
     profiles: ["mailhog"]
     image: mailhog/mailhog
-    container_name: mailhog
+    container_name: joomlatools-mailhog
     ports:
       - "1025:1025" # smtp server
       - "8025:8025" # http server
