@@ -60,6 +60,9 @@ services:
       - "8443:8443"  # HTTPS Apache
       - "3306:3306"    # MySQL
       - "33060:33060"  # MySQL - X Plugin
+    cap_add:
+      - SYS_NICE
+    
     networks:
       - joomlatools-server
 
@@ -124,6 +127,7 @@ services:
       - PMA_PORT=3306
       - PMA_ARBITRARY=1
       - PMA_USER=root
+      - PMA_PASSWORD=root
       - PMA_ABSOLUTE_URL=http://phpmyadmin.localhost
     ports:
       - "8180:80" # phpMyAdmin Server
