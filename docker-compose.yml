@@ -32,7 +32,9 @@ services:
       - .env
     labels:
       - "traefik.enable=true"
+      # Routers
       - "traefik.http.routers.joomlatools-server.rule=HostRegexp(`{name:(.*)}.test`)"
+      # Services
       - "traefik.http.services.joomlatools-server.loadbalancer.server.port=80"
     volumes:
       - ./sites/:/var/www/sites
@@ -106,7 +108,9 @@ services:
       - "8280:8080" # The Web UI (enabled by --api)
     labels:
       - "traefik.enable=true"
+      # Routers
       - "traefik.http.routers.traefik.rule=Host(`traefik.localhost`)"
+      # Services
       - "traefik.http.routers.traefik.service=api@internal"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
@@ -133,7 +137,9 @@ services:
       - "8180:80" # phpMyAdmin Server
     labels:
       - "traefik.enable=true"
+      # Routers
       - "traefik.http.routers.phpmyadmin.rule=Host(`phpmyadmin.localhost`)"
+      # Services
       - "traefik.http.services.phpmyadmin.loadbalancer.server.port=80"
     networks:
       - joomlatools-server
@@ -152,7 +158,34 @@ services:
       - "8380:8025" # http server
     labels:
       - "traefik.enable=true"
+      # Routers
       - "traefik.http.routers.mailhog.rule=Host(`mailhog.localhost`)"
+      # Services
       - "traefik.http.services.mailhog.loadbalancer.server.port=8025"
+    networks:
+      - joomlatools-server
+
+  #docker compose --profile dozzle up
+  dozzle:
+    profiles: ["dozzle", "dashboard"]
+    image: amir20/dozzle:latest
+    container_name: joomlatools-logs
+    restart: unless-stopped
+    depends_on:
+      - joomlatools-server
+    environment:
+      DOZZLE_LEVEL: info
+      DOZZLE_TAILSIZE: 300
+      DOZZLE_FILTER: "status=running"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - "8480:8080"
+    labels:
+      - "traefik.enable=true"
+      # Routers
+      - "traefik.http.routers.dozzle.rule=Host(`dozzle.localhost`)"
+      # Services
+      - "traefik.http.services.dozzle.loadbalancer.server.port=8080"
     networks:
       - joomlatools-server
