@@ -26,8 +26,8 @@ docker-compose.*
 vendor/*
 !vendor/.gitkeep
 
-# Volume
-volume
+# Data
+data
 
 # Themes
 sites/**/theme/node_modules
