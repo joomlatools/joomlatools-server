@@ -8,7 +8,7 @@ if [[ $APP_ENV = "development" ]]
 then
 echo "> MYSQL_PASS   = "${MYSQL_PASS:-undefined}
 else
-echo "> MYSQL_PASS   = [redacted]"
+echo "> MYSQL_PASS   = ****"
 fi 
 echo "> MYSQL_VOLUME = "${MYSQL_VOLUME:-undefined}
 
