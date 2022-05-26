@@ -15,6 +15,7 @@ then
 else
   echo "[mysql-init.d] ${file}: Revoking remote access of MySQL database from any IP address for ${MYSQL_USER}"
    /usr/bin/mysql -e -f "
+      ALTER USER '${MYSQL_USER}'@'localhost' IDENTIFIED WITH mysql_native_password BY '${MYSQL_PASS}';
       REVOKE ALL PRIVILEGES, GRANT OPTION FROM '${MYSQL_USER}'@'%';
       DROP USER IF EXISTS '${MYSQL_USER}'@'%';
       "
