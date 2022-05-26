@@ -83,6 +83,26 @@ services:
     networks:
       - joomlatools-server
 
+  minica:
+    profiles: [ "dns", "dashboard" ]
+    image: ghcr.io/bjornsnoen/minica-traefik-api:latest
+    container_name: joomlatools-certca
+    restart: unless-stopped
+    depends_on:
+      - joomlatools-server
+    volumes:
+      - ./data/certificates:/app/certificates
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      DOCKER_HOST: "unix:///var/run/docker.sock"
+      DOCKER_LISTEN: "yes"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.minica.rule=Host(`minica.localhost`)"
+      - "traefik.http.routers.minica.middlewares=redirectssl@docker"
+      - "traefik.http.routers.minicasecure.rule=Host(`minica.localhost`)"
+      - "traefik.http.routers.minicasecure.tls=true"
+
   traefik:
     profiles: [ "dns", "dashboard" ]
     image: traefik:v2.7
@@ -97,16 +117,25 @@ services:
       - "--providers.docker.exposedbydefault=false"
       - "--entrypoints.web.address=:80"
       - "--entrypoints.websecure.address=:443"
+      - "--providers.file.directory=/app/certificates"
     ports:
       - "80:80"
       - "443:443"
       - "8280:8080" # The Web UI (enabled by --api)
     labels:
       - "traefik.enable=true"
+      - "traefik.http.middlewares.redirectssl.redirectscheme.scheme=https"
+      - "traefik.http.services.traefik.loadbalancer.server.port=8080"
       - "traefik.http.routers.traefik.rule=Host(`traefik.localhost`)"
       - "traefik.http.routers.traefik.service=api@internal"
+      - "traefik.http.routers.traefik.middlewares=redirectssl@docker"
+      - "traefik.http.routers.traefiksecure.rule=Host(`traefik.localhost`)"
+      - "traefik.http.routers.traefiksecure.service=api@internal"
+      - "traefik.http.routers.traefiksecure.tls=true"
+
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      - ./data/certificates:/app/certificates
     networks:
       - joomlatools-server
 
@@ -129,11 +158,10 @@ services:
       - "8180:80" # phpMyAdmin Server
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.phpmyadmin.rule=Host(`phpmyadmin.localhost`)"
       - "traefik.http.services.phpmyadmin.loadbalancer.server.port=80"
+      - "traefik.http.routers.phpmyadmin.rule=Host(`phpmyadmin.localhost`)"
     networks:
       - joomlatools-server
-
 
   #docker compose --profile mailhog up
   mailhog:
@@ -148,7 +176,7 @@ services:
       - "8380:8025" # http server
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.mailhog.rule=Host(`mailhog.localhost`)"
       - "traefik.http.services.mailhog.loadbalancer.server.port=8025"
+      - "traefik.http.routers.mailhog.rule=Host(`mailhog.localhost`)"
     networks:
       - joomlatools-server
