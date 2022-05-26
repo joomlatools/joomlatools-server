@@ -13,8 +13,8 @@ vendor/*
 !vendor/.gitkeep
 
 # Volume
-volume/*
-!volume/php.ini
+data/*
+!data/php.ini
 
 # Themes
 sites/**/theme/node_modules
