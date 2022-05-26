@@ -32,7 +32,9 @@ services:
       - .env
     labels:
       - "traefik.enable=true"
+      # Routers
       - "traefik.http.routers.joomlatools-server.rule=HostRegexp(`{name:(.*)}.test`)"
+      # Services
       - "traefik.http.services.joomlatools-server.loadbalancer.server.port=80"
     volumes:
       - ./sites/:/var/www/sites
@@ -60,6 +62,9 @@ services:
       - "8443:8443"  # HTTPS Apache
       - "3306:3306"    # MySQL
       - "33060:33060"  # MySQL - X Plugin
+    cap_add:
+      - SYS_NICE
+
     networks:
       - joomlatools-server
 
@@ -124,9 +129,9 @@ services:
       - "8280:8080" # The Web UI (enabled by --api)
     labels:
       - "traefik.enable=true"
-      - "traefik.http.middlewares.redirectssl.redirectscheme.scheme=https"
-      - "traefik.http.services.traefik.loadbalancer.server.port=8080"
+      # Routers
       - "traefik.http.routers.traefik.rule=Host(`traefik.localhost`)"
+      # Services
       - "traefik.http.routers.traefik.service=api@internal"
       - "traefik.http.routers.traefik.middlewares=redirectssl@docker"
       - "traefik.http.routers.traefiksecure.rule=Host(`traefik.localhost`)"
@@ -153,11 +158,15 @@ services:
       - PMA_PORT=3306
       - PMA_ARBITRARY=1
       - PMA_USER=root
+      - PMA_PASSWORD=root
       - PMA_ABSOLUTE_URL=http://phpmyadmin.localhost
     ports:
       - "8180:80" # phpMyAdmin Server
     labels:
       - "traefik.enable=true"
+      # Routers
+      - "traefik.http.routers.phpmyadmin.rule=Host(`phpmyadmin.localhost`)"
+      # Services
       - "traefik.http.services.phpmyadmin.loadbalancer.server.port=80"
       - "traefik.http.routers.phpmyadmin.rule=Host(`phpmyadmin.localhost`)"
     networks:
@@ -178,5 +187,32 @@ services:
       - "traefik.enable=true"
       - "traefik.http.services.mailhog.loadbalancer.server.port=8025"
       - "traefik.http.routers.mailhog.rule=Host(`mailhog.localhost`)"
+      # Services
+      - "traefik.http.services.mailhog.loadbalancer.server.port=8025"
+    networks:
+      - joomlatools-server
+
+  #docker compose --profile dozzle up
+  dozzle:
+    profiles: ["dozzle", "dashboard"]
+    image: amir20/dozzle:latest
+    container_name: joomlatools-logs
+    restart: unless-stopped
+    depends_on:
+      - joomlatools-server
+    environment:
+      DOZZLE_LEVEL: info
+      DOZZLE_TAILSIZE: 300
+      DOZZLE_FILTER: "status=running"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - "8480:8080"
+    labels:
+      - "traefik.enable=true"
+      # Routers
+      - "traefik.http.routers.dozzle.rule=Host(`dozzle.localhost`)"
+      # Services
+      - "traefik.http.services.dozzle.loadbalancer.server.port=8080"
     networks:
       - joomlatools-server
