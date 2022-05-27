@@ -5,7 +5,7 @@ globals:
 "vhost:create":
   folder: /var/www/sites/[site]/config/apache
   filename: server.conf
-  template: /root/.joomlatools/console/templates/apache-template.conf
+  template: /root/.foliolabs/folioshell/templates/apache-template.conf
 "vhost:remove":
   folder: /var/www/sites/[site]/config/apache
   filename: server.conf
