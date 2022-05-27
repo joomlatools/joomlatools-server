@@ -152,6 +152,8 @@ services:
       - "traefik.http.routers.minica-https.tls=true"
       # Services
       - "traefik.http.services.minica.loadbalancer.server.port=80"
+    networks:
+      - joomlatools-server
 
   #docker compose --profile phpmyadmin up
   phpmyadmin:
