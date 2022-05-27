@@ -70,7 +70,7 @@ services:
 
   #docker compose --profile dns up
   dnsmasq:
-    profiles: [ "dns", "dashboard" ]
+    profiles: [ "dns", "all" ]
     image: 4km3/dnsmasq
     container_name: joomlatools-dns
     restart: unless-stopped
@@ -89,7 +89,7 @@ services:
       - joomlatools-server
 
   traefik:
-    profiles: [ "dns", "dashboard" ]
+    profiles: [ "dns", "all" ]
     image: traefik:v2.7
     container_name: joomlatools-proxy
     restart: unless-stopped
@@ -119,7 +119,7 @@ services:
 
   #docker compose --profile phpmyadmin up
   phpmyadmin:
-    profiles: ["phpmyadmin", "dashboard"]
+    profiles: ["phpmyadmin", "all"]
     image: phpmyadmin
     container_name: joomlatools-phpmyadmin
     restart: unless-stopped
@@ -147,7 +147,7 @@ services:
 
   #docker compose --profile mailhog up
   mailhog:
-    profiles: ["mailhog", "dashboard"]
+    profiles: ["mailhog", "all"]
     image: mailhog/mailhog
     container_name: joomlatools-mailhog
     restart: unless-stopped
@@ -167,7 +167,7 @@ services:
 
   #docker compose --profile dozzle up
   dozzle:
-    profiles: ["dozzle", "dashboard"]
+    profiles: ["dozzle", "all"]
     image: amir20/dozzle:latest
     container_name: joomlatools-logs
     restart: unless-stopped

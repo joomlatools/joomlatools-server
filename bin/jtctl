@@ -37,35 +37,46 @@ function display_help {
     echo
     echo "Unknown commands are passed to the docker-compose binary."
     echo
-    echo "${YELLOW}docker-compose Commands:${NC}"
-    echo "  ${GREEN}jtctl up${NC}        Start the server"
-    echo "  ${GREEN}jtctl up -d${NC}     Start the server in the background"
-    echo "  ${GREEN}jtctl stop${NC}      Stop the server"
-    echo "  ${GREEN}jtctl restart${NC}   Restart the server"
-    echo "  ${GREEN}jtctl ps${NC}        Display the status of all containers"
+    echo "${YELLOW}Docker Commands:${NC}"
+    echo "  ${GREEN}jtctl start${NC}        Start the server"
+    echo "  ${GREEN}jtctl start -d${NC}     Start the server in the background"
+    echo "  ${GREEN}jtctl stop${NC}         Stop the server"
+    echo "  ${GREEN}jtctl remove${NC}       Stop the server, remove all containers and networks"
+    echo "  ${GREEN}jtctl restart${NC}      Restart the server"
+    echo "  ${GREEN}jtctl destroy${NC}      Destroy the server, remove all images, and volumes"
+    echo "  ${GREEN}jtctl status${NC}       Display the status of all containers"
     echo
-    echo "${YELLOW}Joomla Commands:${NC}"
-    echo "  ${GREEN}jtctl joomla ...${NC}     Run a Joomlatools Console command within the 'joomlatools-server' container"
+    echo "${YELLOW}Server Commands (within the joomlatools-server container):${NC}"
+    echo "  ${GREEN}jtctl apache reload${NC}    Reload Apache service"
+    echo "  ${GREEN}jtctl apache restart${NC}   Restart Apache service"
+    echo "  ${GREEN}jtctl apache status${NC}    Status of the Apache service"
+    echo "  ${GREEN}jtctl phpfpm reload${NC}    Reload PHPFPM service"
+    echo "  ${GREEN}jtctl phpfpm restart${NC}   Restart PHPFPM service"
+    echo "  ${GREEN}jtctl phpfpm status${NC}    Check PHPFPM service status"
+    echo "  ${GREEN}jtctl apache status${NC}    Check Apache service status"
+    echo "  ${GREEN}jtctl api reload${NC}       Reload Api service"
+    echo "  ${GREEN}jtctl api restart${NC}      Restart Api service"
+    echo "  ${GREEN}jtctl api status${NC}       Check Api service status"
+    echo "  ${GREEN}jtctl shell${NC}            Start a shell session"
+    echo "  ${GREEN}jtctl bash${NC}             Alias for 'jtctl shell'"
     echo
-    echo "${YELLOW}Wordpress Commands:${NC}"
-    echo "  ${GREEN}jtctl wp ...${NC}  Run a FolioShell command within the 'joomlatools-server' container"
+    echo "${YELLOW}Joomla Commands (within the 'joomlatools-server' container):${NC}"
+    echo "  ${GREEN}jtctl joomla ...${NC}     Run a Joomlatools Console command"
     echo
-    echo "${YELLOW}Composer Commands:${NC}"
-    echo "  ${GREEN}jtctl composer ...${NC}   Run a Composer command within the 'joomlatools-server' container"
+    echo "${YELLOW}Wordpress Commands (within the 'joomlatools-server' container):${NC}"
+    echo "  ${GREEN}jtctl wp ...${NC}         Run a FolioShell command"
     echo
-    echo "${YELLOW}Database Commands:${NC}"
-    echo "  ${GREEN}jtctl mysql${NC}        Start a MySQL CLI session within the 'joomlatools-server' container"
+    echo "${YELLOW}Composer Commands (within the 'joomlatools-server' container):${NC}"
+    echo "  ${GREEN}jtctl composer ...${NC}   Run a Composer command"
+    echo "  ${GREEN}jtctl bin ...${NC}        Run Composer binary scripts from the vendor/bin directory"
     echo
-    echo "${YELLOW}Container CLI:${NC}"
-    echo "  ${GREEN}jtctl shell${NC}        Start a shell session within the 'joomlatools-server' container"
-    echo "  ${GREEN}jtctl bash${NC}         Alias for 'jtctl shell'"
-    #echo "  ${GREEN}jtctl tinker${NC}       Start a new Tinker session"
+    echo "${YELLOW}Database Commands (within the 'joomlatools-server' container):${NC}"
+    echo "  ${GREEN}jtctl mysql${NC}          Start a MySQL CLI session"
+    echo
+    #echo "  ${GREEN}jtctl tinker${NC}        Start a new Tinker session"
     #echo
     #echo "${YELLOW}Sharing:${NC}"
-    #echo "  ${GREEN}jtctl share${NC}   Share the application publicly via a temporary URL"
-    echo
-    echo "${YELLOW}Binaries:${NC}"
-    echo "  ${GREEN}jtctl bin ...${NC}   Run Composer binary scripts from the vendor/bin directory"
+    #echo "  ${GREEN}jtctl share${NC}         Share the application publicly via a temporary URL"
 
     exit 1
 }
@@ -92,7 +103,7 @@ export SERVER_FILES=${SERVER_FILES:-""}
 function server_is_not_running {
     echo "${BOLD}Joomlatools Server is not running.${NC}" >&2
     echo "" >&2
-    echo "${BOLD}You may start Joomlatools Server using the following commands:${NC} './bin/jtctl up' or './bin/jtctl up -d'" >&2
+    echo "${BOLD}You may start Joomlatools Server using the following commands:${NC} './bin/jtctl start' or './bin/jtctl start -d'" >&2
 
     exit 1
 }
@@ -144,38 +155,56 @@ fi
 
 ARGS=()
 
-# Proxy PHP commands to the "php" binary on the server container...
-if [ "$1" == "php" ]; then
+# Proxy start command
+if [ "$1" == "start" ]; then
     shift 1
 
     if [ "$EXEC" == "yes" ]; then
-        ARGS+=(exec)
-        [ ! -t 0 ] && ARGS+=(-T)
-        ARGS+=("$SERVER_SERVICE" "php" "$@")
+        #[ ! -t 0 ] && ARGS+=(-T)
+        ARGS+=(--profile all up)
     else
         server_is_not_running
     fi
 
-# Proxy vendor binary commands on the server container...
-elif [ "$1" == "bin" ]; then
+# Proxy start -d command
+elif [ "$1" == "start -d" ]; then
     shift 1
 
     if [ "$EXEC" == "yes" ]; then
-        ARGS+=(exec)
-        [ ! -t 0 ] && ARGS+=(-T)
-        ARGS+=("$SERVER_SERVICE" ./vendor/bin/"$@")
+        ##[ ! -t 0 ] && ARGS+=(-T)
+         ARGS+=(--profile all up)
     else
         server_is_not_running
     fi
 
-# Proxy docker-compose commands to the docker-compose binary on the server container...
-elif [ "$1" == "docker-compose" ]; then
+# Proxy remove command
+elif [ "$1" == "remove" ]; then
     shift 1
 
     if [ "$EXEC" == "yes" ]; then
-        ARGS+=(exec)
         [ ! -t 0 ] && ARGS+=(-T)
-        ARGS+=("$SERVER_SERVICE" "${DOCKER_COMPOSE[@]}")
+        ARGS+=(down --rmi all)
+    else
+        server_is_not_running
+    fi
+
+# Proxy destroy command
+elif [ "$1" == "destroy" ]; then
+    shift 1
+
+    if [ "$EXEC" == "yes" ]; then
+        [ ! -t 0 ] && ARGS+=(-T)
+        ARGS+=(down --rmi all -v)
+    else
+        server_is_not_running
+    fi
+
+# Proxy status command
+elif [ "$1" == "status" ]; then
+    shift 1
+
+    if [ "$EXEC" == "yes" ]; then
+        ARGS+=(ps)
     else
         server_is_not_running
     fi
@@ -192,7 +221,19 @@ elif [ "$1" == "composer" ]; then
         server_is_not_running
     fi
 
-# Proxy Artisan commands to the "artisan" binary on the server container...
+# Proxy vendor binary commands on the server container...
+elif [ "$1" == "bin" ]; then
+    shift 1
+
+    if [ "$EXEC" == "yes" ]; then
+        ARGS+=(exec)
+        [ ! -t 0 ] && ARGS+=(-T)
+        ARGS+=("$SERVER_SERVICE" ./vendor/bin/"$@")
+    else
+        server_is_not_running
+    fi
+
+# Proxy Joomla commands to the "joomla" binary on the server container...
 elif [ "$1" == "joomla" ]; then
     shift 1
 
@@ -204,7 +245,7 @@ elif [ "$1" == "joomla" ]; then
         server_is_not_running
     fi
 
-# Proxy Wordpress commands to the "artisan" binary on the server container...
+# Proxy Wordpress commands to the "folioshell" binary on the server container...
 elif [ "$1" == "wp" ]; then
     shift 1
 
@@ -235,8 +276,7 @@ elif [ "$1" == "mysql" ]; then
     if [ "$EXEC" == "yes" ]; then
         ARGS+=(exec)
         [ ! -t 0 ] && ARGS+=(-T)
-        ARGS+=("$SERVER_SERVICE" mysql bash -c)
-        ARGS+=("MYSQL_PWD=\${MYSQL_PASS} mysql -u \${MYSQL_USER}")
+        ARGS+=("$SERVER_SERVICE" mysql)
     else
         server_is_not_running
     fi
@@ -249,6 +289,105 @@ elif [ "$1" == "shell" ] || [ "$1" == "bash" ]; then
         ARGS+=(exec)
         [ ! -t 0 ] && ARGS+=(-T)
         ARGS+=("$SERVER_SERVICE" bash "$@")
+    else
+        server_is_not_running
+    fi
+
+# Reload Apache
+elif [ "$1" == "apache" ]  && [ "$2" == "reload" ]; then
+    shift 1
+
+    if [ "$EXEC" == "yes" ]; then
+        ARGS+=(exec)
+        ARGS+=("$SERVER_SERVICE" s6-svc -1 /var/run/s6/services/apache)
+    else
+        server_is_not_running
+    fi
+
+# Restart Apache
+elif [ "$1" == "apache" ] && [ "$2" == "restart" ]; then
+    shift 1
+
+    if [ "$EXEC" == "yes" ]; then
+        ARGS+=(exec)
+        ARGS+=("$SERVER_SERVICE" s6-svc -r /var/run/s6/services/apache)
+    else
+        server_is_not_running
+    fi
+
+# Check Apache status
+elif [ "$1" == "apache" ] && [ "$2" == "status" ]; then
+    shift 1
+
+    if [ "$EXEC" == "yes" ]; then
+        ARGS+=(exec)
+        ARGS+=("$SERVER_SERVICE" s6-svstat /var/run/s6/services/apache)
+    else
+        server_is_not_running
+    fi
+
+# Reload Apache
+elif [ "$1" == "phpfpm" ] && [ "$2" == "reload" ]; then
+    shift 1
+
+    if [ "$EXEC" == "yes" ]; then
+        ARGS+=(exec)
+        ARGS+=("$SERVER_SERVICE" s6-svc -2 /var/run/s6/services/phpfpm)
+    else
+        server_is_not_running
+    fi
+
+# Restart Apache
+elif [ "$1" == "phpfpm" ] && [ "$2" == "restart" ]; then
+    shift 1
+
+    if [ "$EXEC" == "yes" ]; then
+        ARGS+=(exec)
+        ARGS+=("$SERVER_SERVICE" s6-svc -r /var/run/s6/services/phpfpm)
+    else
+        server_is_not_running
+    fi
+
+# Check Apache status
+elif [ "$1" == "phpmpm" ] && [ "$2" == "status" ]; then
+    shift 1
+
+    if [ "$EXEC" == "yes" ]; then
+        ARGS+=(exec)
+        ARGS+=("$SERVER_SERVICE" s6-svstat /var/run/s6/services/phpfpm)
+    else
+        server_is_not_running
+    fi
+
+# Reload Apache
+elif [ "$1" == "api" ] && [ "$2" == "reload" ]; then
+    shift 1
+
+    if [ "$EXEC" == "yes" ]; then
+        ARGS+=(exec)
+        ARGS+=("$SERVER_SERVICE" s6-svc -2 /var/run/s6/services/api)
+    else
+        server_is_not_running
+    fi
+
+# Restart Apache
+elif [ "$1" == "api" ] && [ "$2" == "restart" ]; then
+    shift 1
+
+    if [ "$EXEC" == "yes" ]; then
+        ARGS+=(exec)
+        ARGS+=("$SERVER_SERVICE" s6-svc -r /var/run/s6/services/api)
+    else
+        server_is_not_running
+    fi
+
+# Check Apache status
+elif [ "$1" == "api" ] && [ "$2" == "status" ]; then
+    shift 1
+
+    if [ "$EXEC" == "yes" ]; then
+        ARGS+=(exec)
+        ARGS+=("$SERVER_SERVICE" s6-svstat /var/run/s6/services/api)
     else
         server_is_not_running
     fi
