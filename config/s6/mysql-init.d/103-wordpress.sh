@@ -1,7 +1,7 @@
 #!/bin/bash
 
 DIR=${APP_ROOT:=/var/www}/sites/${WORDPRESS_SITE}
-if [[ ! -d $DIR ]];
+if [[ ! -d $DIR ]] && [[ ! -z "${WORDPRESS_SITE}" ]];
 then
   echo "Installing Wordpress..."
 
