@@ -33,7 +33,7 @@ services:
     labels:
       - "traefik.enable=true"
       # Routers
-      - "traefik.http.routers.joomlatools-server.rule=HostRegexp(`{name:(.*)}.test`)"
+      - "traefik.http.routers.joomlatools-server.rule=HostRegexp(`{name:(.*)}.test`) || Host(`localhost`)"
       # Services
       - "traefik.http.services.joomlatools-server.loadbalancer.server.port=80"
     volumes:
