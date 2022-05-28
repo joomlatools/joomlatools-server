@@ -130,8 +130,8 @@ services:
       - PMA_VERBOSE=joomlatools-server
       - PMA_PORT=3306
       - PMA_ARBITRARY=1
-      - PMA_USER=root
-      - PMA_PASSWORD=root
+      - PMA_USER=admin
+      - PMA_PASSWORD=admin
       - PMA_ABSOLUTE_URL=http://phpmyadmin.localhost
     ports:
       - "8180:80" # phpMyAdmin Server
