@@ -1,6 +1,5 @@
 globals:
   www: /var/www/sites
-  mysql-login: "root:root"
   restart-command: s6-svc -r /var/run/s6/services/apache
 "vhost:create":
   folder: /var/www/sites/[site]/config/apache
