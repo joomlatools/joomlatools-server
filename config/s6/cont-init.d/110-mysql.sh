@@ -47,11 +47,3 @@ if [[ ! -f $MYSQL_VOLUME/mysql.ibd ]]; then
 
   /usr/sbin/mysqld --initialize-insecure --datadir=${MYSQL_VOLUME}
 fi
-
-# Create option file to allow passwordless login for clients
-# https://dev.mysql.com/doc/refman/8.0/en/option-files.html
-USER_FILE=~/.my.cnf
-echo '[client]' >> $USER_FILE
-echo "user=${MYSQL_USER}" >> $USER_FILE
-echo "password=${MYSQL_PASS}" >> $USER_FILE
-chmod 0400 ~/.my.cnf
