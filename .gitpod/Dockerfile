@@ -2,9 +2,10 @@
 # Stage: base
 #
 # Build gitpod server
-# Version: 0.1.0-dev build 29
+# Version: 1.0.0-dev build 30
 
-FROM ghcr.io/joomlatools/joomlatools-server:latest as base
+ARG IMAGE_TAG=latest
+FROM ghcr.io/joomlatools/joomlatools-server:${IMAGE_TAG} as base
 
 ENV APP_DATA=/srv/www \
     APP_ROOT=/workspace/joomlatools-server \
