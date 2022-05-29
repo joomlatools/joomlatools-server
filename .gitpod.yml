@@ -22,10 +22,10 @@ tasks:
     command: sudo /bin/bash -e /var/scripts/composer_install.sh
 
   - name: Install Latest Joomla
-    command: sudo joomla site:create joomla --release=latest
+    command: sudo joomla site:create joomla --release=latest --www=/workspace/joomlatools-server/sites
 
   - name: Install Latest Wordpress
-    command: sudo folioshell site:create joomla --release=latest
+    command: sudo folioshell site:create joomla --release=latest --www=/workspace/joomlatools-server/sites
 
   - name: Terminal - Joomlatools Server
     command: |
