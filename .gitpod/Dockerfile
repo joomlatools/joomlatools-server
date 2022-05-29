@@ -15,7 +15,8 @@ ENV APP_DATA=/srv/www \
     APP_HTTPS=443
 
 ENV COMPOSER_ALLOW_SUPERUSER=1 \
-    COMPOSER_HOME=/tmp
+    COMPOSER_HOME=/tmp \
+    COMPOSER_NO_DEV=1
 
 ENV APP_ENV=development \
     APP_PRELOAD=off \
@@ -42,6 +43,7 @@ RUN mkdir -p $APP_VOLUME; \
 # Composer
 RUN rm -f $APP_DATA/composer.lock
 COPY --chown=$APP_USER:$APP_USER ./config/composer.stub ./config/*composer.lock $APP_DATA/
+RUN /bin/bash -e /var/scripts/composer_install.sh;
 
 USER gitpod
 WORKDIR $APP_ROOT
