@@ -38,7 +38,7 @@ RUN useradd -l -u 33333 -G sudo -md /home/gitpod -s /bin/bash -p gitpod gitpod; 
 # Permissions
 RUN mkdir -p $APP_VOLUME; \
     chown -R $APP_USER:$APP_USER $APP_VOLUME; \
-    chown -R $APP_USER:$APP_USER $APP_DATA \
+    chown -R $APP_USER:$APP_USER $APP_DATA
 
 USER gitpod
 WORKDIR $APP_ROOT
