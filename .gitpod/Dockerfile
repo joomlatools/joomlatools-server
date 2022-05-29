@@ -2,7 +2,7 @@
 # Stage: base
 #
 # Build gitpod server
-# Version: 1.0.0-dev build 30
+# Version: 1.0.0-dev build 32
 
 ARG IMAGE_TAG=latest
 FROM ghcr.io/joomlatools/joomlatools-server:${IMAGE_TAG} as base
@@ -13,8 +13,6 @@ ENV APP_DATA=/srv/www \
     APP_USER=gitpod \
     APP_HTTP=80 \
     APP_HTTPS=443
-
-ENV MYSQL_USER=gitpod
 
 ENV COMPOSER_ALLOW_SUPERUSER=1 \
     COMPOSER_HOME=/tmp
@@ -31,8 +29,7 @@ RUN tar xvzf /tmp/mason-linux.tar.gz -C /tmp; \
     chmod 755 /usr/bin/mason
 
 # User
-RUN apt-get install -y --no-install-recommends sudo; \
-    useradd -l -u 33333 -G sudo -md /home/gitpod -s /bin/bash -p gitpod gitpod; \
+RUN useradd -l -u 33333 -G sudo -md /home/gitpod -s /bin/bash -p gitpod gitpod; \
     usermod -a -G www-data gitpod; \
     usermod -a -G mysql gitpod; \
     sed -i.bkp -e 's/%sudo\s\+ALL=(ALL\(:ALL\)\?)\s\+ALL/%sudo ALL=NOPASSWD:ALL/g' /etc/sudoers

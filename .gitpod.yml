@@ -13,12 +13,19 @@ tasks:
       export APP_PRELOAD=off
       export APP_CACHE=off
       export APP_DEBUG=on
+      export COMPOSER_NO_DEV=1
     command: |
       clear
       sudo -E /init
 
   - name: Composer - Joomlatools Server
-    command: /bin/bash -e /var/scripts/composer_install.sh
+    command: sudo /bin/bash -e /var/scripts/composer_install.sh
+
+  - name: Install Latest Joomla
+    command: sudo joomla site:create joomla --release=latest
+
+  - name: Install Latest Wordpress
+    command: sudo folioshell site:create joomla --release=latest
 
   - name: Terminal - Joomlatools Server
     command: |

@@ -18,6 +18,9 @@ EXPOSE 8080 8443 80 443
 # MySQL
 EXPOSE 3306 33060
 
+# Install sudo (required for Gitpod)
+RUN apt-get install -y --no-install-recommends sudo
+
 # Install MySQL
 COPY ./config/s6/mysql-init.d /etc/mysql-init.d/
 COPY ./config/mysql /etc/mysql/
