@@ -12,6 +12,9 @@ then
     CREATE USER IF NOT EXISTS '${MYSQL_USER}'@'localhost';
     ALTER USER '${MYSQL_USER}'@'localhost' IDENTIFIED WITH mysql_native_password BY '${MYSQL_PASS}';
     GRANT ALL ON *.* TO '${MYSQL_USER}'@'localhost';
+    CREATE USER IF NOT EXISTS 'gitpod'@'localhost';
+    ALTER USER 'gitpod'@'localhost' IDENTIFIED WITH auth_socket;
+    GRANT ALL ON *.* TO 'gitpod'@'localhost';
     CREATE USER IF NOT EXISTS 'root'@'localhost';
     ALTER USER 'root'@'localhost' IDENTIFIED WITH auth_socket;
     GRANT ALL ON *.* TO 'root'@'localhost';
