@@ -38,12 +38,7 @@ RUN useradd -l -u 33333 -G sudo -md /home/gitpod -s /bin/bash -p gitpod gitpod; 
 # Permissions
 RUN mkdir -p $APP_VOLUME; \
     chown -R $APP_USER:$APP_USER $APP_VOLUME; \
-    chown -R $APP_USER:$APP_USER $APP_DATA
-
-# Composer
-RUN rm -f $APP_DATA/composer.lock
-COPY --chown=$APP_USER:$APP_USER ./config/composer.stub ./config/*composer.lock $APP_DATA/
-RUN /bin/bash -e /var/scripts/composer_install.sh;
+    chown -R $APP_USER:$APP_USER $APP_DATA \
 
 USER gitpod
 WORKDIR $APP_ROOT

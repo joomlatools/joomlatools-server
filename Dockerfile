@@ -11,8 +11,3 @@ ENV COMPOSER_ALLOW_SUPERUSER=1 \
 
 # App
 COPY --chown=$APP_USER:$APP_USER ./ $APP_ROOT
-
-# Composer
-RUN rm -f $APP_DATA/composer.lock
-COPY --chown=$APP_USER:$APP_USER ./config/composer.stub ./config/*composer.lock $APP_DATA/
-RUN /bin/bash -e /var/scripts/composer_install.sh;
