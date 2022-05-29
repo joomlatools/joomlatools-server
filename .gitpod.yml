@@ -18,10 +18,10 @@ tasks:
       sudo -E /init
 
   - name: Install Latest Joomla
-    command: sudo joomla site:create joomla --release=latest --www=/workspace/joomlatools-server/sites
+    command: joomla site:create joomla --release=latest --www=/workspace/joomlatools-server/sites
 
   - name: Install Latest Wordpress
-    command: sudo folioshell site:create joomla --release=latest --www=/workspace/joomlatools-server/sites
+    command: folioshell site:create wordpress --release=latest --www=/workspace/joomlatools-server/sites
 
   - name: Terminal - Joomlatools Server
     command: |
