@@ -54,19 +54,21 @@ RUN rm -rf /usr/bin/php-fpm_exporter
 
 RUN rm -rf /etc/services.d/apache-exporter
 RUN rm -rf /etc/services.d/apache-phpfpm-exporter
-RUN rm -rf /etc/services.d/fastcgi
-RUN rm -rf /etc/services.d/file
+#RUN rm -rf /etc/services.d/fastcgi
+#RUN rm -rf /etc/services.d/file
 #RUN rm -rf /etc/services.d/api
 
-RUN rm -rf /srv/www/services/fastcgi
-RUN rm -rf /srv/www/services/file
+#RUN rm -rf /srv/www/services/fastcgi
+#RUN rm -rf /srv/www/services/file
 #RUN rm -rf /srv/www/services/api
 
-RUN rm /etc/cont-init.d/030-fastcgi.sh
-RUN rm /etc/cont-init.d/050-file.sh
+#RUN rm /etc/cont-init.d/030-fastcgi.sh
+#RUN rm /etc/cont-init.d/050-file.sh
 #RUN rm /etc/cont-init.d/040-api.sh
 
 # Enable services
+RUN rm /etc/services.d/fastcgi/down
+RUN rm /etc/services.d/file/down
 RUN rm /etc/services.d/phpfpm/down
 
 # Remove MySQL default databas
