@@ -2,9 +2,10 @@
 # Stage: base
 #
 # Build gitpod server
-# Version: 0.1.0-dev build 29
+# Version: 1.0.0-dev build 36
 
-FROM ghcr.io/joomlatools/joomlatools-server:latest as base
+ARG IMAGE_TAG=latest
+FROM ghcr.io/joomlatools/joomlatools-server:${IMAGE_TAG} as base
 
 ENV APP_DATA=/srv/www \
     APP_ROOT=/workspace/joomlatools-server \
@@ -13,10 +14,9 @@ ENV APP_DATA=/srv/www \
     APP_HTTP=80 \
     APP_HTTPS=443
 
-ENV MYSQL_USER=gitpod
-
 ENV COMPOSER_ALLOW_SUPERUSER=1 \
-    COMPOSER_HOME=/tmp
+    COMPOSER_HOME=/tmp \
+    COMPOSER_NO_DEV=1
 
 ENV APP_ENV=development \
     APP_PRELOAD=off \
@@ -30,8 +30,7 @@ RUN tar xvzf /tmp/mason-linux.tar.gz -C /tmp; \
     chmod 755 /usr/bin/mason
 
 # User
-RUN apt-get install -y --no-install-recommends sudo; \
-    useradd -l -u 33333 -G sudo -md /home/gitpod -s /bin/bash -p gitpod gitpod; \
+RUN useradd -l -u 33333 -G sudo -md /home/gitpod -s /bin/bash -p gitpod gitpod; \
     usermod -a -G www-data gitpod; \
     usermod -a -G mysql gitpod; \
     sed -i.bkp -e 's/%sudo\s\+ALL=(ALL\(:ALL\)\?)\s\+ALL/%sudo ALL=NOPASSWD:ALL/g' /etc/sudoers
@@ -41,9 +40,9 @@ RUN mkdir -p $APP_VOLUME; \
     chown -R $APP_USER:$APP_USER $APP_VOLUME; \
     chown -R $APP_USER:$APP_USER $APP_DATA
 
-# Composer
-RUN rm -f $APP_DATA/composer.lock
-COPY --chown=$APP_USER:$APP_USER ./config/composer.stub ./config/*composer.lock $APP_DATA/
+# Config
+COPY  --chown=$APP_USER:$APP_USER ./config/console /home/$APP_USER/.joomlatools/console/
+COPY  --chown=$APP_USER:$APP_USER ./config/folioshell /home/$APP_USER/.foliolabs/folioshell/
 
-USER gitpod
+USER $APP_USER
 WORKDIR $APP_ROOT

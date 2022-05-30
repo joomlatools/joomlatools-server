@@ -4,10 +4,10 @@
 MYSQL_ENABLE=${MYSQL_ENABLE:=1}
 printf "%s" $MYSQL_ENABLE > /var/run/s6/container_environment/MYSQL_ENABLE
 
-MYSQL_USER=${MYSQL_USER:=root}
+MYSQL_USER=${MYSQL_USER:=admin}
 printf "%s" $MYSQL_USER > /var/run/s6/container_environment/MYSQL_USER
 
-MYSQL_PASS=${MYSQL_PASS:=root}
+MYSQL_PASS=${MYSQL_PASS:=admin}
 printf "%s" $MYSQL_PASS > /var/run/s6/container_environment/MYSQL_PASS
 
 MYSQL_VOLUME=${MYSQL_VOLUME:=/mnt/www/mysql}

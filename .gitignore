@@ -14,7 +14,6 @@ vendor/*
 
 # Volume
 data/*
-!data/php.ini
 
 # Themes
 sites/**/theme/node_modules

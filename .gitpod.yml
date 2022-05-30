@@ -17,8 +17,11 @@ tasks:
       clear
       sudo -E /init
 
-  - name: Composer - Joomlatools Server
-    command: /bin/bash -e /var/scripts/composer_install.sh
+  - name: Install Latest Joomla
+    command: joomla site:create joomla --release=latest --www=/workspace/joomlatools-server/sites
+
+  - name: Install Latest Wordpress
+    command: folioshell site:create wordpress --release=latest --www=/workspace/joomlatools-server/sites
 
   - name: Terminal - Joomlatools Server
     command: |
@@ -33,6 +36,17 @@ ports:
     onOpen: open-preview
     visibility: public
   - port: 8443
+    onOpen: ignore
+    visibility: public
+  - port: 80
+    onOpen: ignore
+  - port: 443
+    onOpen: ignore
+  - port: 8081
+    onOpen: ignore
+  - port: 8082
+    onOpen: ignore
+  - port: 8083
     onOpen: ignore
   - port: 9000
     onOpen: ignore

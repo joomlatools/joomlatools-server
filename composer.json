@@ -24,6 +24,9 @@
       "homepage": "http://www.timble.net"
     }
   ],
+  "bin": [
+    "bin/jtctl"
+  ],
   "config": {
     "preferred-install": "dist"
   },

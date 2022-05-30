@@ -18,6 +18,9 @@ EXPOSE 8080 8443 80 443
 # MySQL
 EXPOSE 3306 33060
 
+# Install sudo (required for Gitpod)
+RUN apt-get install -y --no-install-recommends sudo
+
 # Install MySQL
 COPY ./config/s6/mysql-init.d /etc/mysql-init.d/
 COPY ./config/mysql /etc/mysql/
@@ -51,19 +54,21 @@ RUN rm -rf /usr/bin/php-fpm_exporter
 
 RUN rm -rf /etc/services.d/apache-exporter
 RUN rm -rf /etc/services.d/apache-phpfpm-exporter
-RUN rm -rf /etc/services.d/fastcgi
-RUN rm -rf /etc/services.d/file
+#RUN rm -rf /etc/services.d/fastcgi
+#RUN rm -rf /etc/services.d/file
 #RUN rm -rf /etc/services.d/api
 
-RUN rm -rf /srv/www/services/fastcgi
-RUN rm -rf /srv/www/services/file
+#RUN rm -rf /srv/www/services/fastcgi
+#RUN rm -rf /srv/www/services/file
 #RUN rm -rf /srv/www/services/api
 
-RUN rm /etc/cont-init.d/030-fastcgi.sh
-RUN rm /etc/cont-init.d/050-file.sh
+#RUN rm /etc/cont-init.d/030-fastcgi.sh
+#RUN rm /etc/cont-init.d/050-file.sh
 #RUN rm /etc/cont-init.d/040-api.sh
 
 # Enable services
+RUN rm /etc/services.d/fastcgi/down
+RUN rm /etc/services.d/file/down
 RUN rm /etc/services.d/phpfpm/down
 
 # Remove MySQL default databas
@@ -91,8 +96,3 @@ ENV COMPOSER_ALLOW_SUPERUSER=1 \
 
 # App
 COPY --chown=$APP_USER:$APP_USER ./ $APP_ROOT
-
-# Composer
-RUN rm -f $APP_DATA/composer.lock
-COPY --chown=$APP_USER:$APP_USER ./config/composer.stub ./config/*composer.lock $APP_DATA/
-RUN /bin/bash -e /var/scripts/composer_install.sh;
