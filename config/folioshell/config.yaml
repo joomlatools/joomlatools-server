@@ -3,3 +3,4 @@ globals:
   mysql-login: "admin:admin"
   restart-command: s6-svc -r /var/run/s6/services/apache
   vhost: false
+  projects-dir: /mnt/dev/foliolabs
