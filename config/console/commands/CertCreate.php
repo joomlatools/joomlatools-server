@@ -49,12 +49,9 @@ class CertCreate extends AbstractSite
         return $result;
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function _createCert($domain, OutputInterface $output) 
     {
-        parent::execute($input, $output);
-
-
-        $post = $this->_callMinica('POST', "certs/{$this->site}.test");
+        $post = $this->_callMinica('POST', "certs/$domain");
 
         if ($post['isSuccess']) {
             $output->writeln("<info>Certificate created for {$post['response']['domain']}</info>");
@@ -63,7 +60,7 @@ class CertCreate extends AbstractSite
         {
             if ($post['isConflict']) 
             {
-                $put = $this->_callMinica('PUT', "certs/{$this->site}.test");
+                $put = $this->_callMinica('PUT', "certs/$domain");
 
                 if ($put['isConflict']) 
                 {
@@ -75,6 +72,14 @@ class CertCreate extends AbstractSite
                 }
             } 
         }
+    }
+
+    protected function execute(InputInterface $input, OutputInterface $output)
+    {
+        parent::execute($input, $output);
+
+        $this->_createCert("{$this->site}.test", $output);
+        $this->_createCert("www.{$this->site}.test", $output);
 
         return 0;
     }
