@@ -159,11 +159,26 @@ if [ "$1" == "start" ]; then
     ARGS+=(--profile all up)
     ARGS+=("$@")
 
+# Proxy stop command
+elif [ "$1" == "stop" ]; then
+    shift 1
+
+    #[ ! -t 0 ] && ARGS+=(-T)
+    ARGS+=(--profile all stop)
+    ARGS+=("$@")
+
 # Proxy remove command
 elif [ "$1" == "remove" ]; then
     shift 1
 
-    ARGS+=(down --rmi all)
+    ARGS+=(--profile all down --rmi all)
+    ARGS+=("$@")
+
+# Proxy restart command
+elif [ "$1" == "restart" ]; then
+    shift 1
+
+    ARGS+=(--profile all restart)
     ARGS+=("$@")
 
 # Proxy destroy command
@@ -171,7 +186,7 @@ elif [ "$1" == "destroy" ]; then
     shift 1
 
     [ ! -t 0 ] && ARGS+=(-T)
-    ARGS+=(down --rmi all -v)
+    ARGS+=(--profile all down --rmi all -v)
     ARGS+=("$@")
 
 # Proxy status command
@@ -369,5 +384,6 @@ else
     ARGS+=("$@")
 fi
 
+echo "${DOCKER_COMPOSE[@]}" "${ARGS[@]}";
 # Run Docker Compose with the defined arguments...
 "${DOCKER_COMPOSE[@]}" "${ARGS[@]}"
