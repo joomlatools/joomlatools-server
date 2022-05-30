@@ -51,7 +51,7 @@ services:
       - "traefik.http.routers.joomlatools-server-https.service=joomlatools-server"
       - "traefik.http.routers.joomlatools-server-https.tls=true"
       # Services
-      - "traefik.http.services.dashboard.loadbalancer.server.port=8081"
+      - "traefik.http.services.dashboard.loadbalancer.server.port=8008"
       - "traefik.http.services.joomlatools-server.loadbalancer.server.port=80"
     volumes:
       - ./sites/:/var/www/sites
