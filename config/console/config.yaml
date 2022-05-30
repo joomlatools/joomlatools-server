@@ -3,10 +3,3 @@ globals:
   mysql-login: "root:root"
   restart-command: s6-svc -r /var/run/s6/services/apache
   vhost: false
-#"vhost:create":
-#  folder: /var/www/sites/[site]/config/apache
-#  filename: server.conf
-#  template: /root/.joomlatools/console/templates/apache-template.conf
-#"vhost:remove":
-#  folder: /var/www/sites/[site]/config/apache
-#  filename: server.conf
