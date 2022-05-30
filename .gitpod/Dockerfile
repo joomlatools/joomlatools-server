@@ -2,7 +2,7 @@
 # Stage: base
 #
 # Build gitpod server
-# Version: 1.0.0-dev build 35
+# Version: 1.0.0-dev build 36
 
 ARG IMAGE_TAG=latest
 FROM ghcr.io/joomlatools/joomlatools-server:${IMAGE_TAG} as base
