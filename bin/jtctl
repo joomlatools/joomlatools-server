@@ -143,10 +143,6 @@ if [ -z "$SERVER_SKIP_CHECKS" ]; then
 
     # Determine if server is currently up...
     if "${DOCKER_COMPOSE[@]}" ps "$SERVER_SERVICE" 2>&1 | grep 'Exit\|exited'; then
-        echo "${BOLD}Shutting down old processes...${NC}" >&2
-
-        "${DOCKER_COMPOSE[@]}" down > /dev/null 2>&1
-
         EXEC="no"
     elif [ -z "$("${DOCKER_COMPOSE[@]}" ps -q)" ]; then
         EXEC="no"
@@ -159,55 +155,32 @@ ARGS=()
 if [ "$1" == "start" ]; then
     shift 1
 
-    if [ "$EXEC" == "yes" ]; then
-        #[ ! -t 0 ] && ARGS+=(-T)
-        ARGS+=(--profile all up)
-    else
-        server_is_not_running
-    fi
+    ARGS+=(--profile all up)
 
 # Proxy start -d command
 elif [ "$1" == "start -d" ]; then
     shift 1
 
-    if [ "$EXEC" == "yes" ]; then
-        ##[ ! -t 0 ] && ARGS+=(-T)
-         ARGS+=(--profile all up)
-    else
-        server_is_not_running
-    fi
+    ARGS+=(--profile all up -d)
 
 # Proxy remove command
 elif [ "$1" == "remove" ]; then
     shift 1
 
-    if [ "$EXEC" == "yes" ]; then
-        [ ! -t 0 ] && ARGS+=(-T)
-        ARGS+=(down --rmi all)
-    else
-        server_is_not_running
-    fi
+    ARGS+=(down --rmi all)
 
 # Proxy destroy command
 elif [ "$1" == "destroy" ]; then
     shift 1
 
-    if [ "$EXEC" == "yes" ]; then
-        [ ! -t 0 ] && ARGS+=(-T)
-        ARGS+=(down --rmi all -v)
-    else
-        server_is_not_running
-    fi
+    [ ! -t 0 ] && ARGS+=(-T)
+    ARGS+=(down --rmi all -v)
 
 # Proxy status command
 elif [ "$1" == "status" ]; then
     shift 1
 
-    if [ "$EXEC" == "yes" ]; then
-        ARGS+=(ps)
-    else
-        server_is_not_running
-    fi
+    ARGS+=(ps)
 
 # Proxy Composer commands to the "composer" binary on the server container...
 elif [ "$1" == "composer" ]; then
