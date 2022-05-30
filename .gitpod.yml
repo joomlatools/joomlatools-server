@@ -28,19 +28,19 @@ tasks:
       clear
       echo ""
       echo "Commands you can try:"
-      echo " * gp preview $(gp url 8080)/__info/php-info"
+      echo " * gp preview $(gp url 80)/__info/php-info"
       echo " * mason"
 
 ports:
-  - port: 8080
+  - port: 80
     onOpen: open-preview
     visibility: public
-  - port: 8443
+  - port: 443
     onOpen: ignore
     visibility: public
-  - port: 80
+  - port: 8080
     onOpen: ignore
-  - port: 443
+  - port: 8443
     onOpen: ignore
   - port: 8081
     onOpen: ignore
