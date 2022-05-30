@@ -155,19 +155,16 @@ ARGS=()
 if [ "$1" == "start" ]; then
     shift 1
 
+    #[ ! -t 0 ] && ARGS+=(-T)
     ARGS+=(--profile all up)
-
-# Proxy start -d command
-elif [ "$1" == "start -d" ]; then
-    shift 1
-
-    ARGS+=(--profile all up -d)
+    ARGS+=("$@")
 
 # Proxy remove command
 elif [ "$1" == "remove" ]; then
     shift 1
 
     ARGS+=(down --rmi all)
+    ARGS+=("$@")
 
 # Proxy destroy command
 elif [ "$1" == "destroy" ]; then
@@ -175,12 +172,14 @@ elif [ "$1" == "destroy" ]; then
 
     [ ! -t 0 ] && ARGS+=(-T)
     ARGS+=(down --rmi all -v)
+    ARGS+=("$@")
 
 # Proxy status command
 elif [ "$1" == "status" ]; then
     shift 1
 
     ARGS+=(ps)
+    ARGS+=("$@")
 
 # Proxy Composer commands to the "composer" binary on the server container...
 elif [ "$1" == "composer" ]; then
