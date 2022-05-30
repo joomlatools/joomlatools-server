@@ -16,5 +16,5 @@ visible: true
                     Add a database
                 </button>
             </div>
-            <?= file_get_contents('http://localhost:8080/__phpmyadmin') ?>
+            <?= file_get_contents('http://phpmyadmin.localhost/') ?>
         </section>

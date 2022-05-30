@@ -30,7 +30,7 @@
             <!-- NAV LINKS -->
             <div class="py-4 text-gray-400 space-y-1">
                 <!-- BASIC LINK -->
-                <a href="http://localhost:8080/dashboard/" class="block py-2.5 px-4 flex items-center space-x-2 bg-gray-800 text-white hover:bg-gray-800 hover:text-white rounded">
+                <a href="http://localhost/" class="block py-2.5 px-4 flex items-center space-x-2 bg-gray-800 text-white hover:bg-gray-800 hover:text-white rounded">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
                     <span>Dashboard</span>
                 </a>
@@ -45,23 +45,17 @@
                         <svg x-show="!open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>    
                     </div>
                     <div x-show="open" class="text-sm border-l-2 border-gray-800 mx-6 my-2.5 px-2.5 flex flex-col gap-y-1">
-                        <a href="http://localhost:8080/dashboard/tools/phpmyadmin" class="block py-2 px-4 hover:bg-gray-800 hover:text-white rounded">
-                            phpMyAdmin
+                        <a href="https://localhost/tools/phpmyadmin" class="block py-2 px-4 hover:bg-gray-800 hover:text-white rounded">
+                            PHPMyAdmin
                         </a>
-                        <a href="#" class="block py-2 px-4 hover:bg-gray-800 hover:text-white rounded">
-                            MailCatcher
-                        </a>
-                        <a href="http://localhost:8080/dashboard/tools/php-fpm" class="block py-2 px-4 hover:bg-gray-800 hover:text-white rounded">
-                            PHP-FPM dashboard
-                        </a>
-                        <a href="http://localhost:8080/dashboard/tools/php-apc" class="block py-2 px-4 hover:bg-gray-800 hover:text-white rounded">
+                        <a href="http://localhost/tools/php-apc" class="block py-2 px-4 hover:bg-gray-800 hover:text-white rounded">
                             APC dashboard
                         </a>
-                        <a href="http://localhost:8080/dashboard/tools/php-opcache" class="block py-2 px-4 hover:bg-gray-800 hover:text-white rounded">
-                            Opcache
-                        </a>
-                        <a href="http://localhost:8080/dashboard/tools/php-xdebug" class="block py-2 px-4 hover:bg-gray-800 hover:text-white rounded">
+                        <a href="http://localhost/tools/php-xdebug" class="block py-2 px-4 hover:bg-gray-800 hover:text-white rounded">
                             Xdebug
+                        </a>
+                        <a href="http://localhost/tools/mailhog" class="block py-2 px-4 hover:bg-gray-800 hover:text-white rounded">
+                            Mailhog
                         </a>
                     </div>
                 </div>
@@ -76,11 +70,20 @@
                         <svg x-show="!open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>    
                     </div>
                     <div x-show="open" class="text-sm border-l-2 border-gray-800 mx-6 my-2.5 px-2.5 flex flex-col gap-y-1">
-                        <a href="http://localhost:8080/dashboard/tools/php-info" class="block py-2 px-4 hover:bg-gray-800 hover:text-white rounded">
-                            phpinfo
+                        <a href="http://localhost/tools/php-info" class="block py-2 px-4 hover:bg-gray-800 hover:text-white rounded">
+                            PHPinfo
                         </a>
-                        <a href="#" class="block py-2 px-4 hover:bg-gray-800 hover:text-white rounded">
-                            Log Files
+                        <a href="http://localhost/tools/php-fpm" class="block py-2 px-4 hover:bg-gray-800 hover:text-white rounded">
+                            PHP-FPM dashboard
+                        </a>
+                        <a href="http://localhost/tools/traefik" class="block py-2 px-4 hover:bg-gray-800 hover:text-white rounded">
+                            Traefik
+                        </a>
+                        <a href="http://localhost/tools/dozzle" class="block py-2 px-4 hover:bg-gray-800 hover:text-white rounded">
+                            Dozzle
+                        </a>
+                        <a href="http://localhost/tools/php-opcache" class="block py-2 px-4 hover:bg-gray-800 hover:text-white rounded">
+                            Opcache
                         </a>
                         <a href="#" class="block py-2 px-4 hover:bg-gray-800 hover:text-white rounded">
                             File Browser
