@@ -171,7 +171,7 @@ elif [ "$1" == "stop" ]; then
 elif [ "$1" == "remove" ]; then
     shift 1
 
-    ARGS+=(--profile all down --rmi all)
+    ARGS+=(--profile all down)
     ARGS+=("$@")
 
 # Proxy restart command
