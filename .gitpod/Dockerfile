@@ -40,5 +40,9 @@ RUN mkdir -p $APP_VOLUME; \
     chown -R $APP_USER:$APP_USER $APP_VOLUME; \
     chown -R $APP_USER:$APP_USER $APP_DATA
 
-USER gitpod
+# Config
+COPY  --chown=$APP_USER:$APP_USER ./config/console /home/$APP_USER/.joomlatools/console/
+COPY  --chown=$APP_USER:$APP_USER ./config/folioshell /home/$APP_USER/.foliolabs/folioshell/
+
+USER $APP_USER
 WORKDIR $APP_ROOT
