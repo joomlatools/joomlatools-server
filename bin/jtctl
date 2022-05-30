@@ -384,6 +384,5 @@ else
     ARGS+=("$@")
 fi
 
-echo "${DOCKER_COMPOSE[@]}" "${ARGS[@]}";
 # Run Docker Compose with the defined arguments...
 "${DOCKER_COMPOSE[@]}" "${ARGS[@]}"
