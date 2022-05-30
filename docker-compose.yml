@@ -128,7 +128,7 @@ services:
       - joomlatools-server
 
   minica:
-    profiles: [ "dns", "dashboard" ]
+    profiles: [ "dns", "dashboard", "all" ]
     image: ghcr.io/bjornsnoen/minica-traefik-api:latest
     container_name: joomlatools-certca
     restart: unless-stopped
