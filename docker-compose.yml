@@ -33,7 +33,11 @@ services:
     labels:
       - "traefik.enable=true"
       # Routers
-      - "traefik.http.routers.joomlatools-server.rule=HostRegexp(`{name:(.*)}.test`)"
+      - "traefik.http.routers.joomlatools-server-http.rule=HostRegexp(`{name:(.*)}.test`)"
+      - "traefik.http.routers.joomlatools-server-http.entrypoints=web"
+      - "traefik.http.routers.joomlatools-server-https.rule=HostRegexp(`{name:(.*)}.test`)"
+      - "traefik.http.routers.joomlatools-server-https.entrypoints=websecure"
+      - "traefik.http.routers.joomlatools-server-https.tls=true"
       # Services
       - "traefik.http.services.joomlatools-server.loadbalancer.server.port=80"
     volumes:
@@ -64,7 +68,7 @@ services:
       - "33060:33060"  # MySQL - X Plugin
     cap_add:
       - SYS_NICE
-    
+
     networks:
       - joomlatools-server
 
@@ -102,6 +106,7 @@ services:
       - "--providers.docker.exposedbydefault=false"
       - "--entrypoints.web.address=:80"
       - "--entrypoints.websecure.address=:443"
+      - "--providers.file.directory=/app/certificates"
     ports:
       - "80:80"
       - "443:443"
@@ -109,11 +114,44 @@ services:
     labels:
       - "traefik.enable=true"
       # Routers
-      - "traefik.http.routers.traefik.rule=Host(`traefik.localhost`)"
-      # Services
-      - "traefik.http.routers.traefik.service=api@internal"
+      - "traefik.http.routers.traefik-http.rule=Host(`traefik.localhost`)"
+      - "traefik.http.routers.traefik-http.entrypoints=web"
+      - "traefik.http.routers.traefik-https.rule=Host(`traefik.localhost`)"
+      - "traefik.http.routers.traefik-https.entrypoints=websecure"
+      - "traefik.http.routers.traefik-https.tls=true"
+      - "traefik.http.routers.traefik-http.service=api@internal"
+      - "traefik.http.routers.traefik-https.service=api@internal"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      - ./data/certificates:/app/certificates
+    networks:
+      - joomlatools-server
+
+  minica:
+    profiles: [ "dns", "dashboard", "all" ]
+    image: ghcr.io/bjornsnoen/minica-traefik-api:latest
+    container_name: joomlatools-certca
+    restart: unless-stopped
+    depends_on:
+      - joomlatools-server
+    volumes:
+      - ./data/certificates:/app/certificates
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      DOCKER_HOST: "unix:///var/run/docker.sock"
+      DOCKER_LISTEN: "yes"
+    ports:
+      - "8580:80" # The API
+    labels:
+      - "traefik.enable=true"
+      # Routers
+      - "traefik.http.routers.minica-http.rule=Host(`minica.localhost`)"
+      - "traefik.http.routers.minica-http.entrypoints=web"
+      - "traefik.http.routers.minica-https.rule=Host(`minica.localhost`)"
+      - "traefik.http.routers.minica-https.entrypoints=websecure"
+      - "traefik.http.routers.minica-https.tls=true"
+      # Services
+      - "traefik.http.services.minica.loadbalancer.server.port=80"
     networks:
       - joomlatools-server
 
@@ -138,12 +176,15 @@ services:
     labels:
       - "traefik.enable=true"
       # Routers
-      - "traefik.http.routers.phpmyadmin.rule=Host(`phpmyadmin.localhost`)"
+      - "traefik.http.routers.phpmyadmin-http.rule=Host(`phpmyadmin.localhost`)"
+      - "traefik.http.routers.phpmyadmin-http.entrypoints=web"
+      - "traefik.http.routers.phpmyadmin-https.rule=Host(`phpmyadmin.localhost`)"
+      - "traefik.http.routers.phpmyadmin-https.entrypoints=websecure"
+      - "traefik.http.routers.phpmyadmin-https.tls=true"
       # Services
       - "traefik.http.services.phpmyadmin.loadbalancer.server.port=80"
     networks:
       - joomlatools-server
-
 
   #docker compose --profile mailhog up
   mailhog:
@@ -159,7 +200,11 @@ services:
     labels:
       - "traefik.enable=true"
       # Routers
-      - "traefik.http.routers.mailhog.rule=Host(`mailhog.localhost`)"
+      - "traefik.http.routers.mailhog-http.rule=Host(`mailhog.localhost`)"
+      - "traefik.http.routers.mailhog-http.entrypoints=web"
+      - "traefik.http.routers.mailhog-https.rule=Host(`mailhog.localhost`)"
+      - "traefik.http.routers.mailhog-https.entrypoints=websecure"
+      - "traefik.http.routers.mailhog-https.tls=true"
       # Services
       - "traefik.http.services.mailhog.loadbalancer.server.port=8025"
     networks:
@@ -184,7 +229,11 @@ services:
     labels:
       - "traefik.enable=true"
       # Routers
-      - "traefik.http.routers.dozzle.rule=Host(`dozzle.localhost`)"
+      - "traefik.http.routers.dozzle-http.rule=Host(`dozzle.localhost`)"
+      - "traefik.http.routers.dozzle-http.entrypoints=web"
+      - "traefik.http.routers.dozzle-https.rule=Host(`dozzle.localhost`)"
+      - "traefik.http.routers.dozzle-https.entrypoints=websecure"
+      - "traefik.http.routers.dozzle-https.tls=true"
       # Services
       - "traefik.http.services.dozzle.loadbalancer.server.port=8080"
     networks:
