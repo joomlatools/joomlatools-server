@@ -22,8 +22,8 @@ services:
       - APP_DEBUG=on
       - APP_CACHE=off
       - APP_PRELOAD=off
-      - APP_HTTP=80
-      - APP_HTTPS=443
+      - APP_HTTP=8080
+      - APP_HTTPS=8443
     build:
       context: .
       args:
@@ -33,12 +33,25 @@ services:
     labels:
       - "traefik.enable=true"
       # Routers
+      - "traefik.http.routers.dashboard-http.rule=Host(`localhost`)"
+      - "traefik.http.routers.dashboard-http.entrypoints=web"
+      - "traefik.http.routers.dashboard-http.service=dashboard"
+
+      - "traefik.http.routers.dashboard-https.rule=Host(`localhost`)"
+      - "traefik.http.routers.dashboard-https.entrypoints=websecure"
+      - "traefik.http.routers.dashboard-https.service=dashboard"
+      - "traefik.http.routers.dashboard-https.tls=true"
+
       - "traefik.http.routers.joomlatools-server-http.rule=HostRegexp(`{name:(.*)}.test`)"
       - "traefik.http.routers.joomlatools-server-http.entrypoints=web"
+      - "traefik.http.routers.joomlatools-server-http.service=joomlatools-server"
+
       - "traefik.http.routers.joomlatools-server-https.rule=HostRegexp(`{name:(.*)}.test`)"
       - "traefik.http.routers.joomlatools-server-https.entrypoints=websecure"
+      - "traefik.http.routers.joomlatools-server-https.service=joomlatools-server"
       - "traefik.http.routers.joomlatools-server-https.tls=true"
       # Services
+      - "traefik.http.services.dashboard.loadbalancer.server.port=8008"
       - "traefik.http.services.joomlatools-server.loadbalancer.server.port=80"
     volumes:
       - ./sites/:/var/www/sites
@@ -74,7 +87,7 @@ services:
 
   #docker compose --profile dns up
   dnsmasq:
-    profiles: [ "dns", "dashboard" ]
+    profiles: [ "dns", "all" ]
     image: 4km3/dnsmasq
     container_name: joomlatools-dns
     restart: unless-stopped
@@ -93,7 +106,7 @@ services:
       - joomlatools-server
 
   traefik:
-    profiles: [ "dns", "dashboard" ]
+    profiles: [ "dns", "all" ]
     image: traefik:v2.7
     container_name: joomlatools-proxy
     restart: unless-stopped
@@ -128,7 +141,7 @@ services:
       - joomlatools-server
 
   minica:
-    profiles: [ "dns", "dashboard" ]
+    profiles: [ "dns", "dashboard", "all" ]
     image: ghcr.io/bjornsnoen/minica-traefik-api:latest
     container_name: joomlatools-certca
     restart: unless-stopped
@@ -152,10 +165,12 @@ services:
       - "traefik.http.routers.minica-https.tls=true"
       # Services
       - "traefik.http.services.minica.loadbalancer.server.port=80"
+    networks:
+      - joomlatools-server
 
   #docker compose --profile phpmyadmin up
   phpmyadmin:
-    profiles: ["phpmyadmin", "dashboard"]
+    profiles: ["phpmyadmin", "all"]
     image: phpmyadmin
     container_name: joomlatools-phpmyadmin
     restart: unless-stopped
@@ -166,8 +181,8 @@ services:
       - PMA_VERBOSE=joomlatools-server
       - PMA_PORT=3306
       - PMA_ARBITRARY=1
-      - PMA_USER=root
-      - PMA_PASSWORD=root
+      - PMA_USER=admin
+      - PMA_PASSWORD=admin
       - PMA_ABSOLUTE_URL=http://phpmyadmin.localhost
     ports:
       - "8180:80" # phpMyAdmin Server
@@ -186,7 +201,7 @@ services:
 
   #docker compose --profile mailhog up
   mailhog:
-    profiles: ["mailhog", "dashboard"]
+    profiles: ["mailhog", "all"]
     image: mailhog/mailhog
     container_name: joomlatools-mailhog
     restart: unless-stopped
@@ -210,7 +225,7 @@ services:
 
   #docker compose --profile dozzle up
   dozzle:
-    profiles: ["dozzle", "dashboard"]
+    profiles: ["dozzle", "all"]
     image: amir20/dozzle:latest
     container_name: joomlatools-logs
     restart: unless-stopped
