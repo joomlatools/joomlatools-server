@@ -2,10 +2,4 @@ globals:
   www: /var/www/sites
   mysql-login: "admin:admin"
   restart-command: s6-svc -r /var/run/s6/services/apache
-"vhost:create":
-  folder: /var/www/sites/[site]/config/apache
-  filename: server.conf
-  template: /root/.joomlatools/console/templates/apache-template.conf
-"vhost:remove":
-  folder: /var/www/sites/[site]/config/apache
-  filename: server.conf
+  vhost: false
