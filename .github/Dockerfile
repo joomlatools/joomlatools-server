@@ -58,6 +58,10 @@ ENV APP_DATA=/srv/www \
 # Copy all from build
 COPY --from=base / .
 
+# Copy mhsendmail from the builder
+COPY --from=builder /go/src/github.com/mailhog/mhsendmail/mhsendmail /usr/bin/mhsendmail
+RUN chmod +x /usr/bin/mhsendmail
+
 # Remove copied files
 RUN rm -rf $APP_ROOT/*
 
@@ -98,10 +102,6 @@ ENTRYPOINT ["/init"]
 # Stage: development
 ##
 FROM build
-
-# Copy mhsendmail from the builder
-COPY --from=builder /go/src/github.com/mailhog/mhsendmail/mhsendmail /usr/bin/mhsendmail
-RUN chmod +x /usr/bin/mhsendmail
 
 ENV APP_DATA=/srv/www \
     APP_ROOT=/var/www \
