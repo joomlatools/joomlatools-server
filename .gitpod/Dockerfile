@@ -7,6 +7,7 @@
 ARG IMAGE_TAG=latest
 FROM ghcr.io/joomlatools/joomlatools-server:${IMAGE_TAG} as base
 
+# Gitpod configuration (do not change)
 ENV APP_DATA=/srv/www \
     APP_ROOT=/workspace/joomlatools-server \
     APP_VOLUME=/mnt/www \
@@ -18,7 +19,9 @@ ENV COMPOSER_ALLOW_SUPERUSER=1 \
     COMPOSER_HOME=/tmp \
     COMPOSER_NO_DEV=1
 
-ENV APP_ENV=development \
+# Application default
+ENV APP_NAME=joomlatools-server \
+    APP_ENV=development \
     APP_PRELOAD=off \
     APP_CACHE=off \
     APP_DEBUG=on
