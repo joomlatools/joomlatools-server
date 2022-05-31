@@ -10,6 +10,10 @@ tasks:
     init: |
       export APP_CACHE=off
       export APP_DEBUG=on
+      export JOOMLA_SITE=joomla
+      export JOOMLA_VERSION=latest
+      export WORDPRESS_SITE=wordpress
+      export WORDPRESS_VERSION=latest
     command: |
       clear
       sudo -E /init
