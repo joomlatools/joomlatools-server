@@ -1,4 +1,4 @@
-<? $pages = collection('pages', ['folder' => $folder ?? '.', 'level' => 3,  'recurse' => 'true', 'filter' => ['visible' => 'neq:false']])  ?>
+<? $pages = collection('pages', ['path' => $path ?? '/', 'level' => 3,  'recurse' => 'true', 'filter' => ['visible' => 'neq:false']])  ?>
 <ul x-data="{ isOpen: <?= $menuOpen = $menuOpen ?? 'false'; ?> }" role="navigation" aria-label="Secondary menu" class="submenu border border-gray-300 mb-8 rounded">
 	<? foreach ($pages as $page) : ?>
 		<? foreach($page->getChildren() as $child): ?>
