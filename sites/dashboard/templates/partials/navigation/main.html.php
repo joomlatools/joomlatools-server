@@ -38,6 +38,37 @@
                 <div class="block" x-data="{open: true}">
                     <div @click="open = !open" class="flex items-center justify-between hover:bg-gray-800 hover:text-white cursor-pointer py-2.5 px-4 rounded">
                         <div class="flex items-center space-x-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path fill-rule="evenodd" d="M10 12v8A10 10 0 0 1 8.17.17L10 2h5a5 5 0 0 1 5 4.99v9.02A4 4 0 0 1 16 20v-2a2 2 0 1 0 0-4h-4l-2-2zm5.5-3a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg>
+                            <span>PHP</span>
+                        </div>
+                        <svg x-show="open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
+                        <svg x-show="!open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>    
+                    </div>
+                    <div x-show="open" class="text-sm border-l-2 border-gray-800 mx-6 my-2.5 px-2.5 flex flex-col gap-y-1">
+                        <a href="https://localhost/php/phpmyadmin" class="block py-2 px-4 hover:bg-gray-800 hover:text-white rounded">
+                            PhpMyAdmin
+                        </a>
+                        <a href="http://localhost/php/php-xdebug" class="block py-2 px-4 hover:bg-gray-800 hover:text-white rounded">
+                            Xdebug
+                        </a>
+                        <a href="http://localhost/php/php-apc" class="block py-2 px-4 hover:bg-gray-800 hover:text-white rounded">
+                            APC dashboard
+                        </a>
+                        <a href="http://localhost/php/php-fpm" class="block py-2 px-4 hover:bg-gray-800 hover:text-white rounded">
+                            PHP-FPM dashboard
+                        </a>
+                        <a href="http://localhost/php/php-opcache" class="block py-2 px-4 hover:bg-gray-800 hover:text-white rounded">
+                            Opcache
+                        </a>
+                        <a href="http://localhost/php/php-info" class="block py-2 px-4 hover:bg-gray-800 hover:text-white rounded">
+                            PHPinfo
+                        </a>
+                    </div>
+                </div>
+                <!-- DROPDOWN LINK -->
+                <div class="block" x-data="{open: false}">
+                    <div @click="open = !open" class="flex items-center justify-between hover:bg-gray-800 hover:text-white cursor-pointer py-2.5 px-4 rounded">
+                        <div class="flex items-center space-x-2">
                             <svg class="h-6 w-6"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M7 10h3v-3l-3.5 -3.5a6 6 0 0 1 8 8l6 6a2 2 0 0 1 -3 3l-6-6a6 6 0 0 1 -8 -8l3.5 3.5" /></svg>
                             <span>Tools</span>
                         </div>
@@ -45,22 +76,19 @@
                         <svg x-show="!open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>    
                     </div>
                     <div x-show="open" class="text-sm border-l-2 border-gray-800 mx-6 my-2.5 px-2.5 flex flex-col gap-y-1">
-                        <a href="https://localhost/tools/phpmyadmin" class="block py-2 px-4 hover:bg-gray-800 hover:text-white rounded">
-                            PHPMyAdmin
-                        </a>
-                        <a href="http://localhost/tools/php-apc" class="block py-2 px-4 hover:bg-gray-800 hover:text-white rounded">
-                            APC dashboard
-                        </a>
-                        <a href="http://localhost/tools/php-xdebug" class="block py-2 px-4 hover:bg-gray-800 hover:text-white rounded">
-                            Xdebug
-                        </a>
                         <a href="http://localhost/tools/mailhog" class="block py-2 px-4 hover:bg-gray-800 hover:text-white rounded">
                             Mailhog
+                        </a>
+                        <a href="#" class="block py-2 px-4 hover:bg-gray-800 hover:text-white rounded">
+                            File Browser
+                        </a>
+                        <a href="#" class="block py-2 px-4 hover:bg-gray-800 hover:text-white rounded">
+                            Terminal
                         </a>
                     </div>
                 </div>
                 <!-- DROPDOWN LINK -->
-                <div class="block" x-data="{open: true}">
+                <div class="block" x-data="{open: false}">
                     <div @click="open = !open" class="flex items-center justify-between hover:bg-gray-800 hover:text-white cursor-pointer py-2.5 px-4 rounded">
                         <div class="flex items-center space-x-2">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
@@ -70,26 +98,11 @@
                         <svg x-show="!open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>    
                     </div>
                     <div x-show="open" class="text-sm border-l-2 border-gray-800 mx-6 my-2.5 px-2.5 flex flex-col gap-y-1">
-                        <a href="http://localhost/tools/php-info" class="block py-2 px-4 hover:bg-gray-800 hover:text-white rounded">
-                            PHPinfo
+                        <a href="http://localhost/system/dozzle" class="block py-2 px-4 hover:bg-gray-800 hover:text-white rounded">
+                            Logs
                         </a>
-                        <a href="http://localhost/tools/php-fpm" class="block py-2 px-4 hover:bg-gray-800 hover:text-white rounded">
-                            PHP-FPM dashboard
-                        </a>
-                        <a href="http://localhost/tools/traefik" class="block py-2 px-4 hover:bg-gray-800 hover:text-white rounded">
-                            Traefik
-                        </a>
-                        <a href="http://localhost/tools/dozzle" class="block py-2 px-4 hover:bg-gray-800 hover:text-white rounded">
-                            Dozzle
-                        </a>
-                        <a href="http://localhost/tools/php-opcache" class="block py-2 px-4 hover:bg-gray-800 hover:text-white rounded">
-                            Opcache
-                        </a>
-                        <a href="#" class="block py-2 px-4 hover:bg-gray-800 hover:text-white rounded">
-                            File Browser
-                        </a>
-                        <a href="#" class="block py-2 px-4 hover:bg-gray-800 hover:text-white rounded">
-                            Terminal
+                        <a href="http://localhost/system/traefik" class="block py-2 px-4 hover:bg-gray-800 hover:text-white rounded">
+                            Proxy
                         </a>
                     </div>
                 </div>
