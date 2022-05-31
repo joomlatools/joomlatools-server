@@ -238,3 +238,15 @@ services:
       - "traefik.http.services.dozzle.loadbalancer.server.port=8080"
     networks:
       - joomlatools-server
+
+  #docker compose --profile tunnel up
+  tunnel:
+    profiles: ["tunnel", "all"]
+    image: cloudflare/cloudflared
+    container_name: joomlatools-tunnel
+    restart: unless-stopped
+    depends_on:
+      - joomlatools-server
+    command: tunnel --url http://joomlatools-server:8080
+    networks:
+      - joomlatools-server
