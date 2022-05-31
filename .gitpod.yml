@@ -7,13 +7,6 @@ checkoutLocation: "joomlatools-server"
 tasks:
 
   - name: Logs - Joomlatools Server
-    init: |
-      export APP_CACHE=off
-      export APP_DEBUG=on
-      export JOOMLA_SITE=joomla
-      export JOOMLA_VERSION=latest
-      export WORDPRESS_SITE=wordpress
-      export WORDPRESS_VERSION=latest
     command: |
       clear
       sudo -E /init
@@ -23,7 +16,10 @@ tasks:
       clear
       echo ""
       echo "Commands you can try:"
+      echo " * gp preview $(gp url 80)/joomla/"
+      echo " * gp preview $(gp url 80)/joomla/administrator/"
       echo " * gp preview $(gp url 80)/__info/php-info"
+      echo " * joomla"
       echo " * mason"
 
 ports:
