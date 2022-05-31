@@ -5,7 +5,7 @@ if [[ ! -d $DIR ]] && [[ ! -z "${WORDPRESS_SITE}" ]];
 then
   echo "Installing Wordpress..."
 
-  folioshell site:create ${WORDPRESS_SITE} --release=${WORDPRESS_VERSION}
+  sudo folioshell site:create ${WORDPRESS_SITE} --release=${WORDPRESS_VERSION}
 
 else
   echo "Installing Wordpress... skipped"

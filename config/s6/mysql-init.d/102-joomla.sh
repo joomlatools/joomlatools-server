@@ -5,7 +5,7 @@ if [[ ! -d $DIR ]] && [[ ! -z "${JOOMLA_SITE}" ]];
 then
   echo "Installing Joomla..."
 
-  joomla site:create ${JOOMLA_SITE} --release=${JOOMLA_VERSION}
+  sudo joomla site:create ${JOOMLA_SITE} --release=${JOOMLA_VERSION}
 
 else
   echo "Installing Joomla... skipped"
