@@ -78,14 +78,15 @@ docker compose up
 
 You can find all the documentation for Gitpod here: [https://www.gitpod.io/docs/](https://www.gitpod.io/docs/)
 
-**Gitpod Demo**: If you want to give this repo a spin in Gitpod, just click this button and off you go.
+**Gitpod Demo**: If you want to give this repo a spin in Gitpod, just click this button to launch Joomlatools Server in Gitpod and automatically install the latest version of Joomla.
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/joomlatools/joomlatools-server)
+[![Launch Joomla 4 in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#JOOMLA_SITE=joomla/https://github.com/joomlatools/joomlatools-server)
 
 ## Architecture
 
 Joomlatools Server runs applications as a multi-process Docker container. The processes are supervised using S6
 overlay. While init systems like supervisord are better known, s6 is powerful, lightweight, easy to use, and plays nicely with docker (e.g. avoiding the pid 1 / zombie problem).
+
 
 Each application is build on the [`joomlatools-server`](https://github.com/joomlatools/joomlatools-server/pkgs/container/server) base image. It contains following:
 

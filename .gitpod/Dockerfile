@@ -2,11 +2,12 @@
 # Stage: base
 #
 # Build gitpod server
-# Version: 1.0.0-dev build 38
+# Version: 1.0.0-dev build 42
 
 ARG IMAGE_TAG=latest
 FROM ghcr.io/joomlatools/joomlatools-server:${IMAGE_TAG} as base
 
+# Gitpod configuration (do not change)
 ENV APP_DATA=/srv/www \
     APP_ROOT=/workspace/joomlatools-server \
     APP_VOLUME=/mnt/www \
@@ -18,7 +19,9 @@ ENV COMPOSER_ALLOW_SUPERUSER=1 \
     COMPOSER_HOME=/tmp \
     COMPOSER_NO_DEV=1
 
-ENV APP_ENV=development \
+# Application default
+ENV APP_NAME=joomlatools-server \
+    APP_ENV=development \
     APP_PRELOAD=off \
     APP_CACHE=off \
     APP_DEBUG=on
@@ -43,6 +46,9 @@ RUN mkdir -p $APP_VOLUME; \
 # Config
 COPY  --chown=$APP_USER:$APP_USER ./config/console /home/$APP_USER/.joomlatools/console/
 COPY  --chown=$APP_USER:$APP_USER ./config/folioshell /home/$APP_USER/.foliolabs/folioshell/
+
+RUN sed -i "s=/var/www=${APP_ROOT:=/var/www}=" /home/$APP_USER/.joomlatools/console/config.yaml
+RUN sed -i "s=/var/www=${APP_ROOT:=/var/www}=g" /home/$APP_USER/.foliolabs/folioshell/config.yaml
 
 USER $APP_USER
 WORKDIR $APP_ROOT

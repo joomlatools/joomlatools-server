@@ -7,28 +7,19 @@ checkoutLocation: "joomlatools-server"
 tasks:
 
   - name: Logs - Joomlatools Server
-    init: |
-      export APP_NAME=joomlatools-server
-      export APP_ENV=development
-      export APP_PRELOAD=off
-      export APP_CACHE=off
-      export APP_DEBUG=on
     command: |
       clear
       sudo -E /init
-
-  - name: Install Latest Joomla
-    command: joomla site:create joomla --release=latest --www=/workspace/joomlatools-server/sites
-
-  - name: Install Latest Wordpress
-    command: folioshell site:create wordpress --release=latest --www=/workspace/joomlatools-server/sites
 
   - name: Terminal - Joomlatools Server
     command: |
       clear
       echo ""
       echo "Commands you can try:"
+      echo " * gp preview $(gp url 80)/joomla/"
+      echo " * gp preview $(gp url 80)/joomla/administrator/"
       echo " * gp preview $(gp url 80)/__info/php-info"
+      echo " * joomla"
       echo " * mason"
 
 ports:
