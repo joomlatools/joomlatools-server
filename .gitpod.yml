@@ -14,12 +14,6 @@ tasks:
       clear
       sudo -E /init
 
-  - name: Install Latest Joomla
-    command: joomla site:create joomla --release=latest --www=/workspace/joomlatools-server/sites
-
-  - name: Install Latest Wordpress
-    command: folioshell site:create wordpress --release=latest --www=/workspace/joomlatools-server/sites
-
   - name: Terminal - Joomlatools Server
     command: |
       clear
