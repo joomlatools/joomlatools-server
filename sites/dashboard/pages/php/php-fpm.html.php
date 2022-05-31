@@ -3,7 +3,7 @@
     path: /default
     pageclass: embedded
 
-name: FPM
+name: PHP-FPM dashboard
 title: Joomlatools Server FPM
 summary: PHP-FPM for Joomlatools Server
 visible: true

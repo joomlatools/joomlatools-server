@@ -3,8 +3,8 @@
     path: /default
 
 
-name: Tools
-title: Joomlatools Server Tools
+name: PHP
+title: Joomlatools Server PHP Information and Tools
 ---
 
         <section class="max-w-7xl mx-auto py-4 px-5">

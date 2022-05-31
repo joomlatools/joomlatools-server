@@ -3,7 +3,7 @@
     path: /default
     pageclass: embedded
 
-name: APC
+name: APC dashboard
 title: Joomlatools Server APC
 summary: PHP-APC for Joomlatools Server
 visible: true

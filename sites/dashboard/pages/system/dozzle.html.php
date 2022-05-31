@@ -3,7 +3,7 @@
     path: /default
     pageclass: embedded
 
-name: Dozzle
+name: Logs
 title: Joomlatools Server Dozzle
 summary: Dozzle for Joomlatools Server
 visible: true

@@ -3,8 +3,9 @@
     path: /default
 
 
-name: Tools
-title: Joomlatools Server Tools
+name: Dashboard
+title: Joomlatools Server Dashboard
+summary: Dashboard for managing Joomlatools Server
 ---
 
         <section class="max-w-7xl mx-auto py-4 px-5">

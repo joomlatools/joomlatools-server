@@ -3,7 +3,7 @@
     path: /default
     pageclass: embedded
 
-name: Traefik
+name: Proxy
 title: Joomlatools Server Traefik
 summary: Traefik for Joomlatools Server
 visible: true
