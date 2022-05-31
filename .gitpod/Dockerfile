@@ -47,8 +47,8 @@ RUN mkdir -p $APP_VOLUME; \
 COPY  --chown=$APP_USER:$APP_USER ./config/console /home/$APP_USER/.joomlatools/console/
 COPY  --chown=$APP_USER:$APP_USER ./config/folioshell /home/$APP_USER/.foliolabs/folioshell/
 
-RUN sed -i 's=/var/www=${APP_ROOT:=/var/www}=g' /home/$APP_USER/.joomlatools/console/config.yaml
-RUN sed -i 's=/var/www=${APP_ROOT:=/var/www}=g' /home/$APP_USER/.foliolabs/folioshell/config.yaml
+RUN sed -i "s=/var/www=${APP_ROOT:=/var/www}=" /home/$APP_USER/.joomlatools/console/config.yaml
+RUN sed -i "s=/var/www=${APP_ROOT:=/var/www}=g" /home/$APP_USER/.foliolabs/folioshell/config.yaml
 
 USER $APP_USER
 WORKDIR $APP_ROOT
