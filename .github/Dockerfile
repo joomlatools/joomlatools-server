@@ -1,6 +1,19 @@
 # --- DO NOT MODIFY ---------------------------------------------------------------------------------------------------
 
 ##
+# Stage: mhsendmail builder
+#
+# Build mhsendmail in Go again as the releases don't include arm64 binaries. 
+# See: https://github.com/mailhog/mhsendmail/issues/28#issuecomment-1001176278
+##
+
+FROM golang:1.15 AS builder
+ARG TARGETARCH
+RUN go get -d -v github.com/mailhog/mhsendmail \
+  && cd /go/src/github.com/mailhog/mhsendmail/ \
+  && GOOS=linux GOARCH=$TARGETARCH go build -o mhsendmail .
+
+##
 # Stage: base
 #
 # Build base server from scratch (used by GitHub Action)
@@ -85,6 +98,10 @@ ENTRYPOINT ["/init"]
 # Stage: development
 ##
 FROM build
+
+# Copy mhsendmail from the builder
+COPY --from=builder /go/src/github.com/mailhog/mhsendmail/mhsendmail /usr/bin/mhsendmail
+RUN chmod +x /usr/bin/mhsendmail
 
 ENV APP_DATA=/srv/www \
     APP_ROOT=/var/www \
