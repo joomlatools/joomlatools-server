@@ -247,6 +247,6 @@ services:
     restart: unless-stopped
     depends_on:
       - joomlatools-server
-    command: tunnel --url http://joomlatools-server:8080
+    command: tunnel --url http://joomlatools-server:80
     networks:
       - joomlatools-server
