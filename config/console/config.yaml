@@ -4,3 +4,7 @@ globals:
   restart-command: s6-svc -r /var/run/s6/services/apache
   vhost: false
   projects-dir: /mnt/dev/joomlatools
+"site:create":
+  options: /root/.joomlatools/console/site-configuration.yaml
+"site:configure":
+  options: /root/.joomlatools/console/site-configuration.yaml
