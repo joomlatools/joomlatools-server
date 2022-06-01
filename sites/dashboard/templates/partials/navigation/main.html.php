@@ -30,7 +30,7 @@
             <!-- NAV LINKS -->
             <div class="py-4 text-gray-400 space-y-1">
 
-                <?= partial('navigation/submenu');?>
+                <?= partial('navigation/mainmenu');?>
 
             </div>
         </div>
