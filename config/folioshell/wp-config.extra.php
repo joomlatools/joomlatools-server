@@ -1,13 +1,7 @@
 if (getenv('APP_NAME') === 'joomlatools-server' && isset($_SERVER['HTTP_HOST']))
 {
     $scheme = $_SERVER['HTTP_X_FORWARDED_PROTO'] ?? ($_SERVER['REQUEST_SCHEME'] ?? 'http');
-
-    if (isset($_SERVER['HTTP_X_FORWARDED_HOST']))
-    {
-        $parts = explode(',', $_SERVER['HTTP_X_FORWARDED_HOST']);
-        $host  = $parts[count($parts) - 1];
-    }
-    else $host = $_SERVER['HTTP_HOST'];
+    $host   = $_SERVER['HTTP_HOST'];
 
     $url = $scheme.'://'.$host . rtrim($_SERVER['HTTP_X_SITE_BASE'], '/\\');
 
