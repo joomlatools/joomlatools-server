@@ -2,7 +2,7 @@
 # Stage: base
 #
 # Build gitpod server
-# Version: 1.0.0-dev build 42
+# Version: 1.0.0-dev build 43
 
 ARG IMAGE_TAG=latest
 FROM ghcr.io/joomlatools/joomlatools-server:${IMAGE_TAG} as base
@@ -46,9 +46,6 @@ RUN mkdir -p $APP_VOLUME; \
 # Config
 COPY  --chown=$APP_USER:$APP_USER ./config/console /home/$APP_USER/.joomlatools/console/
 COPY  --chown=$APP_USER:$APP_USER ./config/folioshell /home/$APP_USER/.foliolabs/folioshell/
-
-RUN sed -i "s=/var/www=${APP_ROOT:=/var/www}=" /home/$APP_USER/.joomlatools/console/config.yaml
-RUN sed -i "s=/var/www=${APP_ROOT:=/var/www}=g" /home/$APP_USER/.foliolabs/folioshell/config.yaml
 
 USER $APP_USER
 WORKDIR $APP_ROOT
