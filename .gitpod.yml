@@ -6,12 +6,7 @@ checkoutLocation: "joomlatools-server"
 
 tasks:
 
-  - name: Logs - Joomlatools Server
-    command: |
-      clear
-      sudo -E /init
-
-  - name: Terminal - Joomlatools Server
+   - name: Shell - Joomlatools Server
     command: |
       clear
       echo ""
@@ -21,6 +16,11 @@ tasks:
       echo " * gp preview $(gp url 80)/__info/php-info"
       echo " * joomla"
       echo " * mason"
+
+   - name: Logs - Joomlatools Server
+   command: |
+     clear
+     sudo -E /init
 
 ports:
   - port: 80
