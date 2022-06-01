@@ -45,6 +45,9 @@ COPY ./config/console /root/.joomlatools/console/
 # Install Folishell
 COPY ./config/folioshell /root/.foliolabs/folioshell/
 
+# Install jtctl
+COPY ./bin/jtctl /usr//bin/jtctl
+
 ##
 # Stage: build
 ##

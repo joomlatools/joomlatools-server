@@ -11,8 +11,13 @@ esac
 
 if [ "$MACHINE" == "UNKNOWN" ]; then
     echo "Unsupported operating system [$(uname -s)]. Joomlatools Server supports macOS, Linux, and Windows (WSL2)." >&2
-
     exit 1
+fi
+
+if [[ ! -z "${APP_NAME}" ]]; then
+  SERVER_IS_INTERNAL=true;
+else
+  SERVER_IS_INTERNAL=false;
 fi
 
 # Determine if stdout is a terminal...
@@ -35,17 +40,23 @@ function display_help {
     echo "${YELLOW}Usage:${NC}" >&2
     echo "  jtctl COMMAND [options] [arguments]"
     echo
+    if [ $SERVER_IS_INTERNAL = false ]; then
     echo "Unknown commands are passed to the docker-compose binary."
     echo
-    echo "${YELLOW}Docker Commands:${NC}"
-    echo "  ${GREEN}jtctl start${NC}        Start the server"
-    echo "  ${GREEN}jtctl start -d${NC}     Start the server in the background"
-    echo "  ${GREEN}jtctl stop${NC}         Stop the server"
-    echo "  ${GREEN}jtctl remove${NC}       Stop the server, remove all containers and networks"
-    echo "  ${GREEN}jtctl restart${NC}      Restart the server"
-    echo "  ${GREEN}jtctl destroy${NC}      Destroy the server, remove all images, and volumes"
-    echo "  ${GREEN}jtctl status${NC}       Display the status of all containers"
-    echo
+    fi
+
+    if [ $SERVER_IS_INTERNAL = false ]; then
+      echo "${YELLOW}Docker Commands:${NC}"
+      echo "  ${GREEN}jtctl start${NC}        Start the server"
+      echo "  ${GREEN}jtctl start -d${NC}     Start the server in the background"
+      echo "  ${GREEN}jtctl stop${NC}         Stop the server"
+      echo "  ${GREEN}jtctl remove${NC}       Stop the server, remove all containers and networks"
+      echo "  ${GREEN}jtctl restart${NC}      Restart the server"
+      echo "  ${GREEN}jtctl destroy${NC}      Destroy the server, remove all images, and volumes"
+      echo "  ${GREEN}jtctl status${NC}       Display the status of all containers"
+      echo
+    fi
+
     echo "${YELLOW}Server Commands (within the joomlatools-server container):${NC}"
     echo "  ${GREEN}jtctl apache reload${NC}    Reload Apache service"
     echo "  ${GREEN}jtctl apache restart${NC}   Restart Apache service"
@@ -57,9 +68,13 @@ function display_help {
     echo "  ${GREEN}jtctl api reload${NC}       Reload Api service"
     echo "  ${GREEN}jtctl api restart${NC}      Restart Api service"
     echo "  ${GREEN}jtctl api status${NC}       Check Api service status"
-    echo "  ${GREEN}jtctl shell${NC}            Start a shell session"
-    echo "  ${GREEN}jtctl bash${NC}             Alias for 'jtctl shell'"
-    echo
+
+    if [ $SERVER_IS_INTERNAL = false ]; then
+      echo "  ${GREEN}jtctl shell${NC}            Start a shell session"
+      echo "  ${GREEN}jtctl bash${NC}             Alias for 'jtctl shell'"
+      echo
+    fi
+
     echo "${YELLOW}Joomla Commands (within the 'joomlatools-server' container):${NC}"
     echo "  ${GREEN}jtctl joomla ...${NC}     Run a Joomlatools Console command"
     echo
@@ -75,9 +90,10 @@ function display_help {
     echo
     #echo "  ${GREEN}jtctl tinker${NC}        Start a new Tinker session"
     #echo
+    if [ $SERVER_IS_INTERNAL = false ]; then
     echo "${YELLOW}Sharing:${NC}"
     echo "  ${GREEN}jtctl share${NC}         Share the application publicly via a temporary URL"
-
+    fi
     exit 1
 }
 
@@ -96,7 +112,12 @@ if [ -f ./.env ]; then
 fi
 
 # Define environment variables...
-export SERVER_SERVICE=${SERVER_SERVICE:-"joomlatools-server"}
+if [ $SERVER_IS_INTERNAL = false ]; then
+  export SERVER_SERVICE=${SERVER_SERVICE:-"joomlatools-server"}
+else
+  export SERVER_SERVICE=""
+fi
+
 export SERVER_FILES=${SERVER_FILES:-""}
 
 # Function that outputs Joomlatools Server is not running...
@@ -116,7 +137,7 @@ else
     DOCKER_COMPOSE=(docker-compose)
 fi
 
-if [ -n "$SERVER_FILES" ]; then
+if [ $SERVER_IS_INTERNAL = false  ] && [ -n "$SERVER_FILES" ]; then
     # Convert SERVER_FILES to an array...
     SERVER_FILES=("${SERVER_FILES//:/ }")
 
@@ -133,7 +154,7 @@ fi
 
 EXEC="yes"
 
-if [ -z "$SERVER_SKIP_CHECKS" ]; then
+if [ $SERVER_IS_INTERNAL = false ] && [ -z "$SERVER_SKIP_CHECKS" ]; then
     # Ensure that Docker is running...
     if ! docker info > /dev/null 2>&1; then
         echo "${BOLD}Docker is not running.${NC}" >&2
@@ -152,7 +173,7 @@ fi
 ARGS=()
 
 # Proxy start command
-if [ "$1" == "start" ]; then
+if [ $SERVER_IS_INTERNAL = false  ] && [ "$1" == "start" ]; then
     shift 1
 
     #[ ! -t 0 ] && ARGS+=(-T)
@@ -160,7 +181,7 @@ if [ "$1" == "start" ]; then
     ARGS+=("$@")
 
 # Proxy stop command
-elif [ "$1" == "stop" ]; then
+elif [ $SERVER_IS_INTERNAL = false  ] && [ "$1" == "stop" ]; then
     shift 1
 
     #[ ! -t 0 ] && ARGS+=(-T)
@@ -168,21 +189,21 @@ elif [ "$1" == "stop" ]; then
     ARGS+=("$@")
 
 # Proxy remove command
-elif [ "$1" == "remove" ]; then
+elif [ $SERVER_IS_INTERNAL = false  ] && [ "$1" == "remove" ]; then
     shift 1
 
     ARGS+=(--profile all down)
     ARGS+=("$@")
 
 # Proxy restart command
-elif [ "$1" == "restart" ]; then
+elif [ $SERVER_IS_INTERNAL = false  ] && [ "$1" == "restart" ]; then
     shift 1
 
     ARGS+=(--profile all restart)
     ARGS+=("$@")
 
 # Proxy destroy command
-elif [ "$1" == "destroy" ]; then
+elif [ $SERVER_IS_INTERNAL = false  ] && [ "$1" == "destroy" ]; then
     shift 1
 
     [ ! -t 0 ] && ARGS+=(-T)
@@ -190,7 +211,7 @@ elif [ "$1" == "destroy" ]; then
     ARGS+=("$@")
 
 # Proxy status command
-elif [ "$1" == "status" ]; then
+elif [ $SERVER_IS_INTERNAL = false  ] && [ "$1" == "status" ]; then
     shift 1
 
     ARGS+=(ps)
@@ -201,9 +222,14 @@ elif [ "$1" == "composer" ]; then
     shift 1
 
     if [ "$EXEC" == "yes" ]; then
-        ARGS+=(exec)
+
+        if [ $SERVER_IS_INTERNAL = false ]; then
+          ARGS+=(exec)
+          ARGS+=("$SERVER_SERVICE")
+        fi
+
         [ ! -t 0 ] && ARGS+=(-T)
-        ARGS+=("$SERVER_SERVICE" "composer" "$@")
+        ARGS+=("composer" "$@")
     else
         server_is_not_running
     fi
@@ -213,9 +239,14 @@ elif [ "$1" == "bin" ]; then
     shift 1
 
     if [ "$EXEC" == "yes" ]; then
-        ARGS+=(exec)
+
+        if [ $SERVER_IS_INTERNAL = false ]; then
+          ARGS+=(exec)
+          ARGS+=("$SERVER_SERVICE")
+        fi
+
         [ ! -t 0 ] && ARGS+=(-T)
-        ARGS+=("$SERVER_SERVICE" ./vendor/bin/"$@")
+        ARGS+=(./vendor/bin/"$@")
     else
         server_is_not_running
     fi
@@ -225,9 +256,14 @@ elif [ "$1" == "joomla" ]; then
     shift 1
 
     if [ "$EXEC" == "yes" ]; then
-        ARGS+=(exec)
+
+        if [ $SERVER_IS_INTERNAL = false ]; then
+          ARGS+=(exec)
+          ARGS+=("$SERVER_SERVICE")
+        fi
+
         [ ! -t 0 ] && ARGS+=(-T)
-        ARGS+=("$SERVER_SERVICE" joomla "$@")
+        ARGS+=(joomla "$@")
     else
         server_is_not_running
     fi
@@ -237,9 +273,14 @@ elif [ "$1" == "wp" ]; then
     shift 1
 
     if [ "$EXEC" == "yes" ]; then
-        ARGS+=(exec)
+
+        if [ $SERVER_IS_INTERNAL = false  ]; then
+          ARGS+=(exec)
+          ARGS+=("$SERVER_SERVICE")
+        fi
+
         [ ! -t 0 ] && ARGS+=(-T)
-        ARGS+=("$SERVER_SERVICE" folioshell "$@")
+        ARGS+=(folioshell "$@")
     else
         server_is_not_running
     fi
@@ -261,15 +302,20 @@ elif [ "$1" == "mysql" ]; then
     shift 1
 
     if [ "$EXEC" == "yes" ]; then
-        ARGS+=(exec)
+
+        if [ $SERVER_IS_INTERNAL = false ]; then
+            ARGS+=(exec)
+            ARGS+=("$SERVER_SERVICE")
+        fi
+
         [ ! -t 0 ] && ARGS+=(-T)
-        ARGS+=("$SERVER_SERVICE" mysql)
+        ARGS+=(mysql)
     else
         server_is_not_running
     fi
 
 # Initiate a Bash shell within the server container...
-elif [ "$1" == "shell" ] || [ "$1" == "bash" ]; then
+elif [ $SERVER_IS_INTERNAL = false  ] && [ "$1" == "shell" ] || [ $SERVER_IS_INTERNAL != true  ] && [ "$1" == "bash" ]; then
     shift 1
 
     if [ "$EXEC" == "yes" ]; then
@@ -285,8 +331,13 @@ elif [ "$1" == "apache" ]  && [ "$2" == "reload" ]; then
     shift 1
 
     if [ "$EXEC" == "yes" ]; then
-        ARGS+=(exec)
-        ARGS+=("$SERVER_SERVICE" s6-svc -1 /var/run/s6/services/apache)
+
+        if [ $SERVER_IS_INTERNAL = false ]; then
+             ARGS+=(exec)
+             ARGS+=("$SERVER_SERVICE")
+        fi
+
+        ARGS+=(s6-svc -1 /var/run/s6/services/apache)
     else
         server_is_not_running
     fi
@@ -296,8 +347,13 @@ elif [ "$1" == "apache" ] && [ "$2" == "restart" ]; then
     shift 1
 
     if [ "$EXEC" == "yes" ]; then
-        ARGS+=(exec)
-        ARGS+=("$SERVER_SERVICE" s6-svc -r /var/run/s6/services/apache)
+
+       if [ $SERVER_IS_INTERNAL = false ]; then
+           ARGS+=(exec)
+           ARGS+=("$SERVER_SERVICE")
+       fi
+
+      ARGS+=(s6-svc -r /var/run/s6/services/apache)
     else
         server_is_not_running
     fi
@@ -307,8 +363,13 @@ elif [ "$1" == "apache" ] && [ "$2" == "status" ]; then
     shift 1
 
     if [ "$EXEC" == "yes" ]; then
-        ARGS+=(exec)
-        ARGS+=("$SERVER_SERVICE" s6-svstat /var/run/s6/services/apache)
+
+        if [ $SERVER_IS_INTERNAL = false ]; then
+            ARGS+=(exec)
+            ARGS+=("$SERVER_SERVICE")
+        fi
+
+        ARGS+=(s6-svstat /var/run/s6/services/apache)
     else
         server_is_not_running
     fi
@@ -318,8 +379,13 @@ elif [ "$1" == "phpfpm" ] && [ "$2" == "reload" ]; then
     shift 1
 
     if [ "$EXEC" == "yes" ]; then
-        ARGS+=(exec)
-        ARGS+=("$SERVER_SERVICE" s6-svc -2 /var/run/s6/services/phpfpm)
+
+        if [ $SERVER_IS_INTERNAL = false ]; then
+            ARGS+=(exec)
+            ARGS+=("$SERVER_SERVICE")
+        fi
+
+        ARGS+=(s6-svc -2 /var/run/s6/services/phpfpm)
     else
         server_is_not_running
     fi
@@ -329,7 +395,12 @@ elif [ "$1" == "phpfpm" ] && [ "$2" == "restart" ]; then
     shift 1
 
     if [ "$EXEC" == "yes" ]; then
-        ARGS+=(exec)
+
+        if [ $SERVER_IS_INTERNAL = false ]; then
+           ARGS+=(exec)
+           ARGS+=("$SERVER_SERVICE")
+        fi
+
         ARGS+=("$SERVER_SERVICE" s6-svc -r /var/run/s6/services/phpfpm)
     else
         server_is_not_running
@@ -340,7 +411,12 @@ elif [ "$1" == "phpmpm" ] && [ "$2" == "status" ]; then
     shift 1
 
     if [ "$EXEC" == "yes" ]; then
-        ARGS+=(exec)
+
+        if [ $SERVER_IS_INTERNAL = false ]; then
+            ARGS+=(exec)
+            ARGS+=("$SERVER_SERVICE")
+        fi
+
         ARGS+=("$SERVER_SERVICE" s6-svstat /var/run/s6/services/phpfpm)
     else
         server_is_not_running
@@ -351,8 +427,13 @@ elif [ "$1" == "api" ] && [ "$2" == "reload" ]; then
     shift 1
 
     if [ "$EXEC" == "yes" ]; then
-        ARGS+=(exec)
-        ARGS+=("$SERVER_SERVICE" s6-svc -2 /var/run/s6/services/api)
+
+       if [ $SERVER_IS_INTERNAL = false ]; then
+            ARGS+=(exec)
+            ARGS+=("$SERVER_SERVICE")
+       fi
+
+      ARGS+=("$SERVER_SERVICE" s6-svc -2 /var/run/s6/services/api)
     else
         server_is_not_running
     fi
@@ -362,8 +443,13 @@ elif [ "$1" == "api" ] && [ "$2" == "restart" ]; then
     shift 1
 
     if [ "$EXEC" == "yes" ]; then
-        ARGS+=(exec)
-        ARGS+=("$SERVER_SERVICE" s6-svc -r /var/run/s6/services/api)
+
+       if [ $SERVER_IS_INTERNAL = false ]; then
+          ARGS+=(exec)
+          ARGS+=("$SERVER_SERVICE")
+       fi
+
+       ARGS+=("$SERVER_SERVICE" s6-svc -r /var/run/s6/services/api)
     else
         server_is_not_running
     fi
@@ -373,8 +459,13 @@ elif [ "$1" == "api" ] && [ "$2" == "status" ]; then
     shift 1
 
     if [ "$EXEC" == "yes" ]; then
-        ARGS+=(exec)
-        ARGS+=("$SERVER_SERVICE" s6-svstat /var/run/s6/services/api)
+
+      if [ $SERVER_IS_INTERNAL = false ]; then
+          ARGS+=(exec)
+          ARGS+=("$SERVER_SERVICE")
+      fi
+
+      ARGS+=("$SERVER_SERVICE" s6-svstat /var/run/s6/services/api)
     else
         server_is_not_running
     fi
@@ -389,13 +480,18 @@ elif [ "$1" == "share" ]; then
     sleep 4 && docker logs joomlatools-tunnel  2>&1 | grep -Eo 'http(.*?)trycloudflare.com' | tail -1 & 
     wait
 
-
     exit
 
 # Pass unknown commands to the "docker-compose" binary...
 else
-    ARGS+=("$@")
+    if [ $SERVER_IS_INTERNAL = false  ]; then
+      ARGS+=("$@")
+    fi
 fi
 
 # Run Docker Compose with the defined arguments...
+if [ $SERVER_IS_INTERNAL = false  ]; then
 "${DOCKER_COMPOSE[@]}" "${ARGS[@]}"
+else
+"${ARGS[@]}"
+fi
