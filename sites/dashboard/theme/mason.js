@@ -25,6 +25,8 @@ async function postcss() {
             'text-green-600',
             'bg-yellow-200',
             'text-yellow-600',
+            'bg-purple-200',
+            'text-purple-600',
             'bg-jtblue-200',
             'text-jtblue-600',
           ],
