@@ -33,6 +33,8 @@ services:
     labels:
       - "traefik.enable=true"
       # Routers
+      - "traefik.http.routers.joomlatools-server-tunnel.rule=HostRegexp(`{name:(.*)}.trycloudflare.com`)"
+      - "traefik.http.routers.joomlatools-server-tunnel.entrypoints=web"
       - "traefik.http.routers.joomlatools-server-http.rule=HostRegexp(`{name:(.*)}.test`)"
       - "traefik.http.routers.joomlatools-server-http.entrypoints=web"
       - "traefik.http.routers.joomlatools-server-https.rule=HostRegexp(`{name:(.*)}.test`)"
@@ -236,17 +238,5 @@ services:
       - "traefik.http.routers.dozzle-https.tls=true"
       # Services
       - "traefik.http.services.dozzle.loadbalancer.server.port=8080"
-    networks:
-      - joomlatools-server
-
-  #docker compose --profile tunnel up
-  tunnel:
-    profiles: ["tunnel"]
-    image: cloudflare/cloudflared
-    container_name: joomlatools-tunnel
-    restart: unless-stopped
-    depends_on:
-      - joomlatools-server
-    command: tunnel --url http://joomlatools-server:80
     networks:
       - joomlatools-server
