@@ -145,32 +145,6 @@
 	  right: -90px;
 	}
 
-	body.embedded, 
-	.embedded p, 
-	.embedded td, 
-	.embedded th, 
-	.embedded input, 
-	.embedded submit {
-	    background-color: inherit;
-		font-family: inherit;
-		font-size: inherit;
-	}
-	body.embedded {
-		@apply bg-gray-100;
-	}
-	.embedded a,
-	.embedded a:link,
-	.embedded a:hover,
-	.embedded a:visited {
-		background-color: inherit;
-		@apply text-gray-400 hover:text-white relative;
-	}
-	/* php-apc */
-	.embedded div.content {
-		position: relative!important;
-		overflow-x: auto;
-	}
-
 }
 
 @layer components {

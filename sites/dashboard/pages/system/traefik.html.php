@@ -1,7 +1,6 @@
 ---
 @layout: 
     path: /default
-    pageclass: embedded
 
 name: Proxy
 title: Joomlatools Server Traefik

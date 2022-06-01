@@ -1,7 +1,6 @@
 ---
 @layout: 
     path: /default
-    pageclass: embedded
 
 name: PHP-FPM dashboard
 title: Joomlatools Server FPM

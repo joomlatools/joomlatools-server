@@ -1,7 +1,6 @@
 ---
 @layout: 
     path: /default
-    pageclass: embedded
 
 name: PhpMyAdmin
 title: Joomlatools Server PhpMyAdmin
