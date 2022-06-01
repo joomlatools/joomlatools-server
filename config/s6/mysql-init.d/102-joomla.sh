@@ -7,6 +7,10 @@ then
 
   joomla site:create ${JOOMLA_SITE} --release=${JOOMLA_VERSION}
 
+  if [[ ! -z "${GITPOD_WORKSPACE_URL}" ]]; then
+    gp preview $(gp url 80)/${JOOMLA_SITE}/
+  fi
+
 else
   echo "Installing Joomla... skipped"
 fi
