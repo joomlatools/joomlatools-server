@@ -8,19 +8,19 @@ tasks:
 
    - name: Shell - Joomlatools Server
      command: |
-      clear
-      echo ""
-      echo "Commands you can try:"
-      echo " * gp preview $(gp url 80)/joomla/"
-      echo " * gp preview $(gp url 80)/joomla/administrator/"
-      echo " * gp preview $(gp url 80)/__info/php-info"
-      echo " * joomla"
-      echo " * mason"
+        clear
+        echo ""
+        echo "Commands you can try:"
+        echo " * gp preview $(gp url 80)/joomla/"
+        echo " * gp preview $(gp url 80)/joomla/administrator/"
+        echo " * gp preview $(gp url 80)/__info/php-info"
+        echo " * joomla"
+        echo " * mason"
 
    - name: Logs - Joomlatools Server
      command: |
-     clear
-     sudo -E /init
+        clear
+        sudo -E /init
 
 ports:
   - port: 80
