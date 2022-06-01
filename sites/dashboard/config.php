@@ -7,5 +7,11 @@ return [
     'extension_config'     =>
     [
 
+    ],
+
+
+    // Page
+    'page' => [
+        'visible'   => true,
     ]
 ];

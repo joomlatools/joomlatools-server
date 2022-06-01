@@ -41,7 +41,7 @@
 						<ul 
 						class="mb- pb-0 bg-lime-100 bg-opacity-25" 
 	        			x-show.transition="true"
-						:class="{ 'block' : isOpen , 'hidden' : !isOpen}"
+						:class="<?= (strpos(page()->path, $child->path) === 0 ? "{ 'block' : isOpen }" : "{ 'block' : isOpen , 'hidden' : !isOpen}") ?>"
 						>
 							<? 
 								foreach($child->getChildren() as $sub):

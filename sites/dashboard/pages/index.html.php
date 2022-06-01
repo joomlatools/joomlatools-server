@@ -18,34 +18,23 @@ summary: Dashboard for managing Joomlatools Server
             
             <!-- TABLE -->
             <div class="bg-white shadow rounded-sm my-2.5 overflow-x-auto">
-                <table class="min-w-max w-full table-auto">
-                    <thead>
-                        <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
-                            <th class="py-3 px-6 text-left">#</th>
-                            <th class="py-3 px-6 text-left">Site</th>
-                            <th class="py-3 px-6 text-center">Platform</th>
-                            <th class="py-3 px-6 text-center">Version</th>
-                            <th class="py-3 px-6 text-center">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody class="text-gray-600 text-sm">
-                        <? $id = 1; foreach(data('sites') as $site) : ?>
-                        <tr class="border-b border-gray-200 hover:bg-gray-100">
-                            <td class="py-3 px-6 text-left whitespace-nowrap">
-                                    <?= $id ?>
-                                </div>
-                            </td>
-                            <td class="py-3 px-6 text-left">
-                                <span><a href="#" class="underline text-jtblue-900"><?= $site->name ?></a></span>
-                            </td>
-                            <td class="py-3 px-6 text-center">
-                                <span class="bg-<?= $site->platform_bg_color ?> text-<?= $site->platform_text_color ?> py-1 px-3 rounded-full text-xs"><?= $site->platform_name ?></span>
-                            </td>
-                            <td class="py-3 px-6 text-center">
-                                <?= $site->platform_version ?>
-                            </td>
-                            <td class="py-3 px-6 text-center">
-                                <div class="flex item-center justify-center">
+                <div class="flex flex-row w-full bg-gray-200 text-gray-600 uppercase text-sm font-bold leading-normal">
+                    <div class="w-1/12 py-3 px-6 text-left">#</div>
+                    <div class="w-4/12 py-3 px-6 text-left">Site</div>
+                    <div class="w-2/12 py-3 px-6 text-center">Platform</div>
+                    <div class="w-2/12 py-3 px-6 text-center">Version</div>
+                    <div class="w-3/12 py-3 px-6 text-right">Actions</div>
+                </div>
+                <div class="text-gray-600 text-sm">
+                    <? $id = 1; foreach(data('sites') as $site) : ?>
+                        <div class="flex flex-row w-full border-b border-gray-200 hover:bg-gray-100">
+                            <div class="w-1/12 py-3 px-6 text-left"><?= $id ?></div>
+                            <div class="w-4/12 py-3 px-6 text-left"><?= $site->name ?></div>
+                            <div class="w-2/12 py-3 px-6 text-center"><span class="bg-<?= $site->platform_bg_color ?> text-<?= $site->platform_text_color ?> py-1 px-3 rounded-full text-xs"><?= $site->platform_name ?></span></div>
+                            <div class="w-2/12 py-3 px-6 text-center"><?= $site->platform_version ?></div>
+                            <div class="w-3/12 py-3 px-6 text-right">
+
+                                <div class="flex item-center justify-end">
                                     <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110 cursor-pointer cursor-pointer has-tooltip">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -78,68 +67,9 @@ summary: Dashboard for managing Joomlatools Server
                                         <span class="tooltip rounded shadow-lg p-1 bg-gray-800 text-white -mt-12">Deploy to fly.io</span>
                                     </div>
                                 </div>
-                            </td>
-                        </tr>
-                        <? $id++; endforeach ?>
-                    </tbody>
-                </table>
-            </div>
-            <!-- END OF TABLE -->
+
+                            </div>
+                        </div>
+                    <? $id++; endforeach ?>
+                </div>
             </section>
-
-
-<? $pages = collection('pages', ['folder' => $folder ?? '.', 'level' => 3,  'recurse' => 'true']); $menuOpen = 'true';  ?>
-<ul x-data="{ isOpen: <?= $menuOpen = $menuOpen ?? 'false'; ?> }" role="navigation" aria-label="Secondary menu" class="submenu border border-gray-300 mb-8 rounded">
-    <? foreach ($pages as $page) : ?>
-        <? foreach($page->getChildren() as $child): ?>
-            <? if (strpos(page()->path, $page->path) === 0): ?>
-                <? if ($child->getChildren()): ?>
-                    <li class="hover:bg-gray-100 border-t first:border-t-0 first:rounded-t last:rounded-b items-center transition-colors duration-500 ease-in-out p-2 flex flex-row sm:flex-col sm:items-center lg:flex-row justify-between<?= strpos(page()->path, $child->path) === 0 ? ' bg-gray-100 is-active' : '' ?>">
-                        <a class="flex-1 focus:outline-none focus:shadow-outline block" href="<?= route($child) ?>"><?= $child->name ?></a>
-                        <button
-                            @click="isOpen = !isOpen"
-                            type="button"
-                            class="block px-2 focus:outline-none focus:shadow-outline"
-                            :class="{ 'transition transform-180': isOpen }"
-                        >
-                            <svg
-                                class="h-6 w-6 fill-current"
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 24 24"
-                            >
-                                <path style="display:none"
-                                    x-show="isOpen"
-                                    fill-rule="evenodd"
-                                    clip-rule="evenodd"
-                                    d="M18.278 16.864a1 1 0 0 1-1.414 1.414l-4.829-4.828-4.828 4.828a1 1 0 0 1-1.414-1.414l4.828-4.829-4.828-4.828a1 1 0 0 1 1.414-1.414l4.829 4.828 4.828-4.828a1 1 0 1 1 1.414 1.414l-4.828 4.829 4.828 4.828z"
-                                />
-                                <path style="display:none"
-                                    x-show="!isOpen"
-                                    fill-rule="evenodd"
-                                    d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"
-                                />
-                            </svg>
-                        </button>
-                    </li>
-                    <ul 
-                    class="mb- pb-0 bg-lime-100 bg-opacity-25" 
-                    x-show.transition="true"
-                    :class="{ 'block' : isOpen , 'hidden' : !isOpen}"
-                    >
-                        <? 
-                            foreach($child->getChildren() as $sub):
-                        ?>
-                            <li class="hover:bg-gray-100 border-t transition-colors duration-500 ease-in-out p-2 pl-6 pr-4<?= strpos(page()->path, $sub->path) === 0 ? ' bg-gray-100 is-active' : '' ?>">
-                                <a class="block" href="<?= route($sub) ?>"><?= $sub->name ?></a>
-                            </li>
-                        <? endforeach; ?>
-                    </ul>
-                <? else: ?>
-                    <li class="hover:bg-gray-100 border-t first:border-t-0 first:rounded-t last:rounded-b transition-colors duration-500 ease-in-out p-2<?= strpos(page()->path, $child->path) === 0 ? ' bg-gray-100 is-active' : '' ?> no-children">
-                        <a class="block" href="<?= route($child) ?>"><?= $child->name ?></a>
-                    </li>
-                <? endif; ?>
-            <? endif; ?>
-        <? endforeach; ?>
-    <? endforeach; ?>
-</ul>

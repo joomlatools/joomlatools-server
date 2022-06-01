@@ -10,7 +10,7 @@
   {
     "path": "#",
     "name": "joomla3test",
-    "platform_name": "Joomla 3",
+    "platform_name": "Joomla3",
     "platform_version": "3.10.99",
     "platform_bg_color": "red-200",
     "platform_text_color": "red-600"
@@ -18,7 +18,7 @@
   {
     "path": "#",
     "name": "joomla3test2",
-    "platform_name": "Joomla 3",
+    "platform_name": "Joomla3",
     "platform_version": "3.10.15",
     "platform_bg_color": "red-200",
     "platform_text_color": "red-600"
@@ -26,7 +26,7 @@
   {
     "path": "#",
     "name": "joomla4test",
-    "platform_name": "Joomla 4",
+    "platform_name": "Joomla4",
     "platform_version": "4.0.15",
     "platform_bg_color": "green-200",
     "platform_text_color": "green-600"
@@ -34,7 +34,7 @@
   {
     "path": "#",
     "name": "joomla4test2",
-    "platform_name": "Joomla 4",
+    "platform_name": "Joomla4",
     "platform_version": "4.0.15",
     "platform_bg_color": "green-200",
     "platform_text_color": "green-600"
@@ -42,7 +42,7 @@
   {
     "path": "#",
     "name": "wptest",
-    "platform_name": "WordPress",
+    "platform_name": "WordPress5",
     "platform_version": "5.93",
     "platform_bg_color": "yellow-200",
     "platform_text_color": "yellow-600"
@@ -50,10 +50,10 @@
   {
     "path": "#",
     "name": "wptest2",
-    "platform_name": "WordPress",
-    "platform_version": "5.93",
-    "platform_bg_color": "yellow-200",
-    "platform_text_color": "yellow-600"
+    "platform_name": "WordPress6",
+    "platform_version": "6.01",
+    "platform_bg_color": "purple-200",
+    "platform_text_color": "purple-600"
   },
   {
     "path": "#",
