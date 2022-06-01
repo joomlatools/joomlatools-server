@@ -1,5 +1,5 @@
-if (getenv('APP_NAME') === 'joomlatools-server') {
-    $scheme = $_SERVER['HTTP_X_FORWARDED_PROTO'] ?? $_SERVER['REQUEST_SCHEME'];
+if (getenv('APP_NAME') === 'joomlatools-server' && isset($_SERVER['HTTP_HOST'])) {
+    $scheme = $_SERVER['HTTP_X_FORWARDED_PROTO'] ?? ($_SERVER['REQUEST_SCHEME'] ?? 'http');
 
     if (isset($_SERVER['HTTP_X_FORWARDED_HOST'])) {
         $parts = explode(',', $_SERVER['HTTP_X_FORWARDED_HOST']);
