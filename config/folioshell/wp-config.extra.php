@@ -1,5 +1,9 @@
 if (getenv('APP_NAME') === 'joomlatools-server' && isset($_SERVER['HTTP_HOST']))
 {
+    if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https') {
+        $_SERVER['HTTPS'] = 'on';
+    }
+
     $scheme = $_SERVER['HTTP_X_FORWARDED_PROTO'] ?? ($_SERVER['REQUEST_SCHEME'] ?? 'http');
     $host   = $_SERVER['HTTP_HOST'];
 
