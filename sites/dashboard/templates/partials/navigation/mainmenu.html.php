@@ -39,15 +39,18 @@
 							</button>
 						</div>
 						<ul 
-						class="mb- pb-0 bg-lime-100 bg-opacity-25" 
+						class="mt-2" 
 	        			x-show.transition="true"
 						:class="<?= (strpos(page()->path, $child->path) === 0 ? "{ 'block' : !isOpen, 'hidden' : isOpen }" : "{ 'block' : isOpen , 'hidden' : !isOpen}") ?>"
 						>
 							<? 
 								foreach($child->getChildren() as $sub):
 							?>
-								<li class="p-2 pl-6 pr-4">
-									<a class="block transition-colors duration-500 ease-in-out hover:text-gray-100<?= strpos(page()->path, $sub->path) === 0 ? ' text-gray-100 is-active' : '' ?>" href="<?= route($sub) ?>"><?= $sub->name ?></a>
+								<li class="flex flex-row p-2 pl-0">
+									<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6<?= strpos(page()->path, $sub->path) === 0 ? ' text-gray-100' : '' ?>" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+									  <path stroke-linecap="round" stroke-linejoin="round" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+									</svg>
+									<a class="flex-1 transition-colors duration-500 ease-in-out hover:text-gray-100<?= strpos(page()->path, $sub->path) === 0 ? ' text-gray-100 is-active' : '' ?>" href="<?= route($sub) ?>"><?= $sub->name ?></a>
 								</li>
 							<? endforeach; ?>
 						</ul>
