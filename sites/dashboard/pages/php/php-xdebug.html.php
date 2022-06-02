@@ -3,7 +3,7 @@
     path: /default
 
 
-name: Xdebug
+name: Debugging and profiling
 title: Joomlatools Server Xdebug
 summary: PHP-Xdebug for Joomlatools Server
 visible: true

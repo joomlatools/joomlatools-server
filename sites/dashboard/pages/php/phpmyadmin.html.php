@@ -2,7 +2,7 @@
 @layout: 
     path: /default
 
-name: PhpMyAdmin
+name: Databases
 title: Joomlatools Server PhpMyAdmin
 summary: PhpMyAdmin for managing Joomlatools Server
 visible: true

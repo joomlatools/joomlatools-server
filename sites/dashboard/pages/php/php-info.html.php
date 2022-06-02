@@ -3,7 +3,7 @@
     path: /default
 
 
-name: PHP Info
+name: Information
 title: Joomlatools Server PHP Info
 summary: PHP-PHP Info for Joomlatools Server
 visible: true

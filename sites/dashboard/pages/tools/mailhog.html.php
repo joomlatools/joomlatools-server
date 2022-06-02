@@ -2,7 +2,7 @@
 @layout: 
     path: /default
 
-name: Mailhog
+name: Email testing
 title: Joomlatools Server Mailhog
 summary: Mailhog for managing Joomlatools Server
 visible: true

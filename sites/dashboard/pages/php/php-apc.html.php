@@ -2,7 +2,7 @@
 @layout: 
     path: /default
 
-name: APC dashboard
+name: Cache
 title: Joomlatools Server APC
 summary: PHP-APC for Joomlatools Server
 visible: true

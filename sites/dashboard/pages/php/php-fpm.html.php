@@ -2,7 +2,7 @@
 @layout: 
     path: /default
 
-name: PHP-FPM dashboard
+name: FastCGI
 title: Joomlatools Server FPM
 summary: PHP-FPM for Joomlatools Server
 visible: true

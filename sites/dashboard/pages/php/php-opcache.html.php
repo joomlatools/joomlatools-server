@@ -3,7 +3,7 @@
     path: /default
 
 
-name: Opcache
+name: Performance
 title: Joomlatools Server Opcache
 summary: PHP-Opcache for Joomlatools Server
 visible: true
