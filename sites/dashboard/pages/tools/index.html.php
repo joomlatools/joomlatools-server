@@ -21,7 +21,7 @@ title: Joomlatools Server Tools
                 <div class="bg-white p-4 shadow rounded-lg transition duration-500 ease-in-out transform hover:scale-105">
                     <a href="/tools/mailhog" class="flex flex-col items-center justify-center">
                         <div class="inline-flex shadow-lg border border-gray-200 rounded-full overflow-hidden h-40 w-40">
-                            <img src="http://mailhog.localhost/images/hog.png"
+                            <img src="images://app-logos/mailhog.jpg"
                             alt=""
                             class="h-full w-full">
                         </div>

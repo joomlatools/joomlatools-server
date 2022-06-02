@@ -20,7 +20,7 @@ title: Joomlatools Server PHP Information and Tools
                 <div class="bg-white p-4 shadow rounded-lg transition duration-500 ease-in-out transform hover:scale-105">
                     <a href="/php/phpmyadmin" class="flex flex-col items-center justify-center">
                         <div class="inline-flex shadow-lg border border-gray-200 rounded-full overflow-hidden h-40 w-40">
-                            <img src="images://app-logos/PhpMyAdmin_logo.svg"
+                            <img src="images://app-logos/PhpMyAdmin_logo.jpg"
                             alt=""
                             class="h-full w-full">
                         </div>
@@ -37,7 +37,7 @@ title: Joomlatools Server PHP Information and Tools
                 <div class="bg-white p-4 shadow rounded-lg transition duration-500 ease-in-out transform hover:scale-105">
                     <a href="/php/php-xdebug" class="flex flex-col items-center justify-center">
                         <div class="inline-flex shadow-lg border border-gray-200 rounded-full overflow-hidden h-40 w-40">
-                            <img src="images://app-logos/Xdebug_Logo.svg"
+                            <img src="images://app-logos/Xdebug_Logo.jpg"
                             alt=""
                             class="h-full w-full">
                         </div>
@@ -54,7 +54,7 @@ title: Joomlatools Server PHP Information and Tools
                 <div class="bg-white p-4 shadow rounded-lg transition duration-500 ease-in-out transform hover:scale-105">
                     <a href="/php/php-apc" class="flex flex-col items-center justify-center">
                         <div class="inline-flex shadow-lg border border-gray-200 rounded-full overflow-hidden h-40 w-40">
-                            <img src="images://app-logos/php-apc.png"
+                            <img src="images://app-logos/php-apc.jpg"
                             alt=""
                             class="h-full w-full">
                         </div>
@@ -71,7 +71,7 @@ title: Joomlatools Server PHP Information and Tools
                 <div class="bg-white p-4 shadow rounded-lg transition duration-500 ease-in-out transform hover:scale-105">
                     <a href="/php/php-fpm" class="flex flex-col items-center justify-center">
                         <div class="inline-flex shadow-lg border border-gray-200 rounded-full overflow-hidden h-40 w-40">
-                            <img src="images://app-logos/php-fpm.png"
+                            <img src="images://app-logos/php-fpm.jpg"
                             alt=""
                             class="h-full w-full">
                         </div>
@@ -88,7 +88,7 @@ title: Joomlatools Server PHP Information and Tools
                 <div class="bg-white p-4 shadow rounded-lg transition duration-500 ease-in-out transform hover:scale-105">
                     <a href="/php/php-opcache" class="flex flex-col items-center justify-center">
                         <div class="inline-flex shadow-lg border border-gray-200 rounded-full overflow-hidden h-40 w-40">
-                            <img src="images://app-logos/PHP-OPcache.png"
+                            <img src="images://app-logos/PHP-OPcache.jpg"
                             alt=""
                             class="h-full w-full">
                         </div>
@@ -105,7 +105,7 @@ title: Joomlatools Server PHP Information and Tools
                 <div class="bg-white p-4 shadow rounded-lg transition duration-500 ease-in-out transform hover:scale-105">
                     <a href="/php/php-info" class="flex flex-col items-center justify-center">
                         <div class="inline-flex shadow-lg border border-gray-200 rounded-full overflow-hidden h-40 w-40">
-                            <img src="images://app-logos/PHP-info-logo.svg"
+                            <img src="images://app-logos/PHP-info.jpg"
                             alt=""
                             class="h-full w-full">
                         </div>

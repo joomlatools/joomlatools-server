@@ -21,7 +21,7 @@ title: Joomlatools Server System Information
                 <div class="bg-white p-4 shadow rounded-lg transition duration-500 ease-in-out transform hover:scale-105">
                     <a href="/system/dozzle" class="flex flex-col items-center justify-center">
                         <div class="inline-flex shadow-lg border border-gray-200 rounded-full overflow-hidden h-40 w-40">
-                            <img src="images://app-logos/dozzle.png"
+                            <img src="images://app-logos/dozzle.jpg"
                             alt=""
                             class="h-full w-full">
                         </div>
@@ -38,7 +38,7 @@ title: Joomlatools Server System Information
                 <div class="bg-white p-4 shadow rounded-lg transition duration-500 ease-in-out transform hover:scale-105">
                     <a href="/system/traefik" class="flex flex-col items-center justify-center">
                         <div class="inline-flex shadow-lg border border-gray-200 rounded-full overflow-hidden h-40 w-40">
-                            <img src="images://app-logos/traefik-proxy-logo.svg"
+                            <img src="images://app-logos/traefik-proxy-logo.jpg"
                             alt=""
                             class="h-full w-full">
                         </div>
