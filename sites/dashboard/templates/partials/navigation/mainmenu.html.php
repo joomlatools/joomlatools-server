@@ -16,7 +16,7 @@
 							<button
 								@click="isOpen = !isOpen"
 								type="button"
-								class="block px-2 focus:outline-none focus:shadow-outline"
+								class="block px-2 focus:outline-none focus:shadow-outline hover:text-gray-100<?= (strpos(page()->path, $child->path) === 0 ? ' text-gray-100' : '') ?>"
 								:class="{ 'transition transform-180': <?= (strpos(page()->path, $child->path) === 0 ? 'isOpen' : '!isOpen') ?> }"
 							>
 								<svg
@@ -50,7 +50,7 @@
 									<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6<?= strpos(page()->path, $sub->path) === 0 ? ' text-gray-100' : '' ?>" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
 									  <path stroke-linecap="round" stroke-linejoin="round" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
 									</svg>
-									<a class="flex-1 transition-colors duration-500 ease-in-out hover:text-gray-100<?= strpos(page()->path, $sub->path) === 0 ? ' text-gray-100 is-active' : '' ?>" href="<?= route($sub) ?>"><?= $sub->name ?></a>
+									<a class="flex-1 focus:outline-none focus:shadow-outline block transition-colors duration-500 ease-in-out hover:text-gray-100<?= strpos(page()->path, $sub->path) === 0 ? ' text-gray-100 is-active' : '' ?>" href="<?= route($sub) ?>"><?= $sub->name ?></a>
 								</li>
 							<? endforeach; ?>
 						</ul>
@@ -59,7 +59,7 @@
 				<? else: ?>
 
 					<li class="p-2 no-children">
-						<a class="block transition-colors duration-500 ease-in-out hover:text-gray-100<?= strpos(page()->path, $child->path) === 0 ? ' text-gray-100 is-active' : '' ?>" href="<?= route($child) ?>"><?= $child->name ?></a>
+						<a class="focus:outline-none focus:shadow-outline block transition-colors duration-500 ease-in-out hover:text-gray-100<?= strpos(page()->path, $child->path) === 0 ? ' text-gray-100 is-active' : '' ?>" href="<?= route($child) ?>"><?= $child->name ?></a>
 					</li>
 
 				<? endif; ?>
