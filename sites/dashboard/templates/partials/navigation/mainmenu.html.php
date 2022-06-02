@@ -11,7 +11,7 @@
 				
 				<? if ($child->getChildren()): ?>
 					<li x-data="{ isOpen: <?= $menuOpen = $menuOpen ?? 'false'; ?> }" class="p-2">
-						<div class="flex flex-row sm:flex-col sm:items-center lg:flex-row justify-between items-center">
+						<div class="flex flex-row justify-between items-center">
 							<a class="flex-1 focus:outline-none focus:shadow-outline block transition-colors duration-500 ease-in-out hover:text-gray-100<?= strpos(page()->path, $child->path) === 0 ? ' text-gray-100 is-active' : '' ?>" href="<?= route($child) ?>"><?= $child->name ?></a>
 							<button
 								@click="isOpen = !isOpen"
