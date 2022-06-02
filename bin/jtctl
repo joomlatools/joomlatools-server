@@ -315,7 +315,8 @@ elif [ "$1" == "mysql" ]; then
     fi
 
 # Initiate a Bash shell within the server container...
-elif [ $SERVER_IS_INTERNAL = false  ] && [ "$1" == "shell" ] || [ $SERVER_IS_INTERNAL != true  ] && [ "$1" == "bash" ]; then
+elif [[ $SERVER_IS_INTERNAL = false && ("$1" == "shell" || "$1" == "bash") ]] ; then
+
     shift 1
 
     if [ "$EXEC" == "yes" ]; then
