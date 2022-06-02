@@ -26,8 +26,8 @@ title: Joomlatools Server Tools
                             class="h-full w-full">
                         </div>
 
-                        <h2 class="mt-4 font-bold text-xl">Mailhog</h2>
-                        <h6 class="mt-2 text-sm font-medium">Email</h6>
+                        <h2 class="mt-4 font-bold text-xl">Email testing</h2>
+                        <h6 class="mt-2 text-sm font-medium">Mailhog</h6>
 
                         <p class="text-xs text-gray-500 text-center mt-3">
                             MailHog is an email testing tool that makes it super easy to install and configure a local email server.

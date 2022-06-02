@@ -26,8 +26,8 @@ title: Joomlatools Server System Information
                             class="h-full w-full">
                         </div>
 
-                        <h2 class="mt-4 font-bold text-xl">Dozzle</h2>
-                        <h6 class="mt-2 text-sm font-medium">Logs</h6>
+                        <h2 class="mt-4 font-bold text-xl">Logs</h2>
+                        <h6 class="mt-2 text-sm font-medium">Dozzle</h6>
 
                         <p class="text-xs text-gray-500 text-center mt-3">
                             Dozzle is a simple and responsive application that provides you with a web based interface to monitor your Docker container logs live.
@@ -43,8 +43,8 @@ title: Joomlatools Server System Information
                             class="h-full w-full">
                         </div>
 
-                        <h2 class="mt-4 font-bold text-xl">Traefik</h2>
-                        <h6 class="mt-2 text-sm font-medium">Proxy</h6>
+                        <h2 class="mt-4 font-bold text-xl">Proxy</h2>
+                        <h6 class="mt-2 text-sm font-medium">Traefik</h6>
 
                         <p class="text-xs text-gray-500 text-center mt-3">
                             Traefik is a modern HTTP reverse proxy and load balancer that makes deploying microservices easy.

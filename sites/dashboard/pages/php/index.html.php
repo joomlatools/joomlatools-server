@@ -25,8 +25,8 @@ title: Joomlatools Server PHP Information and Tools
                             class="h-full w-full">
                         </div>
 
-                        <h2 class="mt-4 font-bold text-xl">phpMyAdmin</h2>
-                        <h6 class="mt-2 text-sm font-medium">Database</h6>
+                        <h2 class="mt-4 font-bold text-xl">Databases</h2>
+                        <h6 class="mt-2 text-sm font-medium">phpMyAdmin</h6>
 
                         <p class="text-xs text-gray-500 text-center mt-3">
                             phpMyAdmin is a free and open source administration tool for MySQL and MariaDB.
@@ -42,8 +42,8 @@ title: Joomlatools Server PHP Information and Tools
                             class="h-full w-full">
                         </div>
 
-                        <h2 class="mt-4 font-bold text-xl">Xdebug</h2>
-                        <h6 class="mt-2 text-sm font-medium">Debugging</h6>
+                        <h2 class="mt-4 font-bold text-xl">Debugging and profiling</h2>
+                        <h6 class="mt-2 text-sm font-medium">Xdebug</h6>
 
                         <p class="text-xs text-gray-500 text-center mt-3">
                             Xdebug is a PHP extension which provides debugging and profiling capabilities.
@@ -59,8 +59,8 @@ title: Joomlatools Server PHP Information and Tools
                             class="h-full w-full">
                         </div>
 
-                        <h2 class="mt-4 font-bold text-xl">PHP APC</h2>
-                        <h6 class="mt-2 text-sm font-medium">Cache</h6>
+                        <h2 class="mt-4 font-bold text-xl">Cache</h2>
+                        <h6 class="mt-2 text-sm font-medium">PHP APC</h6>
 
                         <p class="text-xs text-gray-500 text-center mt-3">
                             The Alternative PHP Cache (APC) is a free and open opcode cache for PHP.
@@ -76,8 +76,8 @@ title: Joomlatools Server PHP Information and Tools
                             class="h-full w-full">
                         </div>
 
-                        <h2 class="mt-4 font-bold text-xl">PHP FPM</h2>
-                        <h6 class="mt-2 text-sm font-medium">FastCGI</h6>
+                        <h2 class="mt-4 font-bold text-xl">FastCGI</h2>
+                        <h6 class="mt-2 text-sm font-medium">PHP FPM</h6>
 
                         <p class="text-xs text-gray-500 text-center mt-3">
                             PHP-FPM is a popular alternative PHP FastCGI implementation.
@@ -93,8 +93,8 @@ title: Joomlatools Server PHP Information and Tools
                             class="h-full w-full">
                         </div>
 
-                        <h2 class="mt-4 font-bold text-xl">OPcache</h2>
-                        <h6 class="mt-2 text-sm font-medium">Performance</h6>
+                        <h2 class="mt-4 font-bold text-xl">Performance</h2>
+                        <h6 class="mt-2 text-sm font-medium">OPcache</h6>
 
                         <p class="text-xs text-gray-500 text-center mt-3">
                             OPcache dramatically increases the performance of websites that utilize PHP.
@@ -110,8 +110,8 @@ title: Joomlatools Server PHP Information and Tools
                             class="h-full w-full">
                         </div>
 
-                        <h2 class="mt-4 font-bold text-xl">PHP Info</h2>
-                        <h6 class="mt-2 text-sm font-medium">Information</h6>
+                        <h2 class="mt-4 font-bold text-xl">Information</h2>
+                        <h6 class="mt-2 text-sm font-medium">PHP Info</h6>
 
                         <p class="text-xs text-gray-500 text-center mt-3">
                             PHP Info outputs a large amount of information about the current state of PHP.
