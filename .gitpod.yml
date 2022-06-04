@@ -12,9 +12,7 @@ tasks:
         echo ""
         echo "Commands you can try:"
         echo " * gp preview $(gp url 80)/__info/php-info"
-        echo " * joomla"
-        echo " * folioshell"
-        echo " * mason"
+        echo " * jtctl"
 
    - name: Logs - Joomlatools Server
      command: |

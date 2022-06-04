@@ -22,8 +22,8 @@ services:
       - APP_DEBUG=on
       - APP_CACHE=off
       - APP_PRELOAD=off
-      - APP_HTTP=80
-      - APP_HTTPS=443
+      - APP_HTTP=8080
+      - APP_HTTPS=8443
     build:
       context: .
       args:
@@ -32,31 +32,33 @@ services:
       - .env
     labels:
       - "traefik.enable=true"
-        # Routers
-        - "traefik.http.routers.dashboard-http.rule=Host(`localhost`)"
-        - "traefik.http.routers.dashboard-http.entrypoints=web"
-        - "traefik.http.routers.dashboard-http.service=dashboard"
 
-        - "traefik.http.routers.dashboard-https.rule=Host(`localhost`)"
-        - "traefik.http.routers.dashboard-https.entrypoints=websecure"
-        - "traefik.http.routers.dashboard-https.service=dashboard"
-        - "traefik.http.routers.dashboard-https.tls=true"
+      # Routers
+      - "traefik.http.routers.dashboard-http.rule=Host(`localhost`)"
+      - "traefik.http.routers.dashboard-http.entrypoints=web"
+      - "traefik.http.routers.dashboard-http.service=dashboard"
 
-        - "traefik.http.routers.joomlatools-server-http.rule=HostRegexp(`{name:(.*)}.test`)"
-        - "traefik.http.routers.joomlatools-server-http.entrypoints=web"
-        - "traefik.http.routers.joomlatools-server-http.service=joomlatools-server"
+      - "traefik.http.routers.dashboard-https.rule=Host(`localhost`)"
+      - "traefik.http.routers.dashboard-https.entrypoints=websecure"
+      - "traefik.http.routers.dashboard-https.service=dashboard"
+      - "traefik.http.routers.dashboard-https.tls=true"
 
-        - "traefik.http.routers.joomlatools-server-tunnel.rule=HostRegexp(`{name:(.*)}.trycloudflare.com`)"
-        - "traefik.http.routers.joomlatools-server-tunnel.entrypoints=web"
-        - "traefik.http.routers.joomlatools-server-tunnel.service=joomlatools-server"
+      - "traefik.http.routers.joomlatools-server-http.rule=HostRegexp(`{name:(.*)}.test`)"
+      - "traefik.http.routers.joomlatools-server-http.entrypoints=web"
+      - "traefik.http.routers.joomlatools-server-http.service=joomlatools-server"
 
-        - "traefik.http.routers.joomlatools-server-https.rule=HostRegexp(`{name:(.*)}.test`)"
-        - "traefik.http.routers.joomlatools-server-https.entrypoints=websecure"
-        - "traefik.http.routers.joomlatools-server-https.service=joomlatools-server"
-        - "traefik.http.routers.joomlatools-server-https.tls=true"
-        # Services
-        - "traefik.http.services.dashboard.loadbalancer.server.port=8008"
-        - "traefik.http.services.joomlatools-server.loadbalancer.server.port=80"
+      - "traefik.http.routers.joomlatools-server-tunnel.rule=HostRegexp(`{name:(.*)}.trycloudflare.com`)"
+      - "traefik.http.routers.joomlatools-server-tunnel.entrypoints=web"
+      - "traefik.http.routers.joomlatools-server-tunnel.service=joomlatools-server"
+
+      - "traefik.http.routers.joomlatools-server-https.rule=HostRegexp(`{name:(.*)}.test`)"
+      - "traefik.http.routers.joomlatools-server-https.entrypoints=websecure"
+      - "traefik.http.routers.joomlatools-server-https.service=joomlatools-server"
+      - "traefik.http.routers.joomlatools-server-https.tls=true"
+
+      # Services
+      - "traefik.http.services.dashboard.loadbalancer.server.port=8008"
+      - "traefik.http.services.joomlatools-server.loadbalancer.server.port=80"
     volumes:
       - ./sites/:/var/www/sites
 
