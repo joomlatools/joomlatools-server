@@ -182,6 +182,10 @@ services:
     restart: unless-stopped
     depends_on:
       - joomlatools-server
+    volumes:
+      - type: bind
+        source: ./config/phpmyadmin/config.inc.php
+        target: //var/www/html/config.inc.php
     environment:
       - PMA_HOST=joomlatools-server
       - PMA_VERBOSE=joomlatools-server
