@@ -9,7 +9,7 @@
         <?= partial('navigation/main',[]);?>
 
         
-        <main class="flex-1 h-screen overflow-y-scroll overflow-x-hidden">
+        <main class="flex-1 h-screen<?= (page()->name == 'Dashboard') ? ' overflow-y-scroll' : '' ?> overflow-x-hidden">
 
             <!-- LOGO AND HAMBURGER BUTTON - HIDDEN ON DESKTOP -->
             <div class="md:hidden justify-between items-center bg-black text-white flex">
