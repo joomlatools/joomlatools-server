@@ -185,7 +185,7 @@ services:
     volumes:
       - type: bind
         source: ./config/phpmyadmin/config.inc.php
-        target: /var/www/html/config.inc.php
+        target: /etc/phpmyadmin/config.user.inc.php
     environment:
       - PMA_HOST=joomlatools-server
       - PMA_VERBOSE=joomlatools-server
