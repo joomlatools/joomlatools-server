@@ -2,8 +2,10 @@
 <ul role="navigation" aria-label="Main menu" class="navigation mb-8">
 	<? foreach ($pages as $page) : ?>
 
+		<?// var_dump(page()->path);die;?>
+
 		<li class="p-2 no-children">
-			<a class="block hover:text-gray-100 transition-colors duration-500 ease-in-out<?= strpos(page()->path, $page->path) === 0 ? ' text-gray-100 is-active' : '' ?>" href="<?= route($page) ?>"><?= $page->name ?></a>
+			<a class="block hover:text-gray-100 transition-colors duration-500 ease-in-out<?= strpos(page()->path, $page->path) === 0 ? (page()->path !== '/') ?? ' text-gray-100 is-active' : '' ?>" href="<?= route($page) ?>"><?= $page->name ?></a>
 		</li>
 
 		<? foreach($page->getChildren() as $child): ?>
