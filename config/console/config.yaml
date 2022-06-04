@@ -1,6 +1,11 @@
 globals:
-  www: /var/www/sites
+  www: $APP_ROOT/sites
   mysql-login: "admin:admin"
   restart-command: s6-svc -r /var/run/s6/services/apache
   vhost: false
   projects-dir: /mnt/dev/joomlatools
+  chown: $APP_USER
+"site:create":
+  options: $HOME/.joomlatools/console/site-configuration.yaml
+"site:configure":
+  options: $HOME/.joomlatools/console/site-configuration.yaml

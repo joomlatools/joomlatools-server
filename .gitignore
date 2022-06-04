@@ -14,13 +14,11 @@ vendor/*
 
 # Volume
 data/*
+!data/php.ini
 
 # Themes
 sites/**/theme/node_modules
 sites/**/theme/css/*.map
 
 # Sites
-sites/default/**
-/sites/joomla
-/sites/wordpress
-/docker-composer.override.yml
+sites/**

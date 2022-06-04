@@ -1,6 +1,19 @@
 # --- DO NOT MODIFY ---------------------------------------------------------------------------------------------------
 
 ##
+# Stage: mhsendmail builder
+#
+# Build mhsendmail in Go again as the releases don't include arm64 binaries. 
+# See: https://github.com/mailhog/mhsendmail/issues/28#issuecomment-1001176278
+##
+
+FROM golang:1.15 AS builder
+ARG TARGETARCH
+RUN go get -d -v github.com/mailhog/mhsendmail \
+  && cd /go/src/github.com/mailhog/mhsendmail/ \
+  && GOOS=linux GOARCH=$TARGETARCH go build -o mhsendmail .
+
+##
 # Stage: base
 #
 # Build base server from scratch (used by GitHub Action)
@@ -32,6 +45,9 @@ COPY ./config/console /root/.joomlatools/console/
 # Install Folishell
 COPY ./config/folioshell /root/.foliolabs/folioshell/
 
+# Install jtctl
+COPY ./bin/jtctl /usr//bin/jtctl
+
 ##
 # Stage: build
 ##
@@ -44,6 +60,10 @@ ENV APP_DATA=/srv/www \
 
 # Copy all from build
 COPY --from=base / .
+
+# Copy mhsendmail from the builder
+COPY --from=builder /go/src/github.com/mailhog/mhsendmail/mhsendmail /usr/bin/mhsendmail
+RUN chmod +x /usr/bin/mhsendmail
 
 # Remove copied files
 RUN rm -rf $APP_ROOT/*

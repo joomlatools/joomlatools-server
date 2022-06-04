@@ -2,14 +2,16 @@
   "name": "joomlatools/server",
   "type": "project",
   "license": "AGPL-3.0-only",
-  "description": "Cloud native LA(M)P stack and web publishing platform for Joomlatools Pages",
+  "description": "Cloud native dev evironment for Joomla CMS, Wordpress and Joomlatools Pages",
   "keywords": [
     "server",
     "joomlatools",
     "joomla",
     "docker",
     "gitpod",
-    "pages"
+    "pages",
+    "wordpress",
+    "cloud-native"
   ],
   "homepage": "https://github.com/joomlatools/joomlatools-server",
   "authors": [
