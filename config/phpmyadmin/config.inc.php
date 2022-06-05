@@ -12,3 +12,5 @@ declare(strict_types=1);
 $cfg['AllowThirdPartyFraming'] = true;
 $cfg['ThemeDefault'] = 'bootstrap';
 $cfg['ThemeManager'] = false;
+$cfg['NavigationLogoLink'] = 'http://localhost';
+$cfg['CSPAllow'] = 'localhost';

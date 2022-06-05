@@ -145,6 +145,17 @@
 	  right: -90px;
 	}
 
+	.embedded a:link, 
+	.embedded a:hover, 
+	.embedded a:visited {
+		background-color: inherit;
+    	color: inherit;
+    	text-decoration: inherit;
+	}
+	.embedded a.is-active {
+		@apply text-gray-100;
+	}
+
 }
 
 @layer components {
