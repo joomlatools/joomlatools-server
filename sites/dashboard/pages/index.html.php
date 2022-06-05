@@ -17,7 +17,7 @@ summary: Dashboard for managing Joomlatools Server
             </div>
             
             <!-- TABLE -->
-            <div class="bg-white shadow rounded-sm my-2.5 overflow-x-auto">
+            <div class="bg-white shadow rounded-sm my-2.5 overflow-x-scroll">
                 <div class="flex flex-row w-full bg-gray-200 text-gray-600 uppercase text-sm font-bold leading-normal">
                     <div class="w-1/12 py-3 px-6 text-left">#</div>
                     <div class="w-4/12 py-3 px-6 text-left">Site</div>

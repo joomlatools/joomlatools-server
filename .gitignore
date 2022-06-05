@@ -20,3 +20,4 @@ sites/**/theme/css/*.map
 
 # Sites
 sites/**
+!sites/dashboard
