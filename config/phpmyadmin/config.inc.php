@@ -23,3 +23,6 @@ $cfg['NumRecentTables'] = '0';
 
 // Disable favourite tables button
 $cfg['NumFavoriteTables'] = '0';
+
+// Disable the server select box
+$cfg['NavigationDisplayServers'] = false;
