@@ -9,7 +9,17 @@
 
 declare(strict_types=1);
 
-$cfg['AllowThirdPartyFraming'] = true;
-$cfg['ThemeDefault'] = 'bootstrap';
-$cfg['ThemeManager'] = false;
+// Logo link back to Dashboard
 $cfg['NavigationLogoLink'] = 'http://localhost';
+
+// Theme
+$cfg['ThemeDefault'] = 'bootstrap';
+
+// Theme selector on front page
+$cfg['ThemeManager'] = false;
+
+// Disable recent tables button
+$cfg['NumRecentTables'] = '0';
+
+// Disable favourite tables button
+$cfg['NumFavoriteTables'] = '0';
