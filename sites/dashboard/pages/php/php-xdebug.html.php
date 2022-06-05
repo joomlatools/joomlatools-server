@@ -9,7 +9,7 @@ title: Joomlatools Server Xdebug
 summary: PHP-Xdebug for Joomlatools Server
 visible: true
 ---
-        <section class="max-w-7xl mx-auto py-4 px-5<?= (!function_exists('xdebug_info')) ? ' h-full max-h-screen grid place-items-center' : '' ; ?>">
+        <section class="max-w-7xl mx-auto py-4 px-5 overflow-x-scroll<?= (!function_exists('xdebug_info')) ? ' h-full max-h-screen grid place-items-center' : '' ; ?>">
 
             <? if (!function_exists('xdebug_info')) : ?>
 
