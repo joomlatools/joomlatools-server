@@ -140,9 +140,7 @@
 	}
 
 	.has-tooltip:hover .tooltip {
-	  @apply visible z-50;
-	  width: 180px;
-	  right: -90px;
+	  @apply visible whitespace-nowrap z-50;
 	}
 
 	.embedded a:link, 
