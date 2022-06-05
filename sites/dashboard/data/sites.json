@@ -1,6 +1,14 @@
 [
   {
     "path": "#",
+    "name": "www.example.com",
+    "platform_name": "Pages",
+    "platform_version": "0.24",
+    "platform_bg_color": "jtblue-200",
+    "platform_text_color": "jtblue-600"
+  },
+  {
+    "path": "#",
     "name": "pagestest",
     "platform_name": "Pages",
     "platform_version": "0.23",
@@ -54,13 +62,5 @@
     "platform_version": "6.01",
     "platform_bg_color": "purple-200",
     "platform_text_color": "purple-600"
-  },
-  {
-    "path": "#",
-    "name": "www.example.com",
-    "platform_name": "Pages",
-    "platform_version": "0.24",
-    "platform_bg_color": "jtblue-200",
-    "platform_text_color": "jtblue-600"
   }
 ]
