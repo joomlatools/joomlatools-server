@@ -10,3 +10,4 @@
 declare(strict_types=1);
 
 $cfg['AllowThirdPartyFraming'] = true;
+$cfg['ThemeDefault'] = 'bootstrap';
