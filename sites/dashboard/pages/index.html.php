@@ -36,7 +36,7 @@ summary: Dashboard for managing Joomlatools Server
                                     <?= $site->name ?>
                                 </a>
                             </div>
-                            <div class="hidden md:block pb-1 px-6 text-left">
+                            <div class="hidden md:block px-6 text-left">
                                 <?= $site->desc ?>
                             </div>
                             <div class="w-4/12 py-3 px-6 text-center md:text-left"><span class="bg-<?= $site->platform_bg_color ?> text-<?= $site->platform_text_color ?> py-1 px-3 rounded-full text-xs md:text-sm whitespace-nowrap"><?= $site->platform_name ?></span></div>
