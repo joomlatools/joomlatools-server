@@ -34,9 +34,6 @@ EXPOSE 3306 33060
 # Install sudo (required for Gitpod)
 RUN apt-get install -y --no-install-recommends sudo
 
-# Install Pages
-COPY --chown=$APP_USER:$APP_USER ./config/pages $APP_DATA/config/pages
-
 # Install MySQL
 COPY ./config/s6/mysql-init.d /etc/mysql-init.d/
 COPY ./config/mysql /etc/mysql/
