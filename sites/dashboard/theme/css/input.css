@@ -159,8 +159,9 @@
 		#sites {
 			grid-template-columns: 20% 20% 20% 40%;
 			grid-template-areas: "a b b b"
-			                     "a c c ."
-			                     "a d d e"
+			                     "a c c c"
+			                     "a d d ."
+			                     "a e e f"
 		}
 	}
 
@@ -170,8 +171,9 @@
 			grid-template-columns: 30% 30% 40%;
 			grid-template-areas: "a a a"
 			                     "b b b"
-			                     "c c ."
-			                     "d d e"
+			                     "c c c"
+			                     "d d ."
+			                     "e e f"
 		}
 	}
 
@@ -184,16 +186,20 @@
 	}
 
 	#sites > div:nth-child(3) {
-		/*background-color: red;*/
 		grid-area: c;
 	}
 
 	#sites > div:nth-child(4) {
+		/*background-color: red;*/
 		grid-area: d;
 	}
 
 	#sites > div:nth-child(5) {
 		grid-area: e;
+	}
+
+	#sites > div:nth-child(6) {
+		grid-area: f;
 	}
 
 }

@@ -26,19 +26,22 @@ summary: Dashboard for managing Joomlatools Server
                 <div class="text-gray-600 text-sm md:grid lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 md:gap-8 md:m-4 ">
                     <? $id = 1; foreach(data('sites') as $site) : ?>
                         <div id="sites" class="flex flex-row md:grid w-full justify-between border-b border-gray-200 hover:bg-gray-100 md:border-none md:bg-white md:hover:bg-white md:shadow md:rounded-lg transform transition duration-300 md:hover:scale-105">
-                            <div class="hidden md:block w-auto lg:w-full place-self-center lg:place-self-start">
+                            <div class="hidden md:block lg:w-full place-self-center lg:place-self-start">
                                 <a href="<?= $site->url ?>">
                                     <img class="object-cover object-top h-20 w-20 lg:h-40 lg:w-full rounded-full lg:rounded-t-lg lg:rounded-b-none" src="images://<?= $site->img ?>">
                                 </a>
                             </div>
-                            <div class="w-5/12 md:w-full py-3 px-6 text-left font-semibold md:text-2xl">
+                            <div class="w-5/12 py-3 px-6 text-left font-semibold md:text-2xl">
                                 <a class="hover:underline" href="<?= $site->url ?>">
                                     <?= $site->name ?>
                                 </a>
                             </div>
+                            <div class="hidden md:block pb-1 px-6 text-left">
+                                <?= $site->desc ?>
+                            </div>
                             <div class="w-4/12 py-3 px-6 text-center md:text-left"><span class="bg-<?= $site->platform_bg_color ?> text-<?= $site->platform_text_color ?> py-1 px-3 rounded-full text-xs md:text-sm whitespace-nowrap"><?= $site->platform_name ?></span></div>
-                            <div class="hidden md:flex w-2/12 py-3 px-6 text-left md:text-sm"><span>Version: </span><span><?= $site->platform_version ?></span></div>
-                            <div class="w-3/12 md:w-full py-3 px-6">
+                            <div class="hidden md:flex py-3 px-6 text-left md:text-sm"><span>Version: </span><span><?= $site->platform_version ?></span></div>
+                            <div class="w-3/12 md:w-full py-3 pr-2">
 
                                 <div class="flex item-center justify-end">
                                     <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110 cursor-pointer cursor-pointer has-tooltip">

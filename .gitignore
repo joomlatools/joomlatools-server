@@ -21,4 +21,7 @@ sites/**/theme/css/*.map
 # Sites
 sites/**
 !sites/dashboard
+!sites/dashboard/data
 !sites/dashboard/pages
+!sites/dashboard/templates
+!sites/dashboard/theme
