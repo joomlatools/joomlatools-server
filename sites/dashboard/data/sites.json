@@ -1,6 +1,7 @@
 [
   {
-    "path": "#",
+    "url": "#",
+    "img": "pages_thumbnail.png",
     "name": "www.example.com",
     "platform_name": "Pages",
     "platform_version": "0.24",
@@ -8,7 +9,8 @@
     "platform_text_color": "jtblue-600"
   },
   {
-    "path": "#",
+    "url": "#",
+    "img": "pages_thumbnail.png",
     "name": "pagestest",
     "platform_name": "Pages",
     "platform_version": "0.23",
@@ -16,7 +18,8 @@
     "platform_text_color": "jtblue-600"
   },
   {
-    "path": "#",
+    "url": "#",
+    "img": "j3_template_preview.png",
     "name": "joomla3test",
     "platform_name": "Joomla 3",
     "platform_version": "3.10.99",
@@ -24,7 +27,8 @@
     "platform_text_color": "red-600"
   },
   {
-    "path": "#",
+    "url": "#",
+    "img": "j3_template_preview.png",
     "name": "joomla3test2",
     "platform_name": "Joomla 3",
     "platform_version": "3.10.15",
@@ -32,7 +36,8 @@
     "platform_text_color": "red-600"
   },
   {
-    "path": "#",
+    "url": "#",
+    "img": "j4_template_preview.png",
     "name": "joomla4test",
     "platform_name": "Joomla 4",
     "platform_version": "4.0.15",
@@ -40,7 +45,8 @@
     "platform_text_color": "green-600"
   },
   {
-    "path": "#",
+    "url": "#",
+    "img": "j4_template_preview.png",
     "name": "joomla4test2",
     "platform_name": "Joomla 4",
     "platform_version": "4.0.15",
@@ -48,7 +54,8 @@
     "platform_text_color": "green-600"
   },
   {
-    "path": "#",
+    "url": "#",
+    "img": "wp_screenshot.png",
     "name": "wptest",
     "platform_name": "WordPress 5",
     "platform_version": "5.93",
@@ -56,7 +63,8 @@
     "platform_text_color": "yellow-600"
   },
   {
-    "path": "#",
+    "url": "#",
+    "img": "wp_screenshot.png",
     "name": "wptest2",
     "platform_name": "WordPress 6",
     "platform_version": "6.01",
