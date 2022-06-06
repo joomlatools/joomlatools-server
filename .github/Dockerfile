@@ -20,7 +20,7 @@ RUN go get -d -v github.com/mailhog/mhsendmail \
 ##
 
 #FROM jt-base AS base
-FROM ghcr.io/joomlatools/jt-base:latest AS base
+FROM ghcr.io/joomlatools/jt-base:latest AS build
 
 # Set arg defaults
 ARG DEBIAN_FRONTEND=noninteractive
@@ -37,7 +37,10 @@ RUN apt-get install -y --no-install-recommends sudo
 # Install MySQL
 COPY ./config/s6/mysql-init.d /etc/mysql-init.d/
 COPY ./config/mysql /etc/mysql/
-RUN apt-get install -y --no-install-recommends mysql-server php8.1-mysql php8.1-mysqli
+RUN apt-get install -y --no-install-recommends mysql-server php8.1-mysql php8.1-mysqli php8.1-gd && \
+    rm -rf /var/lib/mysql && \
+    /bin/bash -e /var/scripts/apt_clean.sh && \
+    /bin/bash -e /var/scripts/apt_purge.sh;
 
 # Install Console
 COPY ./config/console /root/.joomlatools/console/
@@ -48,25 +51,9 @@ COPY ./config/folioshell /root/.foliolabs/folioshell/
 # Install jtctl
 COPY ./bin/jtctl /usr//bin/jtctl
 
-##
-# Stage: build
-##
-FROM scratch AS build
-
-ENV APP_DATA=/srv/www \
-    APP_ROOT=/var/www \
-    APP_VOLUME=/mnt/www \
-    APP_USER=www-data
-
-# Copy all from build
-COPY --from=base / .
-
 # Copy mhsendmail from the builder
 COPY --from=builder /go/src/github.com/mailhog/mhsendmail/mhsendmail /usr/bin/mhsendmail
 RUN chmod +x /usr/bin/mhsendmail
-
-# Remove copied files
-RUN rm -rf $APP_ROOT/*
 
 # Remove services
 RUN rm -rf /usr/bin/apache_exporter
@@ -91,9 +78,6 @@ RUN rm /etc/services.d/fastcgi/down
 RUN rm /etc/services.d/file/down
 RUN rm /etc/services.d/phpfpm/down
 
-# Remove MySQL default databas
-RUN rm -rf /var/lib/mysql
-
 # Clean up apt cache and temp files to save disk space
 RUN /bin/bash -e /var/scripts/apt_clean.sh;
 RUN /bin/bash -e /var/scripts/apt_purge.sh;
@@ -113,6 +97,3 @@ ENV APP_DATA=/srv/www \
 ENV COMPOSER_ALLOW_SUPERUSER=1 \
     COMPOSER_HOME=/tmp \
     COMPOSER_NO_DEV=1
-
-# App
-COPY --chown=$APP_USER:$APP_USER ./ $APP_ROOT
