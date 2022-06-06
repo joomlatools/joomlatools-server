@@ -35,7 +35,7 @@ EXPOSE 3306 33060
 RUN apt-get install -y --no-install-recommends sudo
 
 # Install Pages
-COPY --chown=$APP_USER:$APP_USER ./config/pages $APP_ROOT/config/pages
+COPY --chown=$APP_USER:$APP_USER ./config/pages $APP_DATA/config/pages
 
 # Install MySQL
 COPY ./config/s6/mysql-init.d /etc/mysql-init.d/
