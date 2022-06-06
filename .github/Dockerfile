@@ -20,7 +20,7 @@ RUN go get -d -v github.com/mailhog/mhsendmail \
 ##
 
 #FROM jt-base AS base
-FROM ghcr.io/joomlatools/jt-base:latest AS base
+FROM ghcr.io/joomlatools/jt-base:latest AS build
 
 # Set arg defaults
 ARG DEBIAN_FRONTEND=noninteractive
@@ -33,6 +33,9 @@ EXPOSE 3306 33060
 
 # Install sudo (required for Gitpod)
 RUN apt-get install -y --no-install-recommends sudo
+
+# Install Pages
+COPY --chown=$APP_USER:$APP_USER ./config/pages $APP_ROOT/config/pages
 
 # Install MySQL
 COPY ./config/s6/mysql-init.d /etc/mysql-init.d/
@@ -78,14 +81,6 @@ RUN rm /etc/services.d/fastcgi/down
 RUN rm /etc/services.d/file/down
 RUN rm /etc/services.d/phpfpm/down
 
-##
-# Stage: build
-##
-FROM scratch AS build
-
-# Copy all from build
-COPY --from=base / .
-
 # Clean up apt cache and temp files to save disk space
 RUN /bin/bash -e /var/scripts/apt_clean.sh;
 RUN /bin/bash -e /var/scripts/apt_purge.sh;
@@ -105,6 +100,3 @@ ENV APP_DATA=/srv/www \
 ENV COMPOSER_ALLOW_SUPERUSER=1 \
     COMPOSER_HOME=/tmp \
     COMPOSER_NO_DEV=1
-
-# App
-COPY --chown=$APP_USER:$APP_USER ./ $APP_ROOT
