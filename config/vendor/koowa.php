@@ -1,6 +1,5 @@
 <?php
 
-// Set default config
 return [
 
     /* Site */
@@ -8,10 +7,10 @@ return [
     'list_limit' => '20',
 
     /* Locale */
-	'offset'     => 'UTC',
-	'language'   => 'en-GB',
+    'offset'     => 'UTC',
+    'language'   => 'en-GB',
 
-	/* Mail */
+    /* Mail */
     'mailer'    => 'smtp',
     'mailfrom'   => 'norepl@localhost.home',
     'fromname'   => 'Joomlatools',
@@ -23,10 +22,11 @@ return [
     'smtpport'  => '1025',
     'smtpsecure' => 'none',
 
-	/* Cache */
-	'caching'     => getenv('APP_CACHE') !== false ? filter_var( getenv('APP_CACHE') , FILTER_VALIDATE_BOOLEAN) : true,
+    /* Cache */
+    'caching'     => getenv('APP_CACHE') !== false ? filter_var( getenv('APP_CACHE') , FILTER_VALIDATE_BOOLEAN) : true,
     'lifetime'    => '15',
 
-	/* Debug */
+    /* Debug */
     'debug'       => getenv('APP_DEBUG') !== false ? filter_var( getenv('APP_DEBUG') , FILTER_VALIDATE_BOOLEAN) : false,
+    'secret'      =>  getenv('APP_NONCE')
 ];
