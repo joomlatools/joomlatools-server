@@ -133,9 +133,12 @@ With delay during `ONBUILD`, the base defines the minimal composer requires and 
 
 The [Composer Merge Plugin](https://github.com/wikimedia/composer-merge-plugin) is used to merge composer.json files from following locations:
 
-- `/var/www/config/composer.json`
-- `/var/www/services/*/composer.json`
-- `/var/www/sites/*/composer.json`
+- `/srv/www/config/composer/*.json`
+- `/var/www/composer.json`
+- `/srv/www/services/composer.json`
+- `/var/www/services/composer.json`
+- `/srv/www/sites/composer.json`
+- `/var/www/sites/composer.json`
 
 During image build, when Composer is run it will parse these files and merge their configuration settings into the base configuration. This combined configuration will then be used when downloading additional libraries and generating the autoloader.
 
@@ -146,13 +149,13 @@ If the app is running in development mode, `APP_ENV` = `development`, composer w
 
 ### composer.lock
 
-If the application contains a `/var/www/config/compooser.lock` file composer will run `composer install` to install the specific versions of the libraries, if there is no `composer.lock`, it will run `composer update` to install the latest versions of the libraries.
+If the application contains a `/var/www/compooser.lock` file composer will run `composer install` to install the specific versions of the libraries, if there is no `composer.lock`, it will run `composer update` to install the latest versions of the libraries.
 
-If no `composer.lock` is provided the generated `composer.lock` is copied to `/var/www/config/composer.lock` to make it easy to commit it in the repo. Removing an existing lock file ensure the dependencies are updated.
+If no `composer.lock` is provided the generated `composer.lock` is copied to `/var/www/composer.lock` to make it easy to commit it in the repo. Removing an existing lock file ensure the dependencies are updated.
 
 ### opcache preload
 
-By default the complete `/vendor` directory is preloaded in opcache unless `APP_PRELOAD` is disabled. To ignore a specific directory or file paths from being preloaded add a `/var/www/config/preload_ignore.php` file that returns an array of
+By default the complete `/vendor` directory is preloaded in opcache unless `APP_PRELOAD` is disabled. To ignore a specific directory or file paths from being preloaded add a `/var/www/config/opcache/preload_ignore.php` file that returns an array of
 file paths relative to `.../vendor` to be ignored.
 
 ```php
