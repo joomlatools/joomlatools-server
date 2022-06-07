@@ -155,7 +155,7 @@ If no `composer.lock` is provided the generated `composer.lock` is copied to `/v
 
 ### opcache preload
 
-By default the complete `/vendor` directory is preloaded in opcache unless `APP_PRELOAD` is disabled. To ignore a specific directory or file paths from being preloaded add a `/var/www/config/preload_ignore.php` file that returns an array of
+By default the complete `/vendor` directory is preloaded in opcache unless `APP_PRELOAD` is disabled. To ignore a specific directory or file paths from being preloaded add a `/var/www/config/opcache/preload_ignore.php` file that returns an array of
 file paths relative to `.../vendor` to be ignored.
 
 ```php
