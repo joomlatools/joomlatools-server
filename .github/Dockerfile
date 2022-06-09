@@ -7,6 +7,8 @@
 # See: https://github.com/mailhog/mhsendmail/issues/28#issuecomment-1001176278
 ##
 
+ARG IMAGE_TAG=master
+
 FROM golang:1.15 AS builder
 ARG TARGETARCH
 RUN go get -d -v github.com/mailhog/mhsendmail \
@@ -20,10 +22,19 @@ RUN go get -d -v github.com/mailhog/mhsendmail \
 ##
 
 #FROM jt-base AS base
-FROM ghcr.io/joomlatools/jt-base:latest AS build
+FROM ghcr.io/joomlatools/jt-mysql:${IMAGE_TAG} as build
 
 # Set arg defaults
 ARG DEBIAN_FRONTEND=noninteractive
+
+ENV APP_DATA=/srv/www \
+    APP_ROOT=/var/www \
+    APP_USER=www-data \
+    MYSQL_ENABLE=1
+
+ENV COMPOSER_ALLOW_SUPERUSER=1 \
+    COMPOSER_HOME=/tmp \
+    COMPOSER_NO_DEV=1
 
 # HTTP Apache
 EXPOSE 8080 8443 80 443
@@ -31,16 +42,11 @@ EXPOSE 8080 8443 80 443
 # MySQL
 EXPOSE 3306 33060
 
-# Install sudo (required for Gitpod)
-RUN apt-get install -y --no-install-recommends sudo
-
-# Install MySQL
-COPY ./config/s6/mysql-init.d /etc/mysql-init.d/
-COPY ./config/mysql /etc/mysql/
-RUN apt-get install -y --no-install-recommends mysql-server php8.1-mysql php8.1-mysqli php8.1-gd && \
-    rm -rf /var/lib/mysql && \
-    /bin/bash -e /var/scripts/apt_clean.sh && \
-    /bin/bash -e /var/scripts/apt_purge.sh;
+RUN /bin/bash -e /var/scripts/apt_config.sh;  \
+    /bin/bash -e /var/scripts/apt_upgrade.sh; \
+    apt-get update; \
+    # Install sudo (required for Gitpod)
+    apt-get install -y --no-install-recommends sudo
 
 # Install Console
 COPY ./config/console /root/.joomlatools/console/
@@ -84,16 +90,3 @@ RUN /bin/bash -e /var/scripts/apt_purge.sh;
 
 # Run S6 overlay
 ENTRYPOINT ["/init"]
-
-##
-# Stage: development
-##
-FROM build
-
-ENV APP_DATA=/srv/www \
-    APP_ROOT=/var/www \
-    APP_USER=www-data
-
-ENV COMPOSER_ALLOW_SUPERUSER=1 \
-    COMPOSER_HOME=/tmp \
-    COMPOSER_NO_DEV=1
