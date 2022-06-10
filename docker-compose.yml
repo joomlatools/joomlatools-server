@@ -27,7 +27,7 @@ services:
     build:
       context: .
       args:
-        IMAGE_TAG: latest
+        IMAGE_TAG: master
     env_file:
       - .env
     labels:
