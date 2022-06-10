@@ -1,6 +1,6 @@
 {
   "require": {
-    "foliolabs/folioshell": "dev-feature/10-refactor as 1.1.x-dev",
-    "joomlatools/console": "dev-master as 1.6.x-dev"
+    "foliolabs/folioshell": "~2.0",
+    "joomlatools/console": "~2.0"
   }
 }
