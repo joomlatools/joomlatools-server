@@ -1,4 +1,4 @@
-ARG IMAGE_TAG=latest
+ARG IMAGE_TAG=master
 FROM ghcr.io/joomlatools/joomlatools-server:${IMAGE_TAG} as base
 
 ENV APP_DATA=/srv/www \

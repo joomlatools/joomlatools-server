@@ -2,9 +2,9 @@
 # Stage: base
 #
 # Build gitpod server
-# Version: 1.0.0-dev build 55s
+# Version: 22.06 build 1
 
-ARG IMAGE_TAG=latest
+ARG IMAGE_TAG=master
 FROM ghcr.io/joomlatools/joomlatools-server:${IMAGE_TAG} as base
 
 # Gitpod configuration (do not change)

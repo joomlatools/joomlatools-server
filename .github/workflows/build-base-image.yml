@@ -47,6 +47,8 @@ jobs:
           push: true
           file: ./.github/Dockerfile
           target: build
+          build-args: |
+            IMAGE_TAG=master
           tags: |
             ghcr.io/joomlatools/joomlatools-server:${{ env.GITHUB_REF_SLUG }}
             ghcr.io/joomlatools/joomlatools-server:latest
