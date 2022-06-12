@@ -217,7 +217,7 @@ The server provides following default HTTP(s) endpoints
 
 ### Status
 
-- http://localhost:8080/__ping-php (php-fpm ping, local only)
+- http://localhost:8080/__ping (php-fpm ping, local only)
 - http://localhost:8080/__status-php (php-fpm status, local only)
 - http://localhost:8080/__status-apache (apache status, local only)
 
