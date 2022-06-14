@@ -46,7 +46,10 @@ RUN /bin/bash -e /var/scripts/apt_config.sh;  \
     /bin/bash -e /var/scripts/apt_upgrade.sh; \
     apt-get update; \
     # Install sudo (required for Gitpod)
-    apt-get install -y --no-install-recommends sudo
+    apt-get install -y --no-install-recommends sudo; \
+    # PHP extensions
+    apt-get install -y --no-install-recommends php8.1-gd php8.1-zip;
+
 
 # Install Console
 COPY ./config/console /root/.joomlatools/console/
