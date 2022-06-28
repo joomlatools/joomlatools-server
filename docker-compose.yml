@@ -49,7 +49,8 @@ services:
       - ./data/sites:/mnt/www/sites
 
       # MySQL Data
-      - mysql:/mnt/www/mysql
+      - ./data/mysql:/mnt/www/mysql
+      #- mysql:/mnt/www/mysql
 
       # Include any of the following for local development
 
