@@ -1,4 +1,3 @@
-# IDE & System Related Files #
 .buildpath
 .project
 .settings
@@ -20,4 +19,5 @@ sites/**/theme/node_modules
 sites/**/theme/css/*.map
 
 # Sites
-sites/**
+sites/*
+!sites/dashboard
