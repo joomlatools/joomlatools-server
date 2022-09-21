@@ -34,7 +34,8 @@ ENV APP_DATA=/srv/www \
 
 ENV COMPOSER_ALLOW_SUPERUSER=1 \
     COMPOSER_HOME=/tmp \
-    COMPOSER_NO_DEV=1
+    COMPOSER_NO_DEV=1 \
+    COMPOSER_IGNORE_PLATFORM_REQS=1
 
 # HTTP Apache
 EXPOSE 8080 8443 80 443
@@ -50,6 +51,23 @@ RUN /bin/bash -e /var/scripts/apt_config.sh;  \
     # PHP extensions
     apt-get install -y --no-install-recommends php8.1-gd php8.1-zip;
 
+RUN apt-get install --no-install-recommends -y \
+            php7.4-fpm \
+            php7.4-igbinary \
+            php7.4-yaml \
+            php7.4-apcu \
+            php7.4-xml \
+            php7.4-mbstring \
+            php7.4-curl \
+            php7.4-intl \
+            php7.4-xdebug \
+            php7.4-mysql \
+            php7.4-mysqli \
+            php7.4-gd \
+            php7.4-zip;
+
+COPY ./config/*php7.4/  /etc/php/7.4/
+COPY ./config/*s6/*services.d/ /etc/services.d/
 
 # Install Console
 COPY ./config/console /root/.joomlatools/console/

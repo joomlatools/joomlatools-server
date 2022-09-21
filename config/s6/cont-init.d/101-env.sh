@@ -11,3 +11,6 @@ printf "%s" $WORDPRESS_SITE > /var/run/s6/container_environment/WORDPRESS_SITE
 
 WORDPRESS_VERSION=${WORDPRESS_VERSION:=latest}
 printf "%s" $WORDPRESS_VERSION > /var/run/s6/container_environment/WORDPRESS_VERSION
+
+PHP_FPM=${PHP_FPM:=8.1}
+printf "%s" $PHP_FPM > /var/run/s6/container_environment/PHP_FPM
