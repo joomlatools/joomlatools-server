@@ -1,0 +1,41 @@
+#!/usr/bin/execlineb -P
+#https://danyspin97.org/blog/getting-started-with-execline-scripting/
+
+### Commands
+# https://linux.die.net/man/8/php-fpm
+# https://skarnet.org/software/s6/s6-svc.html
+
+# SIGUSR1: Re-open log file
+# > s6-svc -1 /var/run/s6/services/phpfpm
+
+# SIGUSR2: Graceful Reload
+# > s6-svc -2 /var/run/s6/services/phpfpm
+
+# SIGQUIT: Graceful Stop
+# > s6-svc -q /var/run/s6/services/phpfpm
+
+# SIGINT: Immediate Stop
+# > s6-svc -i /var/run/s6/services/phpfpm
+
+# Restart
+# > s6-svc -r /var/run/s6/services/phpfpm
+
+# Status
+# https://skarnet.org/software/s6/s6-svstat.html
+# > s6-svstat /var/run/s6/services/phpfpm
+
+# http://manpages.ubuntu.com/manpages/cosmic/man8/php-fpm7.2.8.html
+
+# Explicitly load container environment
+with-contenv
+
+foreground
+{
+    importas -D production APP_ENV APP_ENV
+    importas -D 8.1 PHP_FPM PHP_FPM
+    echo "Starting PHP${PHP_FPM} FPM with environment:" $APP_ENV
+}
+
+importas -D 8.1 PHP_FPM PHP_FPM
+fdmove -c 2 1 # redirect stderr into stdout
+exec s6-notifyoncheck -n 0 -d /usr/sbin/php-fpm${PHP_FPM} -c /etc/php/${PHP_FPM}/fpm --nodaemonize --force-stderr

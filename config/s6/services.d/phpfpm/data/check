@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# https://skarnet.org/software/s6/s6-notifyoncheck.html
+
+if [[ -f /run/php${PHP_FPM}-fpm.pid ]] && pgrep -F /run/php${PHP_FPM}-fpm.pid > /dev/null; then
+   echo "PHP${PHP_FPM} FPM ready"
+   exit 0
+else
+    echo "PHP${PHP_FPM} FPM initialiazing ..."
+   exit 1
+fi
