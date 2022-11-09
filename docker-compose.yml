@@ -32,15 +32,32 @@ services:
       - .env
     labels:
       - "traefik.enable=true"
+
       # Routers
-      - "traefik.http.routers.joomlatools-server-tunnel.rule=HostRegexp(`{name:(.*)}.trycloudflare.com`)"
-      - "traefik.http.routers.joomlatools-server-tunnel.entrypoints=web"
+      - "traefik.http.routers.dashboard-http.rule=Host(`localhost`)"
+      - "traefik.http.routers.dashboard-http.entrypoints=web"
+      - "traefik.http.routers.dashboard-http.service=dashboard"
+
+      - "traefik.http.routers.dashboard-https.rule=Host(`localhost`)"
+      - "traefik.http.routers.dashboard-https.entrypoints=websecure"
+      - "traefik.http.routers.dashboard-https.service=dashboard"
+      - "traefik.http.routers.dashboard-https.tls=true"
+
       - "traefik.http.routers.joomlatools-server-http.rule=HostRegexp(`{name:(.*)}.test`)"
       - "traefik.http.routers.joomlatools-server-http.entrypoints=web"
+      - "traefik.http.routers.joomlatools-server-http.service=joomlatools-server"
+
+      - "traefik.http.routers.joomlatools-server-tunnel.rule=HostRegexp(`{name:(.*)}.trycloudflare.com`)"
+      - "traefik.http.routers.joomlatools-server-tunnel.entrypoints=web"
+      - "traefik.http.routers.joomlatools-server-tunnel.service=joomlatools-server"
+
       - "traefik.http.routers.joomlatools-server-https.rule=HostRegexp(`{name:(.*)}.test`)"
       - "traefik.http.routers.joomlatools-server-https.entrypoints=websecure"
+      - "traefik.http.routers.joomlatools-server-https.service=joomlatools-server"
       - "traefik.http.routers.joomlatools-server-https.tls=true"
+
       # Services
+      - "traefik.http.services.dashboard.loadbalancer.server.port=8008"
       - "traefik.http.services.joomlatools-server.loadbalancer.server.port=80"
     volumes:
       - ./sites/:/var/www/sites
@@ -166,6 +183,10 @@ services:
     restart: unless-stopped
     depends_on:
       - joomlatools-server
+    volumes:
+      - type: bind
+        source: ./config/phpmyadmin/config.inc.php
+        target: /etc/phpmyadmin/config.user.inc.php
     environment:
       - PMA_HOST=joomlatools-server
       - PMA_VERBOSE=joomlatools-server

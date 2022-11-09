@@ -1,0 +1,213 @@
+/* tailwind */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* custom */
+@layer base {
+
+	:root {
+		/* Joomlatools logo colour override used /partials/logo/joomaltools.html.php */
+		--jt-blue:#00adef;
+		--jt-black:#000000;
+	}
+	/* add tailwind classes to pagination select list so it's pretty */
+	select.k-form-control {
+		@apply block appearance-none w-full bg-white border border-gray-100 hover:border-gray-200 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none;
+	}
+	/* Pagination */
+	.k-pagination__pages {
+	  padding-top: 8px;
+	  margin: 0;
+	  padding: 0;
+	  list-style: none;
+	  border: none;
+	  background: transparent;
+	  display: flex;
+	  justify-content: center;
+	}
+	@media screen and (min-width: 560px) {
+	  .k-pagination__pages {
+	    padding-top: 12px;
+	  }
+	}
+	@media screen and (min-width: 1024px) {
+	  .k-pagination__pages {
+	    padding-top: 16px;
+	  }
+	}
+	.k-pagination__pages li {
+	  margin: 0 4px;
+	}
+	.k-pagination__pages li a, .k-pagination__pages li span {
+	  display: block;
+	  min-width: 40px;
+	  min-height: 40px;
+	  text-align: center;
+	}
+	.k-pagination__pages li a {
+	  position: relative;
+	  overflow: hidden;
+	  text-decoration: none;
+	  border-radius: 50%;
+	  background: #f1f1f1;
+	  color: #333;
+	  line-height: 40px;
+	  transition: background 200ms cubic-bezier(0.195, 0.4, 0.45, 0.785) 0ms;
+	}
+	.k-pagination__pages li a:after {
+	  content: "";
+	  background: rgba(255, 255, 255, 0.3);
+	  display: block;
+	  position: absolute;
+	  border-radius: 50%;
+	  padding-top: 240%;
+	  padding-left: 240%;
+	  margin-top: -120%;
+	  margin-left: -120%;
+	  opacity: 0;
+	  transition: all 1s;
+	}
+	.k-pagination__pages li a:active:after {
+	  padding-top: 0;
+	  padding-left: 0;
+	  margin-top: 0;
+	  margin-left: 0;
+	  opacity: 1;
+	  transition: 0s;
+	}
+	.k-pagination__pages li a[href]:hover, .k-pagination__pages li a[href]:focus {
+	  background: #ddd;
+	}
+	.k-pagination__pages li span {
+	  line-height: 40px;
+	}
+	.k-pagination__pages li span.active {
+	  line-height: 40px;
+	  background: #0089d6;
+	  color: white;
+	  border-radius: 50%;
+	}
+	.k-pagination__pages [aria-label="Next page"],
+	.k-pagination__pages [aria-label="Previous page"] {
+	  position: relative;
+	}
+	.k-pagination__pages [aria-label="Next page"]:before,
+	.k-pagination__pages [aria-label="Previous page"]:before {
+	  content: " ";
+	  background: url("../assets/icons/custom/arrow.svg") 0px 5px no-repeat;
+	  background-size: contain;
+	  display: inline-block;
+	  height: 24px;
+	  width: 24px;
+	  transform: scale(0.85);
+	  opacity: 0.2;
+	  transition: all 0.3s ease;
+	}
+	.k-pagination__pages [aria-label="Next page"]:hover:before,
+	.k-pagination__pages [aria-label="Previous page"]:hover:before {
+	  transform: scale(1);
+	  opacity: 0.8;
+	}
+	.k-pagination__pages [aria-label="Next page"] span,
+	.k-pagination__pages [aria-label="Previous page"] span {
+	  display: none;
+	}
+	.k-pagination__pages [aria-label="Previous page"] {
+	  position: relative;
+	}
+	.k-pagination__pages [aria-label="Previous page"]:before {
+	  background-position: 0 -5px;
+	  transform: scale(0.85) rotate(180deg);
+	}
+	.k-pagination__pages [aria-label="Previous page"]:hover:before {
+	  transform: scale(1) rotate(180deg);
+	}
+
+	/* smooth scroll */
+	html {
+	  background: white;
+	  scroll-behavior: smooth;
+	}
+	@media screen and (prefers-reduced-motion: reduce) {
+	  html {
+	    scroll-behavior: auto;
+	  }
+	}
+	/* tooltips */
+	.tooltip {
+	  @apply invisible absolute;
+	}
+
+	.has-tooltip:hover .tooltip {
+	  @apply visible whitespace-nowrap z-50;
+	}
+
+	.embedded a:link, 
+	.embedded a:hover, 
+	.embedded a:visited {
+		background-color: inherit;
+    	color: inherit;
+    	text-decoration: inherit;
+	}
+	.embedded a.is-active {
+		@apply text-gray-100;
+	}
+
+	/* 'md': '768px' */
+	@media (min-width: 768px) {
+		#sites {
+			grid-template-columns: 20% 20% 20% 40%;
+			grid-template-areas: "a b b b"
+			                     "a c c c"
+			                     "a d d ."
+			                     "a e e f"
+		}
+	}
+
+	/* 'lg': '1024px' */
+	@media (min-width: 1024px) {
+		#sites {
+			grid-template-columns: 30% 30% 40%;
+			grid-template-areas: "a a a"
+			                     "b b b"
+			                     "c c c"
+			                     "d d ."
+			                     "e e f"
+		}
+	}
+
+	#sites > div:nth-child(1) {
+		grid-area: a;
+	}
+
+	#sites > div:nth-child(2) {
+		grid-area: b;
+	}
+
+	#sites > div:nth-child(3) {
+		grid-area: c;
+	}
+
+	#sites > div:nth-child(4) {
+		/*background-color: red;*/
+		grid-area: d;
+	}
+
+	#sites > div:nth-child(5) {
+		grid-area: e;
+	}
+
+	#sites > div:nth-child(6) {
+		grid-area: f;
+	}
+
+}
+
+@layer components {
+
+}
+
+@layer utilities {
+
+}
