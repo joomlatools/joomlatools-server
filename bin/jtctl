@@ -113,7 +113,7 @@ else
     display_help
 fi
 
-# Source the ".env" file so Laravel's environment variables are available...
+# Source the ".env" if it is available
 if [ -f ./.env ]; then
     source ./.env
 fi

@@ -82,6 +82,20 @@ You can find all the documentation for Gitpod here: [https://www.gitpod.io/docs/
 
 [![Launch Joomla 4 in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#JOOMLA_SITE=joomla/https://github.com/joomlatools/joomlatools-server)
 
+### Controlling Joomlatools Server
+
+We've made it super simple for you to interact with the Joomlatools Server, via a bash script. 
+
+It's called the Joomlatools Control and can be accessed via:
+
+`sh bin/jtctl`
+
+You'll see a long list of possibilities, including your favourite Joomla! and WordPress commands. 
+
+For now lets start by getting the server up and running: 
+
+`sh bin/jtctl start`
+
 ## Architecture
 
 Joomlatools Server runs applications as a multi-process Docker container. The processes are supervised using S6
