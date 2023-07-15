@@ -146,7 +146,7 @@ fi
 
 if [ $SERVER_IS_INTERNAL = false  ] && [ -n "$SERVER_FILES" ]; then
     # Convert SERVER_FILES to an array...
-    SERVER_FILES=("${SERVER_FILES//:/ }")
+    SERVER_FILES=($SERVER_FILES)
 
     for FILE in "${SERVER_FILES[@]}"; do
         if [ -f "$FILE" ]; then
