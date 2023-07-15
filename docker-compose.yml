@@ -50,7 +50,7 @@ services:
 
       # MySQL Data
       - ./data/mysql:/mnt/www/mysql
-      - mysql:/mnt/www/mysql
+      #- mysql:/mnt/www/mysql
 
       # Include any of the following for local development
 

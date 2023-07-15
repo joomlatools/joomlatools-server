@@ -256,6 +256,10 @@ For further information about docker compose profiles:
 
 [https://docs.docker.com/compose/profiles/](https://docs.docker.com/compose/profiles/)
 
+PS. don't forget to stop these services when you have finished 
+
+`docker compose --profile [mailhog | all]`
+
 ## Documentation
 
 You can find all the documentation for Joomlatools Server [in the wiki](https://github.com/joomlatools/joomlatools-server/wiki). Happy coding!
