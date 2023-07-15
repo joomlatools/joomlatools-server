@@ -1,0 +1,28 @@
+#docker-compose.yml (Development Override)
+version: "3.8"
+
+services:
+
+  #docker compose up
+  joomlatools-server:
+
+    volumes:
+      - ./sites/:/var/www/sites
+
+      # Sites Cache
+      - ./data/sites:/mnt/www/sites
+
+      # MySQL Data
+      - ./data/mysql:/mnt/www/mysql
+      #- mysql:/mnt/www/mysql
+
+      # Include any of the following for local development
+
+      # Composer Vendor
+      #- ./vendor:/tmp/www/vendor
+
+      # Joomlatools Framework
+      #- ~/Projects/joomlatools-framework:/var/www/[site]/joomla/libraries/joomlatools/code
+
+      # Joomlatools Pages
+      #- ~/Projects/joomlatools-pages:/var/www/sites/[site]/libraries/joomlatools-components/pages/code
