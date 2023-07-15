@@ -82,6 +82,20 @@ You can find all the documentation for Gitpod here: [https://www.gitpod.io/docs/
 
 [![Launch Joomla 4 in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#JOOMLA_SITE=joomla/https://github.com/joomlatools/joomlatools-server)
 
+### Controlling Joomlatools Server
+
+We've made it super simple for you to interact with the Joomlatools Server, via a bash script. 
+
+It's called the Joomlatools Control and can be accessed via:
+
+`sh bin/jtctl`
+
+You'll see a long list of possibilities, including your favourite Joomla! and WordPress commands. 
+
+For now lets start by getting the server up and running: 
+
+`sh bin/jtctl start`
+
 ## Architecture
 
 Joomlatools Server runs applications as a multi-process Docker container. The processes are supervised using S6
@@ -228,37 +242,6 @@ The server provides following default HTTP(s) endpoints
 - http://localhost:8080/__info/php-fpm
 - http://localhost:8080/__info/php-opcache
 - http://localhost:8080/__info/php-xdebug (only if xdebug is enabled)
-
-## Optional services 
-
-In order to provide you with a minimal, fast local environment; we've opted to not initialise the joomlatools-server with the following options: 
-
-* Dnsmasq 
-* Traefix 
-* Minica 
-* Phpmyadmin
-* Mailhog
-* Dozzle 
-
-In order to run any of these services, at start up, all you need to do is provide the profile option during the compose up: 
-
-`docker compose --profile mailhog up -d`
-
-For instance, this will start the Mailhog service, which will let you intercept emails sent from your application in a handy to use graphical interface available at: http://localhost:8380/
-
-The [docker-compose.yml](https://github.com/joomlatools/joomlatools-server/blob/master/docker-compose.yml#L192) file is documented as to how to start and control each of these additional profiles. 
-
-If you wanted to run all of these services at once: 
-
-`docker compose --profile all up -d `
-
-For further information about docker compose profiles:
-
-[https://docs.docker.com/compose/profiles/](https://docs.docker.com/compose/profiles/)
-
-PS. don't forget to stop these services when you have finished 
-
-`docker compose --profile [mailhog | all]`
 
 ## Documentation
 
